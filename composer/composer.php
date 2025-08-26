@@ -1,0 +1,38 @@
+<?php
+/* Criar um arquivo JSON neste formato:
+"
+{
+    "description": "Nome do Projeto",
+    "authors": [
+        {
+            "name": "Nome do Autor",
+            "email": "E-mail do Autor"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sts\\": "app/sts", (-> Pacote da Preferência e seu Caminho)
+            "Core\\": "core"
+        }
+    },
+    "require": {}
+}
+"
+*/
+
+// Após, ir no CMD e digitar:
+// "cd 'Caminho do Projeto' -> composer -> composer update".
+// Sempre que alterar algo no JSON, como adicionar um caminho no psr-4, usar "composer dumpautoload" no CMD para atualizar.
+//OBS -> Criar o arquivo "core" junto do MVC antes de usar o "composer update".
+
+// URL amigável:
+/*
+ - Criar a ConfigController dentro do "core".
+ - No "index" do projeto, adicionar o arquivo "autoload" e instanciar a "ConfigController".
+ - Na raíz do projeto, adicionar o ".htaccess" para tornar a URL amigável.
+*/
+
+// Adicionar o "define" no arquivo index para segurança do projeto.
+// Criar um usuário no banco de dados apenas com as permissões do CRUD para aumentar segurança.
+// Criar head e footer padrão e adicioná-los na ConfigView.
+// Criar arquivo Config com as configurações do projeto.

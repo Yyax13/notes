@@ -1,6 +1,7 @@
 Limpar histórico do terminal:
-### cls
-<hr>
+´´´´
+cls
+´´´´
 
 Iniciar novo packet com GIT na máquina (executa apenas uma vez):
 ### git init

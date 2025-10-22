@@ -23,6 +23,12 @@ Clonar os arquivos do Git Hub:
 ```
 <hr>
 
+Adicionar repositório remoto ao local:
+```
+git remote add origin URL-REPOSITÓRIO
+```
+<hr>
+
 Verificar em qual branch está:
 ```
 ### git branch

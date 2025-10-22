@@ -17,6 +17,8 @@ Criar um arquivo JSON neste formato:
     "require": {}
 }
 
+---------------------------------------------------------------------------------------------------------------------------
+
 // Após, ir no CMD e digitar:
 // "cd 'Caminho do Projeto' -> composer -> composer update".
 // Sempre que alterar algo no JSON, como adicionar um caminho no psr-4, usar "composer dumpautoload" no CMD para atualizar.

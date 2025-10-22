@@ -1,6 +1,5 @@
-<?php
-/* Criar um arquivo JSON neste formato:
-"
+Criar um arquivo JSON neste formato:
+
 {
     "description": "Nome do Projeto",
     "authors": [
@@ -17,8 +16,6 @@
     },
     "require": {}
 }
-"
-*/
 
 // Após, ir no CMD e digitar:
 // "cd 'Caminho do Projeto' -> composer -> composer update".

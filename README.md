@@ -1,11 +1,14 @@
 Limpar histórico do terminal:
-´´´´
+
+```
 cls
-´´´´
+```
+
 
 Iniciar novo packet com GIT na máquina (executa apenas uma vez):
-### git init
-<hr>
+```
+git init
+```
 
 Definir as configurações do usuário:
 ### git config --local user.name 'NOME'

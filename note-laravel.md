@@ -108,3 +108,29 @@ Criar seeder:
 ```
 php artisan make:seeder Nome-Da-Seeder
 ```
+
+Se o nome da coluna não estiver no atributo $fillable na Model não será possível manipulá-lo, ex.:
+```
+protected $fillable = [
+   'name',
+   'email',
+   'password',
+   'cpf',
+   'date_birth',
+   'gender',
+   'telephone',
+    ];
+```
+
+Usa-se o ::create para criar registros no banco de dados (geralmente na seed):
+```
+User::create([
+     'name' => 'Lucas Vinicius',
+     'cpf' => '12428432990',
+     'date_birth' => '06/02/2006',
+     'gender' => 'masculino',
+     'email' => 'lucasvini269@gmail.com',
+     'telephone' => '43999859499',
+     'password' => 'L4bar3tTA!'
+            ]);
+```

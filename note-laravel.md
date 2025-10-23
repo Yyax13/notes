@@ -19,12 +19,18 @@ composer create-project laravel/laravel .
 ```
 <hr>
 
-### RODAR O PROJETO INSTALADO DE TERCEIROS:
+### RODAR O PROJETO INSTALADO DE TERCEIROS (após ter clonado o repositório):
 
 Instalar as dependências do PHP e do Node JS (necessário pois estes arquivos não são compartilhados devido ao gitignore):
 ```
 composer install
 npm install
+```
+
+Informações sensíveis:
+```
+Duplicar o arquivo .env.example e renomeá-lo para .env
+Alterar os dados do banco de dados conforme o que possui
 ```
 
 Gerar a chave no .env:
@@ -35,12 +41,6 @@ php artisan key:generate
 Executar as bibliotecas do Node JS
 ```
 npm run dev
-```
-
-Informações sensíveis:
-```
-Duplicar o arquivo .env.example e renomeá-lo para .env
-Alterar os dados do banco de dados conforme o que possui
 ```
 
 Executar as migrations
@@ -99,7 +99,12 @@ Para reverter a operação de migração mais recente, você pode usar o rollbac
 php artisan migrate:rollback
 ```
 
-Apaga todas as migratios e executa novamente junto das seeders
+Apaga todas as migratios e executa novamente junto das seeders:
 ```
 php artisan migrate:fresh --seed
+```
+
+Criar seeder:
+```
+php artisan make:seeder Nome-Da-Seeder
 ```

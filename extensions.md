@@ -28,3 +28,10 @@ Tailwind:
 Tailwind CSS IntelliSense
 ```
 <hr>
+
+Laravel:
+```
+Laravel Blade formatter
+Laravel Blade formatter
+```
+<hr>

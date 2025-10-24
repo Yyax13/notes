@@ -58,7 +58,9 @@ Endereço para acessar: http://127.0.0.1:8000
 
 ### ANOTAÇÕES:
 
-Rotas:
+<hr>
+
+### ROTAS:
 ```
 get    -> listar, visualizar
 post   -> cadastrar
@@ -71,12 +73,73 @@ Síntaxe das rotas:
 Route:<tipo-da-rota>('<url-da-rota>', [<controller-da-rota>::class, '<método-da-rota>'])->name(<nome-da-rota>);
 ```
 
+<hr>
+
+### MODELS:
+
 Criar controller, model e view:
 ```
 php artisan make:view <pasta-da-view>.<nome-da-view>
 php artisan make:controller <nome-da-controller>
 php artisan make:model <nome-da-model>
 ```
+
+Se o nome da coluna não estiver no atributo $fillable na Model não será possível manipulá-lo, ex.:
+```
+protected $fillable = [
+   'name',
+   'email',
+   'password',
+   'cpf',
+   'date_birth',
+   'gender',
+   'telephone',
+    ];
+```
+
+Precisa também informar o nome da tabela na model:
+```
+protected $table = "users";
+```
+
+Na model a chave primária por padrão é o id mas se quiser pode especificar:
+```
+protected $primaryKey = 'exemplo_id';
+```
+
+Se quiser que a chave primária não seja auto incrementa precisa informar:
+```
+public $incrementing = false;
+```
+
+Se quiser que a chave primária não for inteiro precisa informar:
+```
+protected $keyType = 'string';
+```
+
+Se não quiser que gere os campos padrões created e modified precisa informar:
+```
+public $timestamps = false;
+```
+
+Criar a model, migration, factory (registros fake), seeder, policy, controller e o form request (para validar formulário)
+```
+php artisan make:model NomeDaModel --all
+```
+
+O método "firstOrCreate" verifica se existe algum registro com os parâmetros fornecidos, se não existir então o cria (só funciona para registros e não tabelas), ex.:
+```
+ProductModel::firstOrCreate([
+    'store' => 'Casas Freire',
+    'description' => 'Playstation 5 Pro',
+    'flat' => 'Portáteis(reparo)',
+    'months_guarantee' => 12
+        ]);
+```
+
+<hr>
+
+### MIGRATES:
 
 Criar migrations (criar tabelas no banco de dados):
 ```
@@ -104,27 +167,12 @@ Apaga todas as migratios e executa novamente junto das seeders:
 php artisan migrate:fresh --seed
 ```
 
+<hr>
+
+### SEEDERS:
 Criar seeder:
 ```
 php artisan make:seeder Nome-Da-Seeder
-```
-
-Se o nome da coluna não estiver no atributo $fillable na Model não será possível manipulá-lo, ex.:
-```
-protected $fillable = [
-   'name',
-   'email',
-   'password',
-   'cpf',
-   'date_birth',
-   'gender',
-   'telephone',
-    ];
-```
-
-Precisa também informar o nome da tabela na Model:
-```
-protected $table = "users";
 ```
 
 Usa-se o ::create para criar registros no banco de dados (geralmente na seed):
@@ -146,11 +194,22 @@ php artisan db:seed
 php artisan db:seed --NomeDaSeed (se quiser executar uma em específico)
 ```
 
+### FORMULÁRIO:
+
 No formulário, impede do usuário enviar dados de fora, o de baixo define o método:
 ```
 @csrf
 @method('POST')
 ```
+
+Recuperar registros com o foreach:
+```
+foreach (Flight::all() as $flight) {
+    echo $flight->name;
+}
+```
+
+### CONTROLLER:
 
 Síntaxe básica para cadastrar registro utilizando formulário.
 "with" envia a mensagem do segundo argumento na sessão do primeiro argumento:

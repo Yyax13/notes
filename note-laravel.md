@@ -122,6 +122,11 @@ protected $fillable = [
     ];
 ```
 
+Precisa também informar o nome da tabela na Model:
+```
+protected $table = "users";
+```
+
 Usa-se o ::create para criar registros no banco de dados (geralmente na seed):
 ```
 User::create([
@@ -133,4 +138,32 @@ User::create([
      'telephone' => '43999859499',
      'password' => 'L4bar3tTA!'
             ]);
+```
+
+Executar todas as seeders:
+```
+php artisan db:seed
+php artisan db:seed --NomeDaSeed (se quiser executar uma em específico)
+```
+
+No formulário, impede do usuário enviar dados de fora, o de baixo define o método:
+```
+@csrf
+@method('POST')
+```
+
+Síntaxe básica para cadastrar registro utilizando formulário.
+"with" envia a mensagem do segundo argumento na sessão do primeiro argumento:
+```
+try {
+    EnterpriseModel::create([
+        'name' => $request->name,
+        'cnpj' => $request->cnpj,
+        'email' => $request->email,
+        'telephone' => $request->telephone
+    ]);
+    return redirect()->route('enterprises.index')->with('success', 'Cadastro realizado com sucesso!');
+    } catch (Exception $e) {
+        dd($e);
+}
 ```

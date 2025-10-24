@@ -137,6 +137,63 @@ ProductModel::firstOrCreate([
         ]);
 ```
 
+Síntaxe para usar algumas funções do eloquent:
+ * where() -> traz os registros onde da coluna do promeiro argumento onde os valores são iguais ao do segundo argumento.
+ * limit() e orderBy() -> auto explicativo.
+ * get() -> executa a query, precisa dela para a query ser executada.
+```
+$modelExemplo = Model::where('active', 1)
+    ->orderBy('name')
+    ->limit(10)
+    ->get();
+```
+
+Trazer o primeiro registro dos parâmetros informados, se não houver retorna nulo:
+```
+$modelExemplo = Model::where('number', 'FR 900')->first();
+```
+
+Trazer o primeiro registro dos parâmetros informados, se não houver então cria o registro do segundo argumento da função:
+```
+$modelExemplo = Model::firstOrCreate([
+    'name' => 'Lucas'
+],
+    [
+    'email' => 'lucas@gmail.com',
+    'password' => '1234'
+]
+    );
+```
+
+Trazer o primeiro registro dos parâmetros informados, se não houver retorna uma excessão:
+```
+$modelExemplo = Model::where('number', 'FR 900')->firstOrFail();
+```
+
+Busca o registro pelo ID informado, se não houver retorna uma excessão:
+```
+$modelExemplo = Model::findOrFail($id);
+```
+
+Síntaxa para realizar edição de um registro (insere os novos valores):
+```
+$modelExemplo = Model::update([
+    'name' => 'Lucas',
+    'email' => 'lucas@gmail.com'
+]);
+```
+
+Síntaxa para realizar exclusão de um registro:
+```
+$modelExemplo = Model::find(1); // Recupera o ID 1
+$modelExemplo->delete();
+```
+
+Excluir registros em massa:
+```
+$modelExemplo = Model::destroy(1, 2, 3); // Exclui os IDs um, dois e três
+```
+
 <hr>
 
 ### MIGRATES:

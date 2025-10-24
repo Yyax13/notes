@@ -32,6 +32,5 @@ Tailwind CSS IntelliSense
 Laravel:
 ```
 Laravel Blade formatter
-Laravel Blade formatter
 ```
 <hr>

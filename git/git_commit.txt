@@ -1,4 +1,4 @@
-✅ Padrão de mensagem de commit:
+3✅ Padrão de mensagem de commit:
 <tipo>(escopo): mensagem breve no imperativo
 
 Exemplos:

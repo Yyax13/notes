@@ -140,7 +140,7 @@ ProductModel::firstOrCreate([
 Síntaxe para usar algumas funções do eloquent:
  * where() -> traz os registros onde da coluna do promeiro argumento onde os valores são iguais ao do segundo argumento.
  * limit() e orderBy() -> auto explicativo.
- * get() -> executa a query, precisa dela para a query ser executada.
+ * get() -> executa a query trazendo TODOS os registros encontrados, precisa dela para a query ser executada somente em casos que irá BUSCAR registros.
 ```
 $modelExemplo = Model::where('active', 1)
     ->orderBy('name')
@@ -266,6 +266,15 @@ foreach (Flight::all() as $flight) {
 }
 ```
 
+Criptografar senha para enviá-la ao banco de dados:
+```
+Model::create([
+'password' => Hash::make($request->password),
+]);
+```
+
+<hr>
+
 ### CONTROLLER:
 
 Síntaxe básica para cadastrar registro utilizando formulário.
@@ -282,4 +291,71 @@ try {
     } catch (Exception $e) {
         dd($e);
 }
+```
+
+Vizualizar detalhes de um registro.
+Criando a função show na controller (a model do parâmetro busca o registro de acordo com o $parâmetro, onde ele precisa ser o id):
+```
+public function show(User $user)
+{
+  dd($user);
+}
+```
+
+Na rota precisa passar o parâmetro desta forma:
+```
+Route::get('users-show/{user}', [UserController::class, 'show'])->name('users.show');
+```
+
+E para direcionar o link precisa passar o parâmetro desta forma:
+```
+<a href="{{ route('users.show', [$user->id]) }}">Vizualizar</a>
+```
+
+<hr>
+
+### COMPONENTES:
+
+Criar componente:
+```
+php artisan make:component NomeDoComponente
+```
+
+Utilizar o componente na view:
+```
+<x-NomeDoComponente />
+```
+
+<hr>
+
+### SESSÃO E LAYOUTS:
+
+Precisa criar manualmente um diretório com o nome 'layouts' dentro do diretório 'views'.
+Dentro dele pode criar um arquivo blade onde conterá o conteúdo HTML do projeto, ex.:
+```
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zema</title>
+</head>
+<body>
+
+    <a href="{{ route('users.index') }}">Usuários</a>
+
+    @yield('content')
+    
+</body>
+</html>
+```
+
+Agora, nas views, não é necessário incluir o HTML, somente o conteúdo, colocando-o dentro da sessão, o "@yield('content')" fica responsável em adicioná-lo:
+```
+@extends('layouts.admin')
+
+@section('content')
+    <h1>Bem-vindo à Zema!</h1>
+@endsection
 ```

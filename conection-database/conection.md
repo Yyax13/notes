@@ -1,5 +1,5 @@
-Exemplo:
-
+### Exemplo:
+````
 $host = "localhost";
 $port = 3306;
 $pass = "";
@@ -11,3 +11,4 @@ try {
 } catch (PDOException $err) {
     echo $err->getMessage();
 }
+````

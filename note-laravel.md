@@ -73,6 +73,17 @@ Síntaxe das rotas:
 Route:<tipo-da-rota>('<url-da-rota>', [<controller-da-rota>::class, '<método-da-rota>'])->name(<nome-da-rota>);
 ```
 
+Sequência para criar as rotas:
+```
+ - Método -> get; função -> index() // listar
+ - Método -> get; função -> create() // carregar formulário cadastrar
+ - Método -> post; função -> store() // adicionar registro
+ - Método -> get; função -> show() // vizualizar detalhes do registro
+ - Método -> get; função -> edit() // carregar o formulario editar
+ - Método -> put; função -> uptade() // editar registro
+ - Método -> delete; função -> destroy() // deletar registro
+```
+
 <hr>
 
 ### MODELS:

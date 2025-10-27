@@ -1,7 +1,5 @@
----------------------------------------------------------------------------------------------------------------------------
-
-Criar um arquivo JSON neste formato:
-
+### Criar um arquivo JSON neste formato:
+````
 {
     "description": "Nome do Projeto",
     "authors": [
@@ -18,27 +16,29 @@ Criar um arquivo JSON neste formato:
     },
     "require": {}
 }
+````
+<hr>
 
----------------------------------------------------------------------------------------------------------------------------
-
-Após, ir no CMD e digitar:
- - "cd 'Caminho do Projeto' -> composer -> composer update".
+### Após, ir no CMD e digitar:
+````
+ cd 'Caminho do Projeto' -> composer -> composer update
+````
 
 Sempre que alterar algo no JSON, como adicionar um caminho no psr-4, usar "composer dumpautoload" no CMD para atualizar.
 OBS -> Criar o arquivo "core" junto do MVC antes de usar o "composer update".
 
----------------------------------------------------------------------------------------------------------------------------
+<hr>
 
-URL amigável:
+### URL amigável:
 
+```` 
  - Criar a ConfigController dentro do "core".
  - No "index" do projeto, adicionar o arquivo "autoload" e instanciar a "ConfigController".
  - Na raíz do projeto, adicionar o ".htaccess" para tornar a URL amigável.
-
-
+````
+````
  Adicionar o "define" no arquivo index para segurança do projeto.
  Criar um usuário no banco de dados apenas com as permissões do CRUD para aumentar segurança.
  Criar head e footer padrão e adicioná-los na ConfigView.
  Criar arquivo Config com as configurações do projeto.
-
- --------------------------------------------------------------------------------------------------------------------------
+````

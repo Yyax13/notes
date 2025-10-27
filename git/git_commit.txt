@@ -1,4 +1,4 @@
-3✅ Padrão de mensagem de commit:
+Padrão de mensagem de commit:
 <tipo>(escopo): mensagem breve no imperativo
 
 Exemplos:
@@ -22,4 +22,5 @@ chore	 -> Tarefas diversas (ex: atualizar dependências, configs, scripts)
 Dicas Importantes:
  - Escreva a mensagem no imperativo (ex: "corrige bug", e não "corrigido bug").
  - Seja breve, mas claro.
+
  - Use português ou inglês conforme o padrão do projeto (mantenha consistência).

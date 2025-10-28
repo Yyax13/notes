@@ -108,7 +108,7 @@ Route::prefix('users')->group(function () {
 //  GET       - /users/{user}      - show       - users.show
 //  GET       - /users/{user}/edit - edit       - users.edit
 //  PUT/PATCH - /users/{user}      - update     - users.update
-//  DELETE    - /users/{user}      - store      - users.store
+//  DELETE    - /users/{user}      - destroy    - users.destroy
 ```
 
 Rotas resource (
@@ -240,7 +240,7 @@ $modelExemplo->update([
 ]);
 ```
 
-Síntaxa para realizar exclusão de um registro:
+Síntaxa para realizar exclusão de um registro (em alguns casos é necessário incluir o ->middleware() na rota de exclusão para funcionar):
 ```
 $modelExemplo = Model::find(1); // Recupera o ID 1
 $modelExemplo->delete();

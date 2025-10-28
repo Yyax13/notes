@@ -84,6 +84,52 @@ Sequência para criar as rotas:
  - Método -> delete; função -> destroy() // deletar registro
 ```
 
+Comando para listar todas as rotas existentes do projeto:
+```
+php artisan route:list
+```
+
+Grupos (prefixo) de rotas(
+Cria um grupo de rotas duma mesma controller, desta forma refatorando o código):
+```
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+});
+
+// Basta criar o prefixo seguindo esta tabela:
+//  Verbo       URL                  Método       Nome
+//  GET       - /users             - index      - users.index
+//  GET       - /users/create      - create     - users.create
+//  POST      - /users             - store      - users.store
+//  GET       - /users/{user}      - show       - users.show
+//  GET       - /users/{user}/edit - edit       - users.edit
+//  PUT/PATCH - /users/{user}      - update     - users.update
+//  DELETE    - /users/{user}      - store      - users.store
+```
+
+Rotas resource (
+Isto cria automaticamente todas as 7 rotas do RESTful, o nome de cada rota vai de acordo com o informado, ex.:):
+```
+Route::resource('users', UserController::class);
+
+// Route:get('users-index', UserController::class, 'index'])->name('users.index');
+// Route:get('users-create', UserController::class, 'create'])->name('users.create');
+// ...
+```
+
+Também dá para criar várias controllers de rotas resource numa mesma rota:
+```
+Route::resources([
+    'users' => UserController::class,
+    'products' => ProductController::class,
+    ...
+]);
+```
+
 <hr>
 
 ### MODELS:
@@ -188,7 +234,7 @@ $modelExemplo = Model::findOrFail($id);
 
 Síntaxa para realizar edição de um registro (insere os novos valores):
 ```
-$modelExemplo = Model::update([
+$modelExemplo->update([
     'name' => 'Lucas',
     'email' => 'lucas@gmail.com'
 ]);
@@ -302,6 +348,11 @@ try {
     } catch (Exception $e) {
         dd($e);
 }
+```
+
+Retornar a página anterior e manter os dados no formulário:
+```
+return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
 ```
 
 Vizualizar detalhes de um registro.

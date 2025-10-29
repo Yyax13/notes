@@ -396,6 +396,56 @@ $request->validate([
 ]);
 ```
 
+Também pode obrigar a validação a pausar o processamento na primeira excessão informando isto na request:
+```
+protected $stopOnFirstFailure = true;
+```
+
+Se quiser personalisar as mensagens de erro na request:
+```
+public function messages(): array
+{
+return [
+    'title.required' => 'O título é obrigatório!',
+    'body.required' => 'A mensagem é obrigatória!',
+  ];
+}
+```
+
+Verifica se o campo é obrigatório somente se existir no respectivo formulário:
+```
+public function rules(): array
+{
+    return [
+         'name' => 'sometimes|required',
+         'cpf' => 'sometimes|required',
+         'date_birth' => 'sometimes|required',
+         'gender' => 'sometimes|required',
+         'email' => 'sometimes|required',
+         'telephone' => 'sometimes|required',
+         'password' => 'sometimes|required',
+    ];
+}
+```
+
+A Rule::anyOfregra permite especificar que o campo em validação deve satisfazer qualquer um dos conjuntos de regras de validação fornecidos.
+No caso abaixo ela precisa ser um e-mail ou uma sequência alfanumérica:
+```
+'username' => [
+    'required',
+    Rule::anyOf([
+        ['string', 'email'],
+        ['string', 'alpha_dash', 'min:6'],
+    ]),
+],
+```
+
+alpha - o campo pode ter somente letras (pode haver caracteres especiais),
+alpha:ascii - pode ter somente letras (não pode caracteres especiais):
+```
+'username' => 'alpha:ascii',
+'username' => 'alpha'
+```
 <hr>
 
 ### CONTROLLER:

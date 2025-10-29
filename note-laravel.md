@@ -330,6 +330,72 @@ Model::create([
 ]);
 ```
 
+Criar um arquivo request:
+```
+php artisan make:request NomeDaRequest
+```
+
+Se quiser utilizar a validação através do arquivo request precisa espeficar:
+```
+public function authorize(): bool
+{
+    return true;
+}
+```
+
+Realizar validação do formulário dentro da própria controller:
+```
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|unique:posts|max:255',
+        'body' => 'required',
+    ]);
+    // Se passar da validação então segue o código
+}
+```
+
+Pode separar as regras da validação pela '|' ou armazenar em arrays usando validateWithBag:
+```
+$validatedData = $request->validateWithBag('post', [
+    'title' => ['required', 'unique:posts', 'max:255'],
+    'body' => ['required'],
+]);
+```
+
+Se usar o 'bail' a validação é pausada na primeira excessão que surgir, não chega a verificar as demais:
+```
+$request->validate([
+    'title' => 'bail|required|unique:posts|max:255',
+    'body' => 'required',
+]);
+```
+
+Quando a validação captura algum excessão ela a envia para uma sessão $errors, pode exibí-la num componente:
+```
+@if ($errors->any()) {{-- any() seria como 'se existir' --}}
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error) {{-- precisa do all() para capturar todas as excessões --}}
+                <li>{{ $error }}</li> {{-- imprime o erro --}}
+            @endforeach
+        </ul>
+    </div>
+@endif
+```
+
+Regras documentadas:
+```
+https://laravel.com/docs/12.x/validation#available-validation-rules
+```
+
+Se o campo não for obrigatório precisa informar:
+```
+$request->validate([
+    'publish_at' => 'nullable|date'
+]);
+```
+
 <hr>
 
 ### CONTROLLER:

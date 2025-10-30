@@ -19,7 +19,7 @@ composer create-project laravel/laravel .
 ```
 <hr>
 
-### RODAR O PROJETO INSTALADO DE TERCEIROS (após ter clonado o repositório):
+# RODAR O PROJETO INSTALADO DE TERCEIROS (após ter clonado o repositório):
 
 Instalar as dependências do PHP e do Node JS (necessário pois estes arquivos não são compartilhados devido ao gitignore):
 ```
@@ -56,11 +56,11 @@ Endereço para acessar: http://127.0.0.1:8000
 
 <hr>
 
-### ANOTAÇÕES:
+# ANOTAÇÕES:
 
-<hr>
+### ROTAS
 
-### ROTAS:
+Para que cada uma serve:
 ```
 get    -> listar, visualizar
 post   -> cadastrar
@@ -132,7 +132,7 @@ Route::resources([
 
 <hr>
 
-### MODELS:
+### MODELS
 
 Criar controller, model e view:
 ```
@@ -253,7 +253,7 @@ $modelExemplo = Model::destroy(1, 2, 3); // Exclui os IDs um, dois e três
 
 <hr>
 
-### MIGRATES:
+### MIGRATES
 
 Criar migrations (criar tabelas no banco de dados):
 ```
@@ -283,7 +283,8 @@ php artisan migrate:fresh --seed
 
 <hr>
 
-### SEEDERS:
+### SEEDERS
+
 Criar seeder:
 ```
 php artisan make:seeder Nome-Da-Seeder
@@ -308,7 +309,7 @@ php artisan db:seed
 php artisan db:seed --NomeDaSeed (se quiser executar uma em específico)
 ```
 
-### FORMULÁRIO:
+### FORMULÁRIO
 
 No formulário, impede do usuário enviar dados de fora, o de baixo define o método:
 ```
@@ -446,6 +447,23 @@ alpha:ascii - pode ter somente letras (não pode caracteres especiais):
 'username' => 'alpha:ascii',
 'username' => 'alpha'
 ```
+
+Se for unique precisa informar de qual tabela é:
+```
+'cpf' => 'sometimes|required|unique:users',
+```
+
+Para edição de registro com colunas unique:
+Primeiro precisa capturar o ID do usuário editado (isto dentro da request):
+```
+// Captura o parâmetro da rota, ou seja, se a rota possuir "/{user}" então captura o ID do registro, se não possuir parâmetro (ex.: em formulários post - cadastrar) retorna null
+$user = $this->route('user');
+```
+
+Depois precisa informar que é unique, em qual tabela e o ID, para o Laravel ignorar o registro da coluna unique do próprio usuário e permitir a edição:
+```
+'cpf' => 'sometimes|required|unique:users,cpf,' . ($user ? $user->id : null),
+```
 <hr>
 
 ### CONTROLLER:
@@ -506,7 +524,7 @@ Utilizar o componente na view:
 
 <hr>
 
-### SESSÃO E LAYOUTS:
+### SESSÃO E LAYOUTS
 
 Precisa criar manualmente um diretório com o nome 'layouts' dentro do diretório 'views'.
 Dentro dele pode criar um arquivo blade onde conterá o conteúdo HTML do projeto, ex.:

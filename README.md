@@ -1,4 +1,4 @@
-<h1 align="center">📘 Meus Estudos</h1>
+<h1 align="center">Estudos</h1>
 
 <div align="center">
   <table>
@@ -7,12 +7,6 @@
         <a href="./composer/README.md">
           <img src="https://img.shields.io/badge/Composer-FFD43B?logo=composer&logoColor=black" /><br/>
           <b>Composer</b>
-        </a>
-      </td>
-      <td align="center">
-        <a href="./conection-database/README.md">
-          <img src="https://img.shields.io/badge/Database-0078D4?logo=mysql&logoColor=white" /><br/>
-          <b>Banco de Dados</b>
         </a>
       </td>
       <td align="center">

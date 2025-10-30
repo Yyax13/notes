@@ -33,6 +33,11 @@ Duplicar o arquivo .env.example e renomeá-lo para .env
 Alterar os dados do banco de dados conforme o que possui
 ```
 
+Traduzir projeto para português:
+```
+https://github.com/lucascudo/laravel-pt-BR-localization
+```
+
 Gerar a chave no .env:
 ```
 php artisan key:generate
@@ -554,4 +559,36 @@ Agora, nas views, não é necessário incluir o HTML, somente o conteúdo, coloc
 @section('content')
     <h1>Bem-vindo à Zema!</h1>
 @endsection
+```
+<hr>
+
+### TRADUZIR LARAVEL PARA PT-BR
+
+GitHub da biblioteca:
+```
+https://github.com/lucascudo/laravel-pt-BR-localization
+```
+
+<hr>
+
+### PAGINAÇÃO
+
+Precisa incluir a paginação na controller primeiramente:
+```
+public function index(): View
+{
+    return view('user.index', [
+       'users' => DB::table('users')->paginate(15)
+    ]);
+}
+```
+
+Para enviar paginação simples (sem informar o número total de registros, somente anterior e próximo):
+```
+$users = DB::table('users')->simplePaginate(15);
+```
+
+Usar o cursor de paginação, isto é, mascára a URL da paginação para não saber em que página está:
+```
+$users = DB::table('users')->cursorPaginate(15);
 ```

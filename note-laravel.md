@@ -469,6 +469,11 @@ Depois precisa informar que é unique, em qual tabela e o ID, para o Laravel ign
 ```
 'cpf' => 'sometimes|required|unique:users,cpf,' . ($user ? $user->id : null),
 ```
+
+Usa o in:valor para informar que o campo precisa ser igual ao(s) valor(es) informado(s):
+```
+'gender' => 'sometimes|in:masculino,feminino,não_informado',
+```
 <hr>
 
 ### CONTROLLER:

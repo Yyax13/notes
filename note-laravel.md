@@ -474,6 +474,11 @@ Usa o in:valor para informar que o campo precisa ser igual ao(s) valor(es) infor
 ```
 'gender' => 'sometimes|in:masculino,feminino,não_informado',
 ```
+
+Usa o no_in:valor para informar que o campo não pode ser igual ao(s) valor(es) informado(s):
+```
+'gender' => 'sometimes|no_in:Selecione:',
+```
 <hr>
 
 ### CONTROLLER:

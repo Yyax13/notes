@@ -602,3 +602,50 @@ Usar o cursor de paginação, isto é, mascára a URL da paginação para não s
 ```
 $users = DB::table('users')->cursorPaginate(15);
 ```
+
+<hr>
+
+
+### LOGS E AUDITORIA
+
+Alterar no .env o modo do log ser salvo:
+```
+LOG_CHANNEL=stack
+LOG_STACK=daily <-
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+```
+
+Arquivo de configurações do log:
+```
+config/logging.php
+```
+
+Níveis de alerta de cada log:
+```
+Log::emergency($message);
+Log::alert($message);
+Log::critical($message);
+Log::error($message);
+Log::warning($message);
+Log::notice($message);
+Log::info($message);
+Log::debug($message);
+```
+
+Altera-se no .env a partir de qual nível que log quer que o Laravel salve:
+```
+LOG_CHANNEL=stack
+LOG_STACK=daily
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug <-
+```
+
+Estrutura básica para utilizar o log numa função duma controller:
+```
+ } catch (Exception $e) {
+    Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+    return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+ }
+```
+

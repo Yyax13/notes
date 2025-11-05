@@ -715,6 +715,12 @@ public function down(): void
 }
 ```
 
+Tipos de relacionamentos para colocar na Model ao exibir dados de duas tabelas:
+```
+Um para muitos => belongsTo()
+Muitos para um => hasMany()
+```
+
 Exibir dados de duas tabelas na Model,
 Após ter criado a chave estrangeira e o relacionamento criar isto na Model que possua a chave estrangeira():
 ```

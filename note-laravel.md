@@ -703,3 +703,14 @@ public function up(): void
     });
 }
 ```
+
+Excluir coluna da chave estrangeira e relacionamento do rollback da migration:
+```
+public function down(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropForeign(['branch_id']);
+        $table->dropColumn('branch_id');
+    });
+}
+```

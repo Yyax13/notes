@@ -38,6 +38,11 @@ Traduzir projeto para português:
 https://github.com/lucascudo/laravel-pt-BR-localization
 ```
 
+Instalar auditoria:
+```
+https://github.com/lucascudo/laravel-pt-BR-localization
+```
+
 Gerar a chave no .env:
 ```
 php artisan key:generate

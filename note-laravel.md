@@ -681,3 +681,25 @@ Depois, no arquivo config/app.php:
 ```
 'timezone' => env('APP_TIMEZONE', 'UTC'),
 ```
+
+### CHAVE ESTRANGEIRA
+
+Criar migration para adicionar uma coluna com uma chave estrangeira:
+```
+php artisan migration:make add_NomeDaColuna(ex.: user_id)_to_NomeDaTabela(ex.: products)
+```
+
+Estrutura para adicionar a chave e criar o relacionamento dentro da migrate:
+```
+public function up(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+       $table->foreignId('branch_id') // Nome da coluna com a chave estrangeira
+       ->after('remember_token') // Coluna onde a chave estrangeira ficará logo após
+       ->default(1) // Valor padrão que a chave estrangeira terá
+       ->constrained('branches') // Nome da coluna pai (onde a chave estrangeira retira informação)
+       ->onUpdate('cascade') // Cascata: se apagar/editar a tabela pai as filhas também apagam/alteram.
+       ->onDelete('restrict'); // Restrito: não edita/apaga a tabela pai se algum registro utilizar sua chave estrangeira
+    });
+}
+```

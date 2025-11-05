@@ -714,3 +714,25 @@ public function down(): void
     });
 }
 ```
+
+Exibir dados de duas tabelas na Model,
+Após ter criado a chave estrangeira e o relacionamento criar isto na Model que possua a chave estrangeira():
+```
+public function nomeDaTabelaQueQuerTirarAsInformacoes()
+    {
+        return $this->belongsTo(User::class);
+    }
+```
+
+Depois fazer o relacionamento inverso na coluna que será extraída as informações:
+```
+public function nomeDaTabelaQueTirouAsInformacoes()
+    {
+        return $this->hasMany(User::class);
+    }
+```
+
+Para imprimir na view posteriormente:
+```
+<span>Filial: {{ $user->nomeDaTabelaQueQuerTirarAsInformacoes->city }}</span><br>
+```

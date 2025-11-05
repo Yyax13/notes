@@ -649,3 +649,30 @@ Estrutura básica para utilizar o log numa função duma controller:
  }
 ```
 
+Estrutura básica para utilizar o log numa função duma controller:
+```
+ } catch (Exception $e) {
+    Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+    return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+ }
+```
+
+Instalação da auditoria:
+```
+https://laravel-auditing.com/guide/installation.html
+```
+
+Alterar o fuso-horário do projeto:
+```
+APP_NAME=Zema
+APP_ENV=local
+APP_KEY=base64:NoMg/TdSW+TVdyTsiGYUm2kN4qujM3XAcGq2Di3B0G8=
+APP_DEBUG=true
+APP_TIMEZONE=America/Sao_Paulo <-
+APP_URL=http://127.0.0.1:8000
+```
+
+Depois, no arquivo config/app.php:
+```
+'timezone' => env('APP_TIMEZONE', 'UTC'),
+```

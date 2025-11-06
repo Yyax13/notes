@@ -484,6 +484,11 @@ Usa o not_in:valor para informar que o campo não pode ser igual ao(s) valor(es)
 ```
 'gender' => 'sometimes|not_in:Selecione:',
 ```
+
+'numeric' garante que a string possua somente números e 'digits:' que possua exatamente a quantidade de caracteres informado:
+```
+'cpf' => 'sometimes|required|digits:11|numeric'
+```
 <hr>
 
 ### CONTROLLER:

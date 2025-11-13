@@ -261,6 +261,13 @@ Excluir registros em massa:
 $modelExemplo = Model::destroy(1, 2, 3); // Exclui os IDs um, dois e três
 ```
 
+Caso haja colunas json na tabela informar assim na Model, assim, o Laravel converte automaticamente ao cadastrar ou editar registros, desta forma pode cadastra-los/edita-los como array mesmo:
+```
+protected $casts = [
+    'coluna_json' => 'array'
+];
+```
+
 <hr>
 
 ### MIGRATES

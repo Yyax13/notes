@@ -140,6 +140,11 @@ Route::resources([
 ]);
 ```
 
+Fazer com que uma rota possa possuir mais de um tipo (ex.: get e post):
+```
+Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->name('users.create');
+```
+
 <hr>
 
 ### MODELS

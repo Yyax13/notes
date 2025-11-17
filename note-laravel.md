@@ -145,6 +145,16 @@ Fazer com que uma rota possa possuir mais de um tipo (ex.: get e post):
 Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->name('users.create');
 ```
 
+Criar rotas restritas no arquivo web.php(o usuário precisa estar autenticado para acessá-las):
+```
+Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->name('users.create');
+```
+
+Arquivo para verificar as configurações de autenticação:
+```
+config/auth.php
+```
+
 <hr>
 
 ### MODELS

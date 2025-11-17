@@ -772,7 +772,7 @@ Para imprimir na view posteriormente:
 
 ### AUTENTICAÇÃO
 
-Para realização a validação de login para acessar a plataforma(Auth::attempt veririca direto na tabela 'users' de acordo com os dados que forem informados no método):
+Para realização a validação de login para acessar a plataforma(Auth::attempt verifica direto na tabela 'users' de acordo com os dados que forem informados no método):
 ```
 $authenticated = Auth::attempt([
                 'cpf' => $request->cpf,
@@ -783,8 +783,8 @@ $authenticated = Auth::attempt([
 
 Para recuperar qualquer dado do usuário logado:
 ```
-$id_do_usuario_logado = Auth::id;
-$nome_do_usuario_logado = Auth::name;
+$id_do_usuario_logado = Auth::id();
+$nome_do_usuario_logado = Auth::user()->name;
 ```
 
 Realizar o deslogue (logoff) do usuário:

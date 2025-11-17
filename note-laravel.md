@@ -778,11 +778,20 @@ $authenticated = Auth::attempt([
                 'cpf' => $request->cpf,
                 'password' => $request->password
             ]);
-// Se passar da validação lê o restante do código...
+// Depois faz uma validação para ver se passou, ex.: "if ($authenticated) {..."
 ```
 
 Para recuperar qualquer dado do usuário logado:
 ```
 $id_do_usuario_logado = Auth::id;
 $nome_do_usuario_logado = Auth::name;
+```
+
+Realizar o deslogue (logoff) do usuário:
+```
+public function logout()
+{
+    Auth::logout();
+    return redirect()->route('login');
+}
 ```

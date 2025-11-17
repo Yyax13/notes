@@ -759,3 +759,14 @@ Para imprimir na view posteriormente:
 ```
 <span>Filial: {{ $user->nomeDaTabelaQueQuerTirarAsInformacoes->city }}</span><br>
 ```
+
+### AUTENTICAÇÃO
+
+Para realização a validação de login para acessar a plataforma(Auth::attempt veririca direto na tabela 'users' de acordo com os dados que forem informados no método):
+```
+$authenticated = Auth::attempt([
+                'cpf' => $request->cpf,
+                'password' => $request->password
+            ]);
+// Se passar da validação lê o restante do código...
+```

@@ -780,3 +780,9 @@ $authenticated = Auth::attempt([
             ]);
 // Se passar da validação lê o restante do código...
 ```
+
+Para recuperar qualquer dado do usuário logado:
+```
+$id_do_usuario_logado = Auth::id;
+$nome_do_usuario_logado = Auth::name;
+```

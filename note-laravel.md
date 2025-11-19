@@ -283,6 +283,12 @@ protected $casts = [
 ];
 ```
 
+Para buscar registros exceto o parâmetro informado, ex.:
+```
+$levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get(); // Traz todos os níveis de acesso exceto "Desenvolvedor"
+return view('users.create', ['levels_access' => $levels_access]);
+```
+
 <hr>
 
 ### MIGRATES

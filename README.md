@@ -21,6 +21,12 @@
           <b>Laravel</b>
         </a>
       </td>
+      <td align="center">
+        <a href="./note-php.md">
+          <img src="https://img.shields.io/badge/php-272AF5?logo=php&logoColor=white" /><br/>
+          <b>PHP</b>
+        </a>
+      </td>
     </tr>
   </table>
 </div>

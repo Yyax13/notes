@@ -17,3 +17,9 @@ Função para capturar a última posição de um array:
 ```
 $end = end($array);
 ```
+
+Função para capturar uma parte de uma string:
+```
+echo substr("Programador", 0, 4);
+// Resultado -> Prog
+```

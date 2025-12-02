@@ -23,3 +23,10 @@ Função para capturar uma parte de uma string:
 echo substr("Programador", 0, 4);
 // Resultado -> Prog
 ```
+
+Função para deixar a primeira letra de uma string maiúscula:
+```
+<?php
+echo ucfirst("olá mundo"); // Saída: Olá mundo
+?>
+```

@@ -48,6 +48,11 @@ Gerar a chave no .env:
 php artisan key:generate
 ```
 
+Instalar o Laravel Permissions:
+```
+https://spatie.be/docs/laravel-permission/v6/introduction
+```
+
 Executar as bibliotecas do Node JS
 ```
 npm run dev
@@ -800,4 +805,57 @@ public function logout()
     Auth::logout();
     return redirect()->route('login');
 }
+```
+
+### PERMISSÕES (SISTEMA DE PAPÉIS)
+
+Instalar o Laravel Permission:
+```
+https://spatie.be/docs/laravel-permission/v6/introduction
+```
+
+Localização do arquivo de permissões:
+```
+config/permission.php
+```
+
+Utilizar a funcionalidade das páginas que o usuário possuirá permissão de acessar (na seeder):
+```
+// Antes disto criar as seeders 'PermissionSeeder' e 'RoleSeeder'
+
+// Permissões do administrador
+    $adm = Role::firstOrCreate(
+        ['name' => 'Administrador'],
+        ['name' => 'Administrador']
+);
+    $adm->givePermissionTo([
+        'index-enterprises',
+        'show-enterprises',
+        'create-enterprises',
+        'edit-enterprises',
+        'destroy-enterprises'
+]);
+```
+
+Na seeeder Permission precisa criar cada página do projeto para poder atribuí-la à quem poderá acessá-las:
+```
+// Criar um array de páginas
+    $permissions = [
+        'index-enterprises',
+        'show-enterprises',
+        'create-enterprises',
+        'edit-enterprises',
+        'destroy-enterprises',
+    ];
+
+    foreach ($permissions as $permission) {
+        // Se não encontrar o registro cadastra-o no banco de dados
+        Permission::firstOrCreate(
+             ['name' => $permission],
+              [
+                 'name' => $permission,
+                 'guard_name' => 'web'
+              ]
+        );
+    }
 ```

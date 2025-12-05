@@ -522,6 +522,11 @@ Usa o not_in:valor para informar que o campo não pode ser igual ao(s) valor(es)
 ```
 'cpf' => 'sometimes|required|digits:11|numeric'
 ```
+
+Num input date para validar se a idade é superior à 18:
+```
+'date_birth' => 'required|date|before:-18 years',
+```
 <hr>
 
 ### CONTROLLER:

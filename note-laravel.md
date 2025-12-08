@@ -864,3 +864,70 @@ Na seeeder Permission precisa criar cada página do projeto para poder atribuí-
         );
     }
 ```
+
+Incluir o HasRoles na model Users para conseguir utilizar o método assignRole():
+```
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use HasRoles;
+
+    // ...
+}
+```
+
+Na seeder Role atribui quais páginas cada papel possui acesso:
+```
+$customer = Role::firstOrCreate(
+            ['name' => 'Cliente'],
+            ['name' => 'Cliente']
+);
+$customer->givePermissionTo([
+    'profile',
+    'profile.edit',
+    'profile.update',
+
+    'dashboard',
+
+    'login',
+    'login.proccess',
+    'login.create',
+    'login.store',
+            
+    'recover.create',
+    'storeRecover.create',
+]);
+```
+
+E no seeder User usa-se o assignRole() para atribuir o papel:
+```
+$seller = User::firstOrCreate([
+    'name' => 'Mylena Oliveira da Cunha',
+    'cpf' => '12425612395',
+    'date_birth' => '2006-02-17',
+    'gender' => 'feminino',
+    'email' => 'mylena@gmail.com',
+    'telephone' => '43991182166',
+    'password' => Hash::make('1234'),
+    'status_id' => 4,
+    'branch_id' => 2,
+    'level_access_id' => 6
+]);
+    $seller->assignRole('Vendedor');
+```
+
+Em 'bootstrap/app.php' adicionar o seguinte na função 'withMiddleware':
+```
+$middleware->alias([
+    'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+]);
+```
+
+Adicionar a permissão na rota usando o middleware:
+```
+Route::get('/edited-records/{table}/{register}', [EditedRecordsController::class, 'index'])->name('edited.records')->middleware('permission:edited.records');
+```

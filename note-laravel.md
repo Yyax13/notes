@@ -931,3 +931,10 @@ Adicionar a permissão na rota usando o middleware:
 ```
 Route::get('/edited-records/{table}/{register}', [EditedRecordsController::class, 'index'])->name('edited.records')->middleware('permission:edited.records');
 ```
+
+Usa-se o can para o respectivo objeto aparecer somente a quem possui permissão de utilizá-lo:
+```
+@can('users.select-enterprise-update') // No parênteses informa o nome da permissão
+    <a href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a>
+@endcan
+```

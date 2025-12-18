@@ -938,3 +938,11 @@ Usa-se o can para o respectivo objeto aparecer somente a quem possui permissão 
     <a href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a>
 @endcan
 ```
+
+Quando você faz syncRoles('Administrador') o que acontece:
+ - Remove todos os roles atuais do usuário;
+ - Adiciona somente Administrador;
+ - Atualiza o cache de permissões automaticamente.
+```
+$user->syncRoles(['Administrador']);
+```

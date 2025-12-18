@@ -30,3 +30,8 @@ Função para deixar a primeira letra de uma string maiúscula:
 echo ucfirst("olá mundo"); // Saída: Olá mundo
 ?>
 ```
+
+Remove tudo que há do primeiro parâmtro na string e subtitui pelo segundo:
+```
+$this->data = preg_replace('/[^[:alnum:]\p{L}]/u', '', $this->data); // -> Regex para PHP, remove tudo que não é letra ou número.
+```

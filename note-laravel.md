@@ -529,6 +529,12 @@ Num input date para validar se a idade é superior à 18:
 ```
 <hr>
 
+Num input date para validar se a idade é superior à 18 (outra forma):
+```
+'date_birth' => 'sometimes|required|before_or_equal:' . Carbon::now()->subYears(18)->toDateString(),
+```
+<hr>
+
 ### CONTROLLER:
 
 Síntaxe básica para cadastrar registro utilizando formulário.

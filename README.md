@@ -27,6 +27,12 @@
           <b>PHP</b>
         </a>
       </td>
+      <td align="center">
+        <a href="note-js.md">
+          <img src="https://img.shields.io/badge/js-272AF5?logo=js&logoColor=white" /><br/>
+          <b>JavaScript</b>
+        </a>
+      </td>
     </tr>
   </table>
 </div>

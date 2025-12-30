@@ -35,3 +35,12 @@ Remove tudo que há do primeiro parâmtro na string e subtitui pelo segundo:
 ```
 $this->data = preg_replace('/[^[:alnum:]\p{L}]/u', '', $this->data); // -> Regex para PHP, remove tudo que não é letra ou número.
 ```
+
+Match e default (menos verboso que switch e case):
+```
+$role = match ($nivel) {
+    1 => 'Admin', // se nível é 1 então é admin;
+    2 => 'Gerente', // se nível é 2 então é gerente;
+    default => 'Usuário', // se não for nem 1 e nem 2 é usuário.
+};
+```

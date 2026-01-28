@@ -53,6 +53,11 @@ Instalar o Laravel Permissions:
 https://spatie.be/docs/laravel-permission/v6/introduction
 ```
 
+Instalar as dependências do Tailwind CSS:
+```
+https://tailwindcss.com/docs/installation/framework-guides/laravel/vite
+```
+
 Executar as bibliotecas do Node JS
 ```
 npm run dev

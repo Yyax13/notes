@@ -40,7 +40,7 @@ https://github.com/lucascudo/laravel-pt-BR-localization
 
 Instalar auditoria:
 ```
-https://github.com/lucascudo/laravel-pt-BR-localization
+https://laravel-auditing.com/guide/installation.html
 ```
 
 Gerar a chave no .env:

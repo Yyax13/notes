@@ -33,6 +33,12 @@
       <b>JavaScript</b>
     </a>
   </td>
+  <td align="center">
+    <a href="/linux/note-linux.md">
+      <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" /></br>
+      <b>Linux</b>
+    </a>
+  </td>
 </tr>
   </table>
 </div>

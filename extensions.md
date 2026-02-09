@@ -33,4 +33,9 @@ Laravel:
 ```
 Laravel Blade formatter
 ```
+
+Renomear automaticamente tag de fechamento ao editar a tag de abertura:
+```
+Auto Rename Tag
+```
 <hr>

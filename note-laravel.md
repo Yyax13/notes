@@ -299,6 +299,11 @@ $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get(); // Tr
 return view('users.create', ['levels_access' => $levels_access]);
 ```
 
+Para recuperar somente alguns campos do registro:
+```
+$users = User::get(['name', 'cpf']);
+```
+
 <hr>
 
 ### MIGRATES

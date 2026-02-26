@@ -185,3 +185,46 @@ Acessar as configurações do Hyprland:
 ```
 nano ~/.config/hypr/hyprland.conf
 ```
+
+<hr>
+
+<h3>Bluetooth</h3>
+
+Instalar pacote necessário para utilizar dispositivos bluetooth:
+```
+sudo pacman -S bluez bluez-utils
+```
+
+Iniciar e habilitar serviços bluetooth bluetooth:
+```
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+```
+
+Verificar status bluetooth:
+```
+systemctl status bluetooth
+```
+
+Acessar as configurações do bluetooth:
+```
+bluetoothctl
+```
+
+Ativar bluetooth e agente:
+```
+agent on
+default-agent
+```
+
+Scanear dispositivos disponíveis:
+```
+scan on
+```
+
+Conectar ao dispositivo:
+```
+connect ENDEREÇO_MAC_DO_DISPOSITIVO
+```
+
+<hr>

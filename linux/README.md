@@ -188,7 +188,7 @@ nano ~/.config/hypr/hyprland.conf
 
 <hr>
 
-<h3>Bluetooth</h3>
+### BLUETOOTH
 
 Instalar pacote necessário para utilizar dispositivos bluetooth:
 ```
@@ -237,7 +237,29 @@ Se estiver bloqueado à nível de sistema:
 ```
 sudo rfkill unblock bluetooth
 power on
-...
 ```
 
 <hr>
+
+### PACMAN
+
+Instalar pacote usando pacman:
+```
+sudo pacman -S nome_do_pacote
+```
+
+Atualizar todos os pacotes instalados:
+```
+sudo pacman -Syu
+```
+
+Remover (desinstalar) algum pacote:
+```
+sudo pacman -R nome_do_pacote
+```
+
+Listar pacotes instalados:
+```
+sudo pacman -Q
+```
+

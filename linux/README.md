@@ -213,6 +213,7 @@ bluetoothctl
 
 Ativar bluetooth e agente:
 ```
+power on
 agent on
 default-agent
 ```
@@ -225,6 +226,18 @@ scan on
 Conectar ao dispositivo:
 ```
 connect ENDEREÇO_MAC_DO_DISPOSITIVO
+```
+
+Confiar no dispositivo (para ele conectar-se automaticamente futuramente):
+```
+trust ENDEREÇO_MAC_DO_DISPOSITIVO
+```
+
+Se estiver bloqueado à nível de sistema:
+```
+sudo rfkill unblock bluetooth
+power on
+...
 ```
 
 <hr>

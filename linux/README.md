@@ -176,3 +176,12 @@
 - Revise comandos destrutivos (`rm -rf`, `kill -9`) antes de executar.
 - Prefira testar com caminhos específicos em vez de usar curingas amplos (`*`).
 - Use `man NOME_COMANDO` para acessar documentação oficial no terminal.
+
+<hr>
+ 
+### ANOTAÇÕES:
+
+Acessar as configurações do Hyprland:
+```
+nano ~/.config/hypr/hyprland.conf
+```

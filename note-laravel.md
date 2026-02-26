@@ -162,6 +162,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
     return view('dashboard');
 });
+// Importante: quando o usuário tenta acessar uma rota restrita sem estar logado o Laravel sempre vai redirecionar para alguma rota chamada 'login', caso ela não exista ele apontará um erro, pode-se validar isto em app/Http/Middleware/Authenticate.php.
 ```
 
 Arquivo para verificar as configurações de autenticação:

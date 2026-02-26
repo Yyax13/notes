@@ -157,7 +157,11 @@ Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->nam
 
 Criar rotas restritas no arquivo web.php(o usuário precisa estar autenticado para acessá-las):
 ```
-Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->name('users.create');
+// Grupo de rotas que exigem autenticação
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 ```
 
 Arquivo para verificar as configurações de autenticação:

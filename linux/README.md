@@ -239,6 +239,17 @@ sudo rfkill unblock bluetooth
 power on
 ```
 
+Listar todos os dispositivos que já foram pareados alguma vez:
+```
+bluetoothctl
+devices
+```
+
+Acessar o arquivo para obter informações dele (incluindo adicionar a alterar o apelido (alias)):
+```
+sudo nano /var/lib/bluetooth/5C:CD:5B:BD:91:FA/ENDEREÇO_DO_ARQUIVO/info
+```
+
 <hr>
 
 ### PACMAN

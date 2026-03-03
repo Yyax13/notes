@@ -274,3 +274,76 @@ Listar pacotes instalados:
 sudo pacman -Q
 ```
 
+<hr>
+
+### COMANDOS BÁSICOS
+
+Fechar programa:
+```
+Super + Q
+```
+
+Passar um programa de um workspace para outro:
+```
+Super + Shift + algum número
+```
+
+Listar diretórios que estão na pasta que estou no terminal:
+```
+ls
+```
+
+Listar diretórios (incluindo ocultos) que estão na pasta que estou no terminal:
+```
+ls -la
+```
+
+Como se fosse um executar como administrador:
+```
+sudo
+```
+
+Voltar um nível:
+```
+cd ..
+```
+
+Criar uma pasta:
+```
+mkdir NOME_DA_PASTA
+```
+
+Criar um arquivo:
+```
+touch NOME_DO_ARQUIVO.EXTENSAO
+```
+
+Criar uma pasta já com o caminho completo:
+```
+mkdir -p projeto/src/components
+```
+
+Apagar pasta:
+```
+rm -r pasta
+```
+
+Copiar arquivo ou diretório:
+```
+cp arquivo.txt destino/
+```
+
+Mover arquivo ou diretório:
+```
+mv arquivo.txt destino/
+```
+
+Renomear arquivo ou diretório:
+```
+mv antigo.txt novo.txt
+```
+
+Ver tamanho do diretório:
+```
+du -sh *
+```

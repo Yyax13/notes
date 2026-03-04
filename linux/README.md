@@ -352,3 +352,8 @@ Descobrir caminho completo do arquivo:
 ```
 which NOME_DO_ARQUIVO (executável)
 ```
+
+Pesquisar dentro de todo o sistema o nome de um respectivo diretório:
+```
+sudo find / -type d | grep NOME_DO_DIRETÓRIO
+```

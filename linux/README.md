@@ -347,3 +347,8 @@ Ver tamanho do diretório:
 ```
 du -sh *
 ```
+
+Descobrir caminho completo do arquivo:
+```
+which NOME_DO_ARQUIVO (executável)
+```

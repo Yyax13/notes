@@ -309,6 +309,17 @@ Para recuperar somente alguns campos do registro:
 $users = User::get(['name', 'cpf']);
 ```
 
+Refatorar código verificando se um campo está dentro de uma lista de valores.:
+```
+// Ao invés de:
+Expense::where('category_id', 1)
+       ->orWhere('category_id', 2)
+       ->orWhere('category_id', 3)
+       ->get();
+
+// Usar:
+Expense::whereIn('category_id', [1,2,3])->get();
+```
 <hr>
 
 ### MIGRATES

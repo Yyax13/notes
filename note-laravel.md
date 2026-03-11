@@ -320,6 +320,17 @@ Expense::where('category_id', 1)
 // Usar:
 Expense::whereIn('category_id', [1,2,3])->get();
 ```
+
+Usar função na query para poder validar dois wheres dentro dela onde somente um deles (where) precisa ser verdadeiro
+```
+$faturas_que_vem = Expense::where('user_id', FacadesAuth::id())
+    ->where('end_date', '>=', now()->addMonths(1))
+    ->where(function ($q) {
+        $q->where('category_id', 1)
+        ->orWhere('category_id', 2);
+    })
+    ->get();
+```
 <hr>
 
 ### MIGRATES

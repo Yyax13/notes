@@ -989,3 +989,57 @@ Quando você faz syncRoles('Administrador') o que acontece:
 ```
 $user->syncRoles(['Administrador']);
 ```
+
+### AGENDAMENTOS
+
+Documentação sobre:
+```
+https://laravel.com/docs/12.x/scheduling
+```
+
+Criar um comando (tarefa) para ser executado:
+```
+php artinsan make:command NomeDoComando
+```
+
+Dentro do arquivo do comando em "protected $signature" colocar o nome do comando e em "protected $description" a sua descrição, em "handle()" coloca-se a lógica
+```
+protected $signature = 'app:check-invoice-turn';
+protected $description = 'Verifica uma vez ao dia qual a data atual a fim de validar se a fatura fechou.';
+
+public function handle()
+{
+        if (date("d") == 1) {
+        Expense::whereIn('category_id', '!=', [1,2])
+        ->where('installment_id', 1)
+        ->delete();
+    }
+
+    $parcelados = Expense::where('installment_id', '!=', 1)->get();
+    foreach ($parcelados as $parcelado) {
+        if (date('m', $parcelado->end_date) >= date('m')) {
+            $parcelado->delete();
+        }
+    }
+}
+```
+
+Em console.php pode chamar o comando e o tempo periódico no qual ele deve ser executado:
+```
+<?php
+
+use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('app:check-invoice-turn')->monthly(); /* <-- o comando chamado */
+
+Artisan::command('inspire', function () {
+    $this->comment(Inspiring::quote());
+})->purpose('Display an inspiring quote');
+```
+
+Para a tarefa começar a ser executada basta rodar (recomenda-se rodá-lo junto do servidor):
+```
+php artisan schedule:work
+```

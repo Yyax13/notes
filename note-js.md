@@ -114,7 +114,7 @@ let client: Client {
 
 ### PASSOS PARA RODAR O PROJETO TYPESCRIPT (depois de tê-lo clonado)
 
-Instalar o restante das dependencias necessárias:
+Instalar o restante das dependencias necessárias (isto instala todas as dependencias que estiverem listadas no arquivo package.json):
 ```
 npm install
 ```

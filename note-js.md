@@ -115,12 +115,19 @@ let client: Client {
 ### PASSOS PARA RODAR O PROJETO TYPESCRIPT (depois de tê-lo clonado)
 
 Instalar o restante das dependencias necessárias (isto instala todas as dependencias que estiverem listadas no arquivo package.json):
-```
+```bash
 npm install
 ```
 
 <hr>
-<hr>
+
+### PASSOS PARA ATUALIZAR AS DEPENDENCIAS DO PROJETO
+
+Para atualizar as dependencias de forma interativa, basta dar este comando no terminal: 
+```bash
+npx npm-check-updates -i
+```
+
 <hr>
 
 ### REACT REQUISITOS

@@ -30,13 +30,19 @@
   <td align="center">
     <a href="note-js.md">
       <img src="https://img.shields.io/badge/TypeScript-4169E1?style=for-the-badge&logo=typescript&logoColor=white" /><br/>
-      <b>Java/Type Script</b>
+      <b>TypeScript</b>
     </a>
   </td>
   <td align="center">
     <a href="./linux/README.md">
       <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" /></br>
       <b>Linux</b>
+    </a>
+  </td>
+      <td align="center">
+    <a href="./git/git_commit.txt">
+      <img src="https://img.shields.io/badge/Commits-00FFFF?style=for-the-badge&logo=git&logoColor=363636" /></br>
+      <b>Conventional Commits</b>
     </a>
   </td>
 </tr>

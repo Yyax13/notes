@@ -357,3 +357,9 @@ Pesquisar dentro de todo o sistema o nome de um respectivo diretório:
 ```
 sudo find / -type d | grep NOME_DO_DIRETÓRIO
 ```
+
+Aumentar/diminuir brilho:
+```
+sudo pacman -S brightnessctl
+brightnessctl set +10%
+```

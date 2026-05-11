@@ -45,8 +45,7 @@
               "title": "Abacus - Short Note"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -179,12 +178,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário"
+              "title": "Sumário de Abacus - Long Note"
             }
           },
           {
@@ -221,12 +221,14 @@
       "3d-graph:3D Graph": false
     }
   },
-  "active": "a8356981f9a5957b",
+  "active": "056d8b9ed15c9b47",
   "lastOpenFiles": [
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Short Note.md",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Mesopotamian Abacus Drawing.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Mesopotamian Abacus Drawing.png",
+    "Templates/Long Note.md",
     "ROADMAP.md",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Sem título.md",
     "Sem título.md",
@@ -235,7 +237,6 @@
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus Counting Example.gif",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus counting 3287.png",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus default.png",
-    "Templates/Long Note.md",
     "Others/Math/Counting/Sexagesimal Numbers.md",
     "Others/History/Time Counting/Thirds (Tertias).md",
     "Others/History/Time Counting",

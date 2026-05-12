@@ -20,13 +20,47 @@ The modern science already created pseudo-reconstructions of how the Mesopotamia
 
 Certainly they used the [[Sexagesimal Numbers|sexagesimal counting]] in their abacus, but the modern researchers can't prove it, as we haven't any drawings, references or reconstructions of the Mesopotamian abacus.
 
+The Mesopotamians do not created an Abacus, they created counting tables, they used to move rocks or marks in tables, not movable marks in rods like modern abacus (like soroban, the Japanese abacus).
+
 ![[The Mesopotamian Abacus Drawing.png]]
 
 ## The Babylonian Abacus
 
-The Babylonian abacus, suffer
+The Babylonian abacus, suffers the same problem than the Mesopotamian abacus: we haven't much examples, so we can't prove how they used to operate their abacus, but based on the few remaining examples, we can confirm that they used to calculate using [[Sexagesimal Numbers|sexagesimal counting]], according to writings and reconstructions of their number system.
+
+As the Mesopotamian civilization, the Babylonian civilization developed a counting table, and not an abacus.
 
 ![[The Babylonian Abacus.png]]
+> A example of a Babylonian Counting Table.
+
+![[The Babylonian counting numbers.png]]
+> The Babylonian Counting System.
+
+## The Egyptian Abacus
+
+The humanity and their mastermind humans haven't any examples of the Egyptian abacus. 
+
+The existence of an Egyptian abacus was only mentioned by Herodotus in his book Histories (book II), where he describes the use of discs (abacus) by the Egyptians, there was opposite in direction when compared to the Greek method.
+
+## The Greek Abacus
+
+The Greek Civilization developed a counting table in sometime between 300 b.C and 500 b.C.
+
+The first counting table from the Greeks was found in Salamis in 1846, dating from 300 b.C. The table, well known as _Salamis Tablet_, is a marble counting board about 150 x 75 x 4.5 centimeters.
+
+![[The Salamis Tablet.png]]
+> The salamis tablet, currently exposed at the [Epigraphic Museum of Athens](https://epigraphicmuseum.gr/en/epigraphic-museum/).
+> 	In the center of the board there is a set of 5 parallel lines equally divided by a vertical line, capped by a semicircle at the intersection of the outermost horizontal line and the single vertical line. Below these lines, there is a wide space with a horizontal crack dividing them. Below this crack, there is another group of eleven parallel lines, divided into two sections by a line perpendicular to them, but with the semicircle at the top of the intersection; the third, sixth, and ninth lines are marked with a cross where they intersect with the vertical line.[ᵂᶦᵏᶦᵖᵉᵈᶦᵃ](https://pt.wikipedia.org/wiki/%C3%81baco#%C3%81baco_grego)
+
+
+## The Roman Abacus
+
+The Roman civilization developed an abacus (not a counting table), probably the first abacus, their precursors (the Babylonians, Mesopotamian nor Greek,  counting tables) aren't the modern version of an abacus, the Romans created an abacus with moving marks (probably balls) and used the decimal counting system.
+
+The Roman Abacus was made up with 8 lines, each bottom line holds five _calculis_ (counting marks) and four _calculis_ in the upper line (with variations between reconstructions).
+
+![[Pasted image 20260512172004.png]]
+> A modern reconstruction of "A Roman Hand Abacus".
 
 ---
 
@@ -50,7 +84,15 @@ Can add descriptions of each node.
 > > [Museum Of Topography](http://museudetopografia.ufrgs.br/museudetopografia/images/acervo/artigos/Histria_do_baco.pdf#page=4)
 
 > The Babylonian Abacus
-> > [ResearchGate](https://www.researchgate.net/figure/Babylonian-Abacus_fig1_310874339)
+> > [ResearchGate](https://www.researchgate.net/figure/Figura-1-Tabua-matematica-Babilonica-Plimpton-322_fig1_397423769)
+> > [Threads](https://www.threads.com/@linguisticdiscovery/post/DEqsgJlsnIP?hl=pt-br)
+
+> The Greek Abacus
+> > [Kartsci](https://kartsci.org/kocomu/computer-history/history-abacus-ancient-computing)
+> > [Wikipedia](https://pt.wikipedia.org/wiki/%C3%81baco#%C3%81baco_grego)
+
+> The Roman Abacus
+> > [Guernsey Donkey](https://guernseydonkey.com/how-did-the-romans-do-the-calculations-necessary-for-construction-and-other-purposes-using-roman-numerals)
 
 > Abacus Simulation
 > > [Mathmatik](https://www.mathematik.uni-marburg.de/~thormae/lectures/ti1/code/abacus/soroban.html) - Marburg University

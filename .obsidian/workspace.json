@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "056d8b9ed15c9b47",
+            "id": "a8356981f9a5957b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,16 +19,6 @@
               },
               "icon": "lucide-file",
               "title": "Abacus - Long Note"
-            }
-          },
-          {
-            "id": "a8356981f9a5957b",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
             }
           },
           {
@@ -221,12 +211,16 @@
       "3d-graph:3D Graph": false
     }
   },
-  "active": "056d8b9ed15c9b47",
+  "active": "a8356981f9a5957b",
   "lastOpenFiles": [
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Short Note.md",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
+    "Pasted image 20260512172004.png",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Short Note.md",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Salamis Tablet.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian counting numbers.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian counting numbers.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Mesopotamian Abacus Drawing.png",
     "Templates/Long Note.md",
     "ROADMAP.md",

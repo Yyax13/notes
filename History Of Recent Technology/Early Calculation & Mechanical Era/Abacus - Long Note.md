@@ -59,8 +59,12 @@ The Roman civilization developed an abacus (not a counting table), probably the 
 
 The Roman Abacus was made up with 8 lines, each bottom line holds five _calculis_ (counting marks) and four _calculis_ in the upper line (with variations between reconstructions).
 
-![[Pasted image 20260512172004.png]]
+![[The Roman Abacus.png]]
 > A modern reconstruction of "A Roman Hand Abacus".
+
+## The Indian Abacus
+
+Sources from 1st century (like _[[Abhidharmakosa]]_) describes the use of the Abacus in India. Sometime around 5th century, Indian scribes already register the Abacus results. Hindu texts used the term _shunya_ (zero) to describe the empty column of the abacus.
 
 ---
 
@@ -93,6 +97,9 @@ Can add descriptions of each node.
 
 > The Roman Abacus
 > > [Guernsey Donkey](https://guernseydonkey.com/how-did-the-romans-do-the-calculations-necessary-for-construction-and-other-purposes-using-roman-numerals)
+
+> The Indian Abacus
+> > [Wikipedia](https://pt.wikipedia.org/wiki/%C3%81baco#%C3%81baco_indiano)
 
 > Abacus Simulation
 > > [Mathmatik](https://www.mathematik.uni-marburg.de/~thormae/lectures/ti1/code/abacus/soroban.html) - Marburg University

@@ -10,7 +10,7 @@ The abacus is a rectangle with rods, each rod holds a mark. Historically, a mark
 
 Most abacus models developed over time are split slightly above the middle, so that is possible to move the top marks (called the heaven marks in the Chinese Abacus) and the bottom marks (earth marks in the Chinese Abacus) separately.
 
-The most common way of using an abacus in modern times (a.k.a. now) is the Japanese way, used in soroban (the Japanese abacus), the 4/1 way. This nomenclature means that the will be four marks with the value of 1 and  one mark with the value of 5 (respectively the top mark and the bottom marks).
+The most common way of using an abacus in modern times (a.k.a. now) is the Japanese way, used in soroban (the Japanese abacus), the 4/1 way. This nomenclature means that the top marks will be four marks with the value of 1 and the bottom marks one mark with the value of 5.
 
 ## The Mesopotamian Abacus 
 
@@ -44,9 +44,9 @@ The existence of an Egyptian abacus was only mentioned by Herodotus in his book 
 
 ## The Greek Abacus
 
-The Greek Civilization developed a counting table in sometime between 300 b.C and 500 b.C.
+The Greek Civilization developed a counting table in sometime between 300 BCE and 500 BCE.
 
-The first counting table from the Greeks was found in Salamis in 1846, dating from 300 b.C. The table, well known as _Salamis Tablet_, is a marble counting board about 150 x 75 x 4.5 centimeters.
+The first counting table from the Greeks was found in Salamis in 1846, dating from 300 BCE. The table, well known as _Salamis Tablet_, is a marble counting board about 150 x 75 x 4.5 centimeters.
 
 ![[The Salamis Tablet.png]]
 > The salamis tablet, currently exposed at the [Epigraphic Museum of Athens](https://epigraphicmuseum.gr/en/epigraphic-museum/).
@@ -64,7 +64,11 @@ The Roman Abacus was made up with 8 lines, each bottom line holds five _calculis
 
 ## The Indian Abacus
 
-Sources from 1st century (like _[[Abhidharmakosa]]_) describes the use of the Abacus in India. Sometime around 5th century, Indian scribes already register the Abacus results. Hindu texts used the term _shunya_ (zero) to describe the empty column of the abacus.
+Sources from 1st century (like _[[Abhidharmakośa-bhāsya|Abhidharmakosa]]_) describes the use of the Abacus in India. Sometime around 5th century, Indian scribes already register the Abacus results. Hindu texts used the term _shunya_ (zero) to describe the empty column of the abacus.
+
+## The Suanpan (Chinese Abacus)
+
+The older mention of a _suanpan_ was found in a book from the 1st century of [[The Occidental Han Dynasty - Long Note|The Han Dynasty]] (from 206 BCE to 220 CE, after the [[The Qin Dynasty - Long Note|The Qin Dynasty]], well-known as the) 
 
 ---
 
@@ -100,6 +104,9 @@ Can add descriptions of each node.
 
 > The Indian Abacus
 > > [Wikipedia](https://pt.wikipedia.org/wiki/%C3%81baco#%C3%81baco_indiano)
+
+> The Suanpan
+> > [Wikipedia](https://pt.wikipedia.org/wiki/%C3%81baco#%C3%81baco_chin%C3%AAs)
 
 > Abacus Simulation
 > > [Mathmatik](https://www.mathematik.uni-marburg.de/~thormae/lectures/ti1/code/abacus/soroban.html) - Marburg University

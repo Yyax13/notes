@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Introdução
 
 As últimas alterações registradas nesse blog (este post foi feito originalmente em um blog), retratam a redução de LOCs e complexidade cognitiva. Conseguimos reduzir a quantidade de linhas de código do sub-loop de **106** para apenas **19**. Alterações "em off" consistiram em adicionar mais dois algoritimos ao `_finalizer` (cross lane mixing e lane shuffle), que incrementaram os resultados em robustez do algoritimo, normalizando o chi2 multi-byte e a avalanche.

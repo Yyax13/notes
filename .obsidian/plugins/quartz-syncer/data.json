@@ -1,0 +1,50 @@
+{
+  "git": {
+    "remoteUrl": "https://github.com/Yyax13/digital-garden.git",
+    "branch": "v5",
+    "corsProxyUrl": "",
+    "auth": {
+      "type": "basic",
+      "username": "Yyax13"
+    },
+    "providerHint": "github"
+  },
+  "vaultPath": "/",
+  "contentFolder": "content",
+  "publishFrontmatterKey": "publish",
+  "allNotesPublishableByDefault": false,
+  "showCreatedTimestamp": true,
+  "showUpdatedTimestamp": true,
+  "showPublishedTimestamp": false,
+  "usePermalink": false,
+  "includeAllFrontmatter": false,
+  "frontmatterFormat": "yaml",
+  "createdTimestampKey": "created, created_at, date",
+  "updatedTimestampKey": "modified, lastmod, updated, last-modified",
+  "publishedTimestampKey": "published, publishDate, date",
+  "timestampFormat": "MMM dd, yyyy h:mm a",
+  "useCache": true,
+  "syncCache": true,
+  "persistCache": false,
+  "cacheTimestamp": 0,
+  "cache": "{}",
+  "useAutoCardLink": false,
+  "useDataview": true,
+  "useDatacore": false,
+  "useExcalidraw": false,
+  "useFantasyStatblocks": false,
+  "useBases": false,
+  "useCanvas": false,
+  "manageSyncerStyles": true,
+  "lastUsedSettingsTab": "git",
+  "noteSettingsIsInitialized": true,
+  "pluginVersion": "1.15.3",
+  "lastUpstreamCommitSha": "",
+  "upgradeCheckStrategy": "version",
+  "diffViewStyle": "auto",
+  "ENABLE_DEVELOPER_TOOLS": false,
+  "logLevel": {
+    "value": 99,
+    "name": "OFF"
+  }
+}

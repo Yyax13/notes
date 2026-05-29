@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Yiwen Leiju
 
 The Yiwen Leiju (Chinese: 義文類聚), or translated as Encyclopedia of Literary Collections, is a Chinese encyclopedia written in 624 CE under the Tang Dynasty.

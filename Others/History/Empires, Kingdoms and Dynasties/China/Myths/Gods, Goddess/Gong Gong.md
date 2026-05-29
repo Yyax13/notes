@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Gong Gong
 
 Gong Gong (Chinese: 共工), also known as Gonggong, is the god of water in the Chinese mythology, credited with creating the large floods.

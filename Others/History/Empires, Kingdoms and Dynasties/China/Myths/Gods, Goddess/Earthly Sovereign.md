@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Earthly Sovereign
 
 The Earthly Sovereign (Chinese: 地皇) was the second legendary Chinese king after [[Pangu]]'s era. 

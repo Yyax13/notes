@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Dharma
 
 The dharma is commonly explained in Indian religions (like Hinduism and Buddhism). It comes from Sanskrit “धर्म” (_dharma_), the literal meaning has roots in the Sanskrit _dhr-_, which means "to hold" or "to support", and it's related to Latin _firmus_ (firm, stable).

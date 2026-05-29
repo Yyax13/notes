@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Introduction
 
 The Operating System (OS) is the manager of hardware resources, providing system calls (syscalls) and a function calling pattern (the ABI) for the low-level assembly. The OS provides a clear interface to other software directly access your CPU/GPU, memory, file system, I/O devices and others.

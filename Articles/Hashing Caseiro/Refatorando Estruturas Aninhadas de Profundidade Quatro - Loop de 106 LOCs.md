@@ -1,3 +1,6 @@
+---
+publish: true
+---
 ## Introdução
 
 Durante o desenvolvimento do [ScorpionC2](https://github.com/ScorpionC2/ScorpionC2), optei por desenvolver meu próprio algorítimo de hashing customizado, a qual posteriormente nomeei como ***ScorpionX*** (originalmente, o nome seria *Scorpion1024*, *Scorpion128*, e por aí vai, mas com a implementação de *settings* mutáveis, decidi resumir para ScorpionX e realocar o tamanho para as configurações). A criação de hashes se dava por um algorítimo de cerca de 680 linhas, que surpreendentemente tinha resultados bons em testes (como visto no PR [#26](https://github.com/ScorpionC2/ScorpionC2/pull/26#issuecomment-4069647725)).

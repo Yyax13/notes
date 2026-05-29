@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Zhurong
 
 Zhu Rong (Chinese: 祝融), also known as Chongli (Chinese: 重黎).

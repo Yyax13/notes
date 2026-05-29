@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Abhidharmakośa-bhāsya
 
 The _Abhidharmakośa-bhāsya_, _Abhidharmakośa_, is a key text on _[[Abhidharma]]_ written in Sanskrit by Vasubandhu (an Indian Buddhist scholar) in sometime between the 4th and 5th century CE.

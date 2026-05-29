@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Heavenly Sovereign
 
 The Heavenly Sovereign was the first legendary Chinese king after [[Pangu]]'s era.

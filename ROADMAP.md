@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Tech Nerd
 ## History of recent technology
 ### Early Calculation & Mechanical Era

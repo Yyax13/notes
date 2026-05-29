@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Pangu
 
 Pangu or Pan Gu (sometimes spelled Peng Gu and P'an-ku) (Chinese: 盤古).

@@ -1,8 +1,8 @@
 ---
 tags:
   - unfinished
+publish: true
 ---
-
 # Emperor Yao
 
 Emperor Yao was a legendary Chinese ruler. He is considered by some sources as one of the [[Three Sovereigns and Five Emperors]]

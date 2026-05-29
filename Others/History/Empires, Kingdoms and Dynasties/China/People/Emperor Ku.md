@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Emperor Ku
 
 Kù (Chinese: 嚳), commonly referred as Dì Kù (Chinese: 帝嚳) or Qūn (Chinese: 夋), was a descendant of the [[Yellow Emperor]]. He is considered the ancestor of the ruling families of certain subsequent dynasties. 

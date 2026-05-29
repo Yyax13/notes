@@ -1,3 +1,6 @@
+---
+publish: true
+---
 We used to count the *pars minuta tertia* as part of the time counting.
 We stopped using it is sometime between 17th century and 18th century.
 It used to be the 60th part of the second.

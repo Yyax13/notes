@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Fu Xi
 
 Fu Xi or Fu Hsi or Fuxi is a culture hero in Chinese mythology, credited along with his sister and wife [[Nüwa]] with creating the humanity and the invention of music, hunting, fishing, domestication, and cooking, as well as the Cangjie system of writing Chinese characters around c. 2900 BCE or c. 2000 BE.

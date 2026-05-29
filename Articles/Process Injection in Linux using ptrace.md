@@ -1,3 +1,6 @@
+---
+publish: true
+---
 In this paper, we'll learn about process injection in linux using PTRACE.
 
 ## Shell-code

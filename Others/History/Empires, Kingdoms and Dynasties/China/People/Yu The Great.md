@@ -1,8 +1,8 @@
 ---
 tags:
   - unfinished
+publish: true
 ---
-
 # Yu The Great
 
 Yu the Great or Yu the Engineer was a king in The Xia Dynasty, who was credited for controlling the [[The Great Flood of Gun-Yu|Great Flood]]. His 

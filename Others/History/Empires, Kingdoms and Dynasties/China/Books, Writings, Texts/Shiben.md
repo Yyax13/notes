@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Shiben
 
 The Shiben or Book of Origins (Chinese: 世本; lit. 'Generation Origins') was an early encyclopedia which recorded imperial genealogies from the mythical [[Three Sovereigns and Five Emperors]].

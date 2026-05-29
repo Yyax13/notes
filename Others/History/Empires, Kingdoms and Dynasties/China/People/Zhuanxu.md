@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Zhuanxu
 
 Zhuanxu (Chinese: 颛顼), also known as Gaoyang (Chinese: 高阳), was a mythological emperor of ancient China.

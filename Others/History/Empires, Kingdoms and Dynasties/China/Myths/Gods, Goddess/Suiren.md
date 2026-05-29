@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Suiren
 
 Suiren (Chinese:  燧人; lit. "Flint Person"), also known as Suihuang (Chinese: 燧皇; lit. "Flint Emperor"), appears in Chinese mythology and some works which draw upon it.

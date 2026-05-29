@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Hindu Dharma
 
 In the Hinduism, the dharma commonly means:

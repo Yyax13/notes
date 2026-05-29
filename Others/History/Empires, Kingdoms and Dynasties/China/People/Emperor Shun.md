@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Emperor Shun
 
 Emperor Shun (Chinese: 帝舜) was a leader of ancient china, regarded by some sources as the last of the Five Emperors among the [[Three Sovereigns and Five Emperors]]. According to the tradition, people with the surname Hu (Chinese: 胡) are descendants of Emperor Shun.

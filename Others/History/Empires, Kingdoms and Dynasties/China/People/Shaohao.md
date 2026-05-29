@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Shaohao
 
 Shaohao (Chinese: 少皞), also known as Jin Tian (Chinese: 金天), was a legendary Chinese sovereign, commonly identified as a son of the [[Yellow Emperor]].

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # The Abacus
 
 The abacus (from Greek *abakos*, also called a counting frame) is a hand-operated calculating system (most versions uses the decimal counting method).

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Buddhist Dharma
 
 In the Buddhism, the _[[The Dharma|dharma]]_ is much things, it can be:

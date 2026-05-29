@@ -1,4 +1,6 @@
-
+---
+publish: true
+---
 The sexagesimal counting system uses base 60 to count.
 
 ---

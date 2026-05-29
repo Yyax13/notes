@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Yellow Emperor
 
 The Yellow Emperor, also known as Yellow [[Thearch]] or Huangdi (Chinese: 黃帝) was a legendary Chinese sovereign and a culture hero included among the legendary [[Three Sovereigns and Five Emperors]] (in [[Shiji]], [[Yijing]], Sovereign series, [[Shiben]] and Diwang shiji versions).

@@ -11,10 +11,14 @@
             "id": "e1488c3202b6b838",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "ROADMAP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ROADMAP"
             }
           }
         ]
@@ -193,18 +197,26 @@
       "omnisearch:Omnisearch": false,
       "obsidian-git:Open Git source control": false,
       "three-d-graph-view:Open 3D graph view": false,
-      "vaultguard:Lock Vault": false
+      "vaultguard:Lock Vault": false,
+      "quartz-syncer:Quartz Syncer publication center": false
     }
   },
   "active": "e1488c3202b6b838",
   "lastOpenFiles": [
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
+    "Others/Math/Counting/Sexagesimal Numbers.md",
+    "Others/History/Time Counting/Thirds (Tertias).md",
+    "Others/History/Religions/Indian Religions/The Dharma.md",
+    "Others/History/Religions/Hinduism/The Hindu Dharma.md",
+    "Others/History/Religions/Buddhism/The Buddhist Dharma.md",
+    "Others/History/Religions/Buddhism/Abhidharmakośa-bhāsya.md",
+    "Others/History/Religions/Buddhism/Abhidharma.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Zhuanxu.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Yu The Great.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Yellow Emperor.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Sima Qian.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Shaohao.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Yao.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Ku.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Zhurong.md",
@@ -217,19 +229,12 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Gong Gong.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Fu Xi.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Earthly Sovereign.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Events/The Great Flood of Gun-Yu.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Geographical Points/The Yellow River.md",
-    "Linux/Foundations/Linux Architecture Overview.md",
-    "Articles/Process Injection in Linux using ptrace.md",
-    "Articles/Sem título.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Books, Writings, Texts/Yiwen Leiju.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
+    "Linux/Foundations/assets/The Linux Components.png",
+    "Books/The Linux Programming Interface.pdf",
     "Articles/Hashing Caseiro",
     "Articles",
     "Projects",
     "Linux/Foundations/assets",
-    "Linux/Foundations/assets/The Linux Components.png",
-    "Books/The Linux Programming Interface.pdf",
     "Books",
     "Linux/Foundations",
     "Linux",

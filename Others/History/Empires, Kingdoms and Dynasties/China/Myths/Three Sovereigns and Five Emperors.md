@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Three Sovereigns and Five Emperors
 
 According to the Chinese Mythology and the traditional Chinese historiography, the Three Sovereigns and Five Emperors were a series of Chinese emperors and the first emperors at primitive China.

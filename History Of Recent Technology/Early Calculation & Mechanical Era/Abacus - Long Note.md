@@ -1,6 +1,7 @@
 ---
 tags:
   - unfinished
+publish: true
 ---
 # The Abacus
 

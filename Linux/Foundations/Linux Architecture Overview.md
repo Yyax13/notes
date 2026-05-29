@@ -1,3 +1,6 @@
+---
+publish: true
+---
 The Linux is a [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) operating system, which is designed to be fast, following the [everything is a file](https://en.wikipedia.org/wiki/Everything_is_a_file) approach, of the Unix family. The main components of the Linux operating system are:
 
 - Application

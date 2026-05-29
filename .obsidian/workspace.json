@@ -4,39 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9ab7a0bf5dfb2836",
+        "id": "4d1fa8339eb1909c",
         "type": "tabs",
         "children": [
           {
-            "id": "a8356981f9a5957b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Others/History/Time Counting/Thirds (Tertias).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Thirds (Tertias)"
-            }
-          },
-          {
-            "id": "9ce4d706bb67f7d5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Abacus - Long Note"
-            }
-          },
-          {
-            "id": "20980b4e83f3664e",
+            "id": "e1488c3202b6b838",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -45,8 +17,7 @@
               "title": "Visualização em gráfico"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,15 +81,16 @@
     "type": "split",
     "children": [
       {
-        "id": "517a12765c5ed6e9",
+        "id": "d347dba896b584c2",
         "type": "tabs",
         "children": [
           {
-            "id": "47f2bed44621523a",
+            "id": "e69acf8c1f9f78bd",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,24 +100,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos"
+              "title": "Links inversos para Three Sovereigns and Five Emperors"
             }
           },
           {
-            "id": "d6e0bc819f3e3ec4",
+            "id": "5a6b224de26139fb",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída"
+              "title": "Links de saída para Three Sovereigns and Five Emperors"
             }
           },
           {
-            "id": "6e138efc9a1891b3",
+            "id": "5d70a24d4168469e",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -160,7 +133,7 @@
             }
           },
           {
-            "id": "6f5267d5d1455882",
+            "id": "3f01c80ce94bd4d6",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -174,22 +147,22 @@
             }
           },
           {
-            "id": "0b7848bcd93b1ff3",
+            "id": "d56ed5f47a77f31f",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
+                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Abacus - Long Note"
+              "title": "Sumário de Three Sovereigns and Five Emperors"
             }
           },
           {
-            "id": "707dc8c553484f33",
+            "id": "ecb2ab97197bacea",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -203,7 +176,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 375.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -219,49 +192,57 @@
       "obsidian-excalidraw-plugin:New drawing": false,
       "omnisearch:Omnisearch": false,
       "obsidian-git:Open Git source control": false,
-      "3d-graph:3D Graph": false
+      "three-d-graph-view:Open 3D graph view": false,
+      "vaultguard:Lock Vault": false
     }
   },
-  "active": "9ce4d706bb67f7d5",
+  "active": "e1488c3202b6b838",
   "lastOpenFiles": [
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
-    "Others/History/Religions/Hinduism/The Hindu Dharma.md",
-    "Others/History/Religions/Buddhism/Abhidharma.md",
-    "Others/History/Religions/Buddhism/Abhidharmakośa-bhāsya.md",
-    "Others/History/Religions/Buddhism/The Buddhist Dharma.md",
-    "Others/History/Religions/Indian Religions/The Dharma.md",
-    "Others/History/Religions/Hinduism",
-    "Others/History/Religions/Indian Religions",
-    "Others/History/Religions/Sem título.md",
-    "Sem título.md",
-    "Templates/Short Note.md",
-    "Templates/Random Note.md",
-    "Templates/Long Note.md",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Short Note.md",
-    "Others/History/Religions/Buddhism/Sem título.md",
-    "Others/History/Religions/Buddhism",
-    "Others/History/Religions",
-    "Others/History/Time Counting/Thirds (Tertias).md",
-    "Others/Math/Counting/Sexagesimal Numbers.md",
-    "ROADMAP.md",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Roman Abacus.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Salamis Tablet.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian counting numbers.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian counting numbers.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Babylonian Abacus.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/The Mesopotamian Abacus Drawing.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Sem título.md",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus counting 111.png",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus Counting Example.gif",
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Assets/Abacus counting 3287.png",
-    "Others/History/Time Counting",
-    "Others/History",
-    "Others/Math/Counting",
-    "Others/Math",
-    "Others/Sexagesimal Numbers.md",
-    "Others",
-    "Bem-vindo.md"
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Zhuanxu.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Yu The Great.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Yellow Emperor.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Sima Qian.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Shaohao.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Yao.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Ku.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Zhurong.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Tai Sovereign.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Suiren.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Shennong.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Pangu.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Nüwa.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Heavenly Sovereign.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Gong Gong.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Fu Xi.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Earthly Sovereign.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Events/The Great Flood of Gun-Yu.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Geographical Points/The Yellow River.md",
+    "Linux/Foundations/Linux Architecture Overview.md",
+    "Articles/Process Injection in Linux using ptrace.md",
+    "Articles/Sem título.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Books, Writings, Texts/Yiwen Leiju.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
+    "Articles/Hashing Caseiro",
+    "Articles",
+    "Projects",
+    "Linux/Foundations/assets",
+    "Linux/Foundations/assets/The Linux Components.png",
+    "Books/The Linux Programming Interface.pdf",
+    "Books",
+    "Linux/Foundations",
+    "Linux",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Zizhi Tongjian.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Book of Documents.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Shiben's Page.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Shun.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Ku.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Zhuanxu.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Gong Gong.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Suiren.png",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Dynasties, Kingdoms, Provinces",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Events",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Tai Sovereign.png"
   ]
 }

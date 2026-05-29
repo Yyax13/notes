@@ -1,0 +1,43 @@
+{
+  "salt": "Z4FMA5TiGQv8/4/wIsmluA==",
+  "encryptedSettings": "E5Ad494csUpLG7yvSG1OEECEAvSOVPOGEZxd3GXsctS95GfvToECe61hXPdQ7zuPSqJ1DvbQhTVz48fcnZtGqW4ovQ==",
+  "visualPrefs": {
+    "username": "hoWo",
+    "activeBackgroundId": "user-1779391493423",
+    "backgrounds": [
+      {
+        "id": "local-video",
+        "type": "video",
+        "value": "local",
+        "isDefault": true
+      },
+      {
+        "id": "default-color-1",
+        "type": "color",
+        "value": "#2c3e50",
+        "isDefault": true
+      },
+      {
+        "id": "default-image-1",
+        "type": "image",
+        "value": "https://images.unsplash.com/photo-1502790671504-542ad42d5189?w=800",
+        "isDefault": true
+      },
+      {
+        "id": "user-1779391493423",
+        "type": "image",
+        "value": ".obsidian/plugins/vaultguard/backgrounds/user-bg-1779391493370.jpg",
+        "isDefault": false
+      }
+    ],
+    "uiScale": 100,
+    "inputWidth": 340,
+    "fontFamily": "System Default",
+    "fontWeight": "500",
+    "fontStyle": "normal",
+    "clockFormat": "24h",
+    "atmosphere": "minimal",
+    "inputRadius": 100,
+    "shakeIntensity": 6
+  }
+}

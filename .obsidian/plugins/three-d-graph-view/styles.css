@@ -1,0 +1,58 @@
+.graph-3d-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--background-primary);
+}
+
+.graph-3d-toolbar {
+  position: absolute;
+  z-index: 2;
+  top: var(--size-4-3);
+  left: var(--size-4-3);
+  display: flex;
+  gap: var(--size-2-2);
+  padding: var(--size-2-2);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: color-mix(in srgb, var(--background-secondary) 88%, transparent);
+  box-shadow: var(--shadow-s);
+}
+
+.graph-3d-toolbar button {
+  height: 28px;
+  min-width: 28px;
+  padding: 0 var(--size-2-3);
+}
+
+.graph-3d-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.graph-3d-empty {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: var(--font-ui-medium);
+}
+
+.graph-3d-tag-settings {
+  max-height: 260px;
+  overflow: auto;
+  margin: var(--size-2-2) 0 var(--size-4-3);
+  padding-left: var(--size-4-4);
+  border-left: 2px solid var(--background-modifier-border);
+}
+
+.graph-3d-tag-settings.is-disabled {
+  opacity: 0.6;
+}
+
+.graph-3d-tag-empty {
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  padding: var(--size-2-3) 0;
+}

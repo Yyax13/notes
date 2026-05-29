@@ -253,15 +253,15 @@
 ## Linux
 
 ### Foundations
-- [ ] What is an operating system
-- [ ] Linux architecture overview
+- [x] [[What is an operating system]]
+- [ ] [[Linux Architecture Overview]]
 - [ ] Kernel vs userspace boundary
 - [ ] ABI vs API
 - [ ] System calls concept
 - [ ] ELF format basics
 - [ ] Toolchain (gcc, ld, objdump, readelf)
 
-- [ ] Book: The Linux Programming Interface (TLPI)
+- [x] Book: The Linux Programming Interface (TLPI) ![[The Linux Programming Interface.pdf]]
 - [ ] Book: Computer Systems: A Programmer’s Perspective (CS:APP)
 
 ### Process Model

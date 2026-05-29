@@ -1,3 +1,7 @@
+---
+tags:
+  - unfinished
+---
 # The Abacus
 
 The abacus (from Greek *abakos*, also called a counting frame) is a way to counting, invented at Mesopotamia, 5500 years ago, it's a hand-operated calculating system and works as an extension of fingers for counting. Most abacus uses the decimal counting method, although the oldest ones used to count with [[Sexagesimal Numbers]] (primarily the oldest discovered at Mesopotamia). There is a short approach of this theme at [[Abacus - Short Note]].
@@ -68,7 +72,7 @@ Sources from 1st century (like _[[Abhidharmakośa-bhāsya|Abhidharmakosa]]_) des
 
 ## The Suanpan (Chinese Abacus)
 
-The older mention of a _suanpan_ was found in a book from the 1st century of [[The Occidental Han Dynasty - Long Note|The Han Dynasty]] (from 206 BCE to 220 CE, after the [[The Qin Dynasty - Long Note|The Qin Dynasty]], well-known as the) 
+The older mention of a _suanpan_ was found in a book from the 1st century of The Han Dynasty.
 
 ---
 

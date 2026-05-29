@@ -1,0 +1,802 @@
+/*
+ * vaultguard: Stylesheet
+ * Refactored with bug fixes and improved layout
+ */
+
+/* ============================================================================
+   MAIN LOCKSCREEN & CORE STYLES
+   ============================================================================ */
+
+.vaultguard-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.vaultguard-screen-loading {
+  /* No animations while loading */
+  animation: none !important;
+}
+
+.vaultguard-screen-loading * {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+.vaultguard-screen.is-leaving {
+  animation: unlockOut 0.45s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes unlockOut {
+  0%   { opacity: 1; transform: scale(1); filter: blur(0px); }
+  100% { opacity: 0; transform: scale(1.04); filter: blur(2px); }
+}
+
+/* ============================================================================
+   TITLEBAR (for window dragging)
+   ============================================================================ */
+
+.vaultguard-titlebar {
+  flex-shrink: 0;
+  height: 30px;
+  width: 100%;
+  -webkit-app-region: drag;
+  background: transparent;
+  z-index: 1;
+}
+
+/* ============================================================================
+   MAIN CONTENT AREA
+   ============================================================================ */
+
+.vaultguard-main-content {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInContent 0.6s 0.1s ease-in-out forwards;
+  opacity: 0;
+  /* Prevent content from being selectable */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+@keyframes fadeInContent {
+  to { opacity: 1; }
+}
+
+/* ============================================================================
+   BACKGROUND MEDIA (video, image, or color)
+   ============================================================================ */
+
+.vaultguard-background-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Prevent interaction */
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============================================================================
+   OVERLAY (blur and darkening effect)
+   ============================================================================ */
+
+.vaultguard-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px) saturate(120%);
+  -webkit-backdrop-filter: blur(5px) saturate(120%);
+  /* Prevent interaction */
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============================================================================
+   CONTENT CONTAINER (username + password input)
+   ============================================================================ */
+
+.vaultguard-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUpIn 0.7s 0.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+             fadeInContent 0.7s 0.2s ease-in-out forwards;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  opacity: 0;
+  /* Allow interaction with children */
+  pointer-events: auto;
+  /* Ensure content is above everything */
+  isolation: isolate;
+  --vaultguard-base-font: 1rem;
+  font-family: var(--vaultguard-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+@keyframes slideUpIn {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   USERNAME DISPLAY
+   ============================================================================ */
+
+.vaultguard-username {
+  font-size: calc(38px * var(--vaultguard-ui-scale, 1));
+  margin-bottom: calc(25px * var(--vaultguard-ui-scale, 1));
+  text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.5);
+  font-family: var(--vaultguard-font-family, inherit);
+  font-weight: var(--vaultguard-font-weight, 500);
+  font-style: var(--vaultguard-font-style, normal);
+  /* Prevent selection */
+  user-select: none;
+  -webkit-user-select: none;
+  /* Ensure it stays above overlay */
+  position: relative;
+  z-index: 10;
+}
+
+.vaultguard-clock {
+  font-size: calc(72px * var(--vaultguard-ui-scale, 1));
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-family: var(--vaultguard-font-family, inherit);
+}
+
+.vaultguard-date {
+  font-size: calc(13px * var(--vaultguard-ui-scale, 1));
+  font-weight: 400;
+  color: rgba(255,255,255,0.50);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: calc(40px * var(--vaultguard-ui-scale, 1));
+  font-family: var(--vaultguard-font-family, inherit);
+}
+
+/* ============================================================================
+   PASSWORD INPUT WRAPPER & INPUT (CORRECTED FOR GLASSMORPHISM)
+   ============================================================================ */
+
+.vaultguard-password-wrapper {
+  position: relative;
+  width: var(--vaultguard-input-width, 340px);
+  max-width: 90vw;
+  transition: width 0.3s ease;
+  z-index: 10;
+}
+
+.vaultguard-password-wrapper.is-error {
+  animation: shake 0.4s linear;
+}
+
+/* This is the corrected rule for the input bar */
+.vaultguard-screen .vaultguard-input {
+  width: 100%;
+  
+  /* [THE FIX] Dark, translucent background for the glass effect */
+  background: rgba(10, 10, 10, 0.25) !important; 
+  
+  /* [THE FIX] The essential blur effect */
+  backdrop-filter: blur(12px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+  
+  /* A subtle border to define the "edge" of the glass */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  
+  border-radius: calc(var(--vaultguard-input-radius, 100) * 1px);
+  color: white;
+  padding: calc(16px * var(--vaultguard-ui-scale, 1)) calc(30px * var(--vaultguard-ui-scale, 1));
+  font-size: calc(14px * var(--vaultguard-ui-scale, 1));
+  letter-spacing: 0.5em;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+  user-select: text;
+  -webkit-user-select: text;
+
+  /* Adds a subtle shadow to the text for better readability */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.vaultguard-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-shadow: none;
+}
+
+/* Ensure the focus state also maintains the glass effect */
+.vaultguard-screen .vaultguard-input:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+              0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+}
+
+.vaultguard-input.is-error {
+  border-color: #e74c3c !important;
+}
+
+.vaultguard-input.is-success {
+  border-color: #2ecc71 !important;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(calc(var(--vaultguard-shake-intensity, 6px) * -1)); }
+  30%, 70% { transform: translateX(var(--vaultguard-shake-intensity, 6px)); }
+  50% { transform: translateX(calc(var(--vaultguard-shake-intensity, 6px) * -1)); }
+}
+
+/* ============================================================================
+   PROGRESS MODAL (for encryption/decryption)
+   ============================================================================ */
+
+/* Progress modal */
+.vaultguard-progress-modal .modal-content {
+  padding: 32px 36px 28px;
+  text-align: center;
+}
+
+.vaultguard-progress-modal h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.vaultguard-progress-modal .progress-status {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-normal);
+  margin: 0 0 6px;
+}
+
+.vaultguard-progress-modal .progress-details {
+  font-size: 12px;
+  min-height: 1.4em;
+  color: var(--text-faint);
+  letter-spacing: 0.01em;
+}
+
+/* Add background modal */
+.vaultguard-add-bg-modal .modal-content {
+  padding: 28px 32px 24px;
+}
+
+.vaultguard-add-bg-modal h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.vaultguard-add-bg-modal .vaultguard-modal-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.vaultguard-modal-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 4px;
+  color: var(--text-faint);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.vaultguard-modal-divider::before,
+.vaultguard-modal-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--background-modifier-border);
+}
+
+/* ============================================================================
+   SETTINGS PANEL - SECTION HEADINGS
+   ============================================================================ */
+
+.vaultguard-settings h3 {
+  font-size: var(--font-ui-small);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 28px 0 10px;
+}
+
+.vaultguard-settings h2 + h3 {
+  margin-top: 16px;
+}
+
+/* ============================================================================
+   SETTINGS PANEL - TOGGLE LABELS (Bold / Italic)
+   ============================================================================ */
+
+.vaultguard-toggle-label {
+  font-size: var(--font-ui-small);
+  color: var(--text-normal);
+  margin-right: 6px;
+}
+
+.vaultguard-toggle-label--gap {
+  margin-left: 16px;
+}
+
+/* ============================================================================
+   SETTINGS PANEL - CHANGE PASSWORD CARD
+   ============================================================================ */
+
+.vaultguard-cp-card {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 4px;
+}
+
+.vaultguard-cp-title {
+  font-size: var(--font-ui-medium);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.vaultguard-cp-desc {
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.vaultguard-cp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vaultguard-cp-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vaultguard-cp-btn {
+  align-self: flex-end;
+}
+
+.vaultguard-cp-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   SETTINGS PANEL - PASSWORD STRENGTH INDICATOR
+   ============================================================================ */
+
+.password-strength-container {
+  margin: 4px 0;
+  width: 100%;
+}
+
+.password-strength-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background-color: var(--background-modifier-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.password-strength-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 3px;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+.password-strength-bar.strength-0,
+.password-strength-bar.strength-1 {
+  width: 25%;
+  background-color: var(--color-red, #e74c3c);
+}
+
+.password-strength-bar.strength-2 {
+  width: 50%;
+  background-color: var(--color-orange, #f39c12);
+}
+
+.password-strength-bar.strength-3 {
+  width: 75%;
+  background-color: var(--color-green, #27ae60);
+}
+
+.password-strength-bar.strength-4 {
+  width: 100%;
+  background-color: var(--color-green, #2ecc71);
+}
+
+.password-strength-text {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  text-align: right;
+  min-height: 1.4em;
+}
+
+/* ============================================================================
+   SETTINGS PANEL - DANGER ZONE (Note Encryption)
+   ============================================================================ */
+
+.vaultguard-danger-zone {
+  border: 1px solid color-mix(in srgb, var(--color-red, #e03131) 40%, transparent);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: color-mix(in srgb, var(--color-red, #e03131) 6%, transparent);
+}
+
+.vaultguard-danger-zone p {
+  margin: 0 0 14px;
+  font-size: var(--font-ui-small);
+  line-height: 1.55;
+  color: var(--text-normal);
+}
+
+.vaultguard-danger-zone button {
+  background-color: var(--color-red, #e03131);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 14px;
+  font-size: var(--font-ui-small);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.vaultguard-danger-zone button:hover {
+  opacity: 0.82;
+}
+
+/* ============================================================================
+   SETTINGS PANEL - BACKGROUND THUMBNAIL GRID
+   ============================================================================ */
+
+.vaultguard-thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+  overflow: visible;
+  padding: 4px;
+}
+
+.vaultguard-thumbnail-item {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--background-secondary);
+}
+
+.vaultguard-thumbnail-item-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.vaultguard-thumbnail-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(var(--accent-h), var(--accent-s), var(--accent-l), 0.3);
+}
+
+.vaultguard-thumbnail-item.is-active {
+  border-color: var(--interactive-accent);
+  box-shadow: 0 0 15px rgba(var(--accent-h), var(--accent-s), var(--accent-l), 0.5);
+  transform: scale(1.05);
+}
+
+.vaultguard-thumbnail-item .thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--background-secondary);
+}
+
+
+.vaultguard-thumbnail-item .thumbnail-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background-color: var(--background-secondary-alt);
+}
+
+.vaultguard-thumbnail-item .thumbnail-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+}
+
+.vaultguard-thumbnail-item .thumbnail-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.vaultguard-thumbnail-item.add-new-btn {
+  border-style: dashed;
+  border-color: var(--text-faint);
+  color: var(--text-muted);
+}
+
+.vaultguard-thumbnail-item.add-new-btn:hover {
+  border-color: var(--interactive-accent-hover);
+  color: var(--interactive-accent-hover);
+}
+
+.vaultguard-thumbnail-item .delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 50%;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.vaultguard-thumbnail-item:hover .delete-btn {
+  display: flex;
+  opacity: 1;
+}
+
+.vaultguard-thumbnail-item .delete-btn:hover {
+  background-color: #e74c3c;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .vaultguard-username {
+    font-size: calc(32px * var(--vaultguard-ui-scale, 1));
+    margin-bottom: calc(20px * var(--vaultguard-ui-scale, 1));
+  }
+
+  .vaultguard-input {
+    font-size: calc(16px * var(--vaultguard-ui-scale, 1));
+    padding: calc(14px * var(--vaultguard-ui-scale, 1)) calc(25px * var(--vaultguard-ui-scale, 1));
+  }
+
+  .vaultguard-thumbnail-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================================================ */
+
+.vaultguard-input:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .vaultguard-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .vaultguard-input {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .vaultguard-screen,
+    .vaultguard-main-content,
+    .vaultguard-content,
+    .vaultguard-input,
+    .vaultguard-thumbnail-item {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .vaultguard-screen.is-leaving {
+        opacity: 0 !important;
+    }
+}
+
+/* === ATMOSPHERE VARIANTS === */
+[data-atmosphere="noir"] .vaultguard-overlay {
+  background-color: rgba(0,0,0,0.75);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  animation: none;
+}
+[data-atmosphere="noir"] .vaultguard-screen .vaultguard-input {
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.65) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+}
+[data-atmosphere="frosted"] .vaultguard-overlay {
+  background-color: rgba(255,255,255,0.10);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+}
+[data-atmosphere="frosted"] .vaultguard-screen .vaultguard-input {
+  background: rgba(255,255,255,0.18) !important;
+  border-color: rgba(255,255,255,0.30) !important;
+}
+[data-atmosphere="vivid"] .vaultguard-overlay {
+  background: linear-gradient(135deg, rgba(99,102,241,0.45) 0%, rgba(168,85,247,0.45) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-atmosphere="vivid"] .vaultguard-screen .vaultguard-input {
+  border-color: rgba(168,85,247,0.7) !important;
+  box-shadow: 0 0 0 1px rgba(168,85,247,0.3), 0 4px 20px rgba(0,0,0,0.2) !important;
+}
+/* ============================================================================
+   TAMPER WARNING / DANGER ZONE
+   ============================================================================ */
+
+/* ============================================================================
+   WARNING ICON (used in tamper panel)
+   ============================================================================ */
+
+.vaultguard-warning-icon {
+  /* Explicit dimensions prevent the SVG from expanding before CSS loads */
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: block;
+  color: #e67e22;
+}
+
+/* ============================================================================
+   TAMPER SCREEN — minimal view shown when vault integrity cannot be confirmed
+   (no user visual preferences are applied here)
+   ============================================================================ */
+
+.vaultguard-tamper-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #0f0f0f;
+  animation: fadeInContent 0.4s ease forwards;
+}
+
+.vaultguard-tamper-panel {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(230, 126, 34, 0.35);
+  border-radius: 12px;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.vaultguard-tamper-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e67e22;
+}
+
+.vaultguard-tamper-panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e67e22;
+}
+
+.vaultguard-tamper-panel-message {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Password input inside the tamper panel — inherits the glass style
+   but needs a fixed width since --vaultguard-input-width isn't set here */
+.vaultguard-tamper-panel .vaultguard-password-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Legacy banner — kept for any callers that may still reference it */
+.vaultguard-tamper-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.vaultguard-danger-zone {
+  padding: 16px;
+  border: 1px solid var(--text-error);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.vaultguard-danger-zone p {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.vaultguard-danger-zone button {
+  background: var(--text-error);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}

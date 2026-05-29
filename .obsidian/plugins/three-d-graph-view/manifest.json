@@ -1,0 +1,10 @@
+{
+  "id": "three-d-graph-view",
+  "name": "Three D Graph View",
+  "version": "0.1.2",
+  "minAppVersion": "1.5.0",
+  "description": "A graph-style view that can be rotated in 3D space.",
+  "author": "Steve",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,15 @@
+{
+  "showLabels": false,
+  "linkDistance": 70,
+  "nodeSize": 3,
+  "includeUnresolvedLinks": true,
+  "componentSpread": 0.33,
+  "showBacklinks": true,
+  "includeTags": true,
+  "enabledTags": {
+    "#unfinished": true
+  },
+  "tagColors": {},
+  "constrainToSphere": true,
+  "sphereStrength": 0.25
+}

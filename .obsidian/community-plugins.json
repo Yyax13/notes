@@ -3,6 +3,9 @@
   "obsidian-excalidraw-plugin",
   "omnisearch",
   "persistent-graph",
-  "3d-graph",
-  "obsidian-git"
+  "obsidian-git",
+  "three-d-graph-view",
+  "extended-graph",
+  "obsidian-living-graph",
+  "vaultguard"
 ]

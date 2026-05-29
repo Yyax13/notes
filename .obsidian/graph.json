@@ -1,22 +1,86 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "-path:Templates  ",
   "showTags": false,
-  "showAttachments": false,
+  "showAttachments": true,
   "hideUnresolved": false,
   "showOrphans": true,
   "collapse-color-groups": false,
-  "colorGroups": [],
+  "colorGroups": [
+    {
+      "query": "[\"tags\":\"unfinished\"]",
+      "color": {
+        "a": 1,
+        "rgb": 1015831
+      }
+    },
+    {
+      "query": "path:Others/Math",
+      "color": {
+        "a": 1,
+        "rgb": 2669271
+      }
+    },
+    {
+      "query": "path:\"History Of Recent Technology\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 12255487
+      }
+    },
+    {
+      "query": "path:Others/History/Religions  ",
+      "color": {
+        "a": 1,
+        "rgb": 14225938
+      }
+    },
+    {
+      "query": "path:\"Others/History/\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 4647680
+      }
+    },
+    {
+      "query": "file:ROADMAP",
+      "color": {
+        "a": 1,
+        "rgb": 0
+      }
+    },
+    {
+      "query": "path:Others/English  ",
+      "color": {
+        "a": 1,
+        "rgb": 16639
+      }
+    },
+    {
+      "query": "path:\"Linux/\"",
+      "color": {
+        "a": 1,
+        "rgb": 6166295
+      }
+    },
+    {
+      "query": "path:\"Articles/\"",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
+    }
+  ],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": 0,
+  "textFadeMultiplier": -0.6,
   "nodeSizeMultiplier": 1.8609375,
   "lineSizeMultiplier": 0.7890625,
   "collapse-forces": false,
-  "centerStrength": 0.723958333333333,
-  "repelStrength": 13.75,
+  "centerStrength": 0.6,
+  "repelStrength": 19.8843279846991,
   "linkStrength": 1,
-  "linkDistance": 343,
-  "scale": 1,
+  "linkDistance": 141,
+  "scale": 0.1298151477052596,
   "close": true
 }

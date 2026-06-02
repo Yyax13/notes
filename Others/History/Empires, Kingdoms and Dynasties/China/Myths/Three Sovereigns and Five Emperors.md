@@ -23,7 +23,7 @@ There are six to seven known variations on which people constitute the Three Sov
 
 | According To                                                      | People who constitute                                                                                                                   |
 | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| [[Shiji]]                                                         | 1. [[Heavenly Sovereign]]<br>2. [[Earthly Sovereign]]<br>3. [[Tai Sovereign]] <br>or <br>1. [[Fu Xi]]<br>4. [[Nüwa]]<br>5. [[Shennong]] |
+| [[Shiji]]                                                         | 1. [[Heavenly Sovereign]]<br>2. [[Earthly Sovereign]]<br>3. [[Tai Sovereign]] <br>or <br>1. [[Fu Xi]]<br>2. [[Nüwa]]<br>3. [[Shennong]] |
 | Sovereign series (帝王世系)                                           | 1. [[Fu Xi]]<br>2. [[Shennong]]<br>3. [[Yellow Emperor]]                                                                                |
 | [[Shiben]] (or Book of Origins)                                   | 1. [[Fu Xi]]<br>2. [[Shennong]]<br>3. [[Yellow Emperor]]                                                                                |
 | Baihu Tongyi (白虎通義) <br>1st variation                             | 1. [[Fu Xi]]<br>2. [[Shennong]]<br>3. [[Zhurong]]                                                                                       |

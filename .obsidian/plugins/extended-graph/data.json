@@ -88,6 +88,13 @@
     "collapse-color-groups": false,
     "colorGroups": [
       {
+        "query": "[\"tags\":\"unfinished\"]",
+        "color": {
+          "a": 1,
+          "rgb": 1015831
+        }
+      },
+      {
         "query": "path:Others/Math",
         "color": {
           "a": 1,

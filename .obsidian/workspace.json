@@ -11,14 +11,24 @@
             "id": "e1488c3202b6b838",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "ROADMAP.md",
-                "mode": "source",
-                "source": false
+                "aFile": ".obsidian/plugins/extended-graph/data.json",
+                "bFile": ".obsidian/plugins/extended-graph/data.json",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "ROADMAP"
+              "icon": "diff",
+              "title": "Diff: data.json  (Working Tree)"
+            }
+          },
+          {
+            "id": "199346d3dfee3cf9",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -85,44 +95,43 @@
     "type": "split",
     "children": [
       {
-        "id": "d347dba896b584c2",
+        "id": "46853f103793e3a8",
         "type": "tabs",
         "children": [
           {
-            "id": "e69acf8c1f9f78bd",
+            "id": "e556f2dc4e872dfa",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Three Sovereigns and Five Emperors"
+              "title": "Links inversos"
             }
           },
           {
-            "id": "5a6b224de26139fb",
+            "id": "efc99b82f4ffca2e",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para Three Sovereigns and Five Emperors"
+              "title": "Links de saída para index"
             }
           },
           {
-            "id": "5d70a24d4168469e",
+            "id": "c7b20b0d6be38603",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +146,7 @@
             }
           },
           {
-            "id": "3f01c80ce94bd4d6",
+            "id": "265f351c9a06d942",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,22 +160,22 @@
             }
           },
           {
-            "id": "d56ed5f47a77f31f",
+            "id": "9a4a993cd3dd388c",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Three Sovereigns and Five Emperors"
+              "title": "Sumário de index"
             }
           },
           {
-            "id": "ecb2ab97197bacea",
+            "id": "949b3d7929d25cc7",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -203,6 +212,11 @@
   },
   "active": "e1488c3202b6b838",
   "lastOpenFiles": [
+    "Linux/Foundations/Linux Architecture Overview.md",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
+    "index.md",
+    "Articles.md",
+    "ROADMAP.md",
     "Others/Math/Counting/Sexagesimal Numbers.md",
     "Others/History/Time Counting/Thirds (Tertias).md",
     "Others/History/Religions/Indian Religions/The Dharma.md",
@@ -218,17 +232,12 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Yao.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Ku.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Zhurong.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Tai Sovereign.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Suiren.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Shennong.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Pangu.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Nüwa.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Heavenly Sovereign.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Gong Gong.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Fu Xi.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Earthly Sovereign.md",
     "Linux/Foundations/assets/The Linux Components.png",
     "Books/The Linux Programming Interface.pdf",
     "Articles/Hashing Caseiro",

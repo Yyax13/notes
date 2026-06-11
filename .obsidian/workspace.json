@@ -8,21 +8,21 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e1488c3202b6b838",
+            "id": "199346d3dfee3cf9",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/plugins/extended-graph/data.json",
-                "bFile": ".obsidian/plugins/extended-graph/data.json",
-                "aRef": ""
+                "file": "Others/Math/Piecewise Functions.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: data.json  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Piecewise Functions"
             }
           },
           {
-            "id": "199346d3dfee3cf9",
+            "id": "b34ec9d451e0334a",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -95,43 +95,44 @@
     "type": "split",
     "children": [
       {
-        "id": "46853f103793e3a8",
+        "id": "28e4e3b91d947021",
         "type": "tabs",
         "children": [
           {
-            "id": "e556f2dc4e872dfa",
+            "id": "faa5dc507d04cf68",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Others/Math/Recurrence Relation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos"
+              "title": "Links inversos para Recurrence Relation"
             }
           },
           {
-            "id": "efc99b82f4ffca2e",
+            "id": "a3aecee6b20c6d7b",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.md",
+                "file": "Others/Math/Recurrence Relation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para index"
+              "title": "Links de saída para Recurrence Relation"
             }
           },
           {
-            "id": "c7b20b0d6be38603",
+            "id": "838f8f1c240aa8e1",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -146,7 +147,7 @@
             }
           },
           {
-            "id": "265f351c9a06d942",
+            "id": "62d7085fddfbbda0",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -160,22 +161,22 @@
             }
           },
           {
-            "id": "9a4a993cd3dd388c",
+            "id": "d28feeb92e58c678",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "Others/Math/Recurrence Relation.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de index"
+              "title": "Sumário de Recurrence Relation"
             }
           },
           {
-            "id": "949b3d7929d25cc7",
+            "id": "e0b7b7a954ef64f0",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -210,13 +211,26 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "e1488c3202b6b838",
+  "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
+    "Others/Math/Recurrence Relation.md",
+    "Others/Math/Piecewise Functions.md",
+    "Programming/Cryptography/Random Number Generators.md",
     "Linux/Foundations/Linux Architecture Overview.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
-    "index.md",
-    "Articles.md",
+    "Programming/Cryptography/Assets",
+    "Programming/Cryptography/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
+    "Others/Math/Real Analysis",
     "ROADMAP.md",
+    "Programming/Cryptography/Random Number Generation/Untitled.md",
+    "Programming/Cryptography/Random Number Generation/Sem título.md",
+    "Programming/Cryptography/Random Number Generation",
+    "Programming/Cryptography",
+    "Sem título",
+    "Programming",
+    "index.md",
+    "Books/The Linux Programming Interface.pdf",
+    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
+    "Articles.md",
     "Others/Math/Counting/Sexagesimal Numbers.md",
     "Others/History/Time Counting/Thirds (Tertias).md",
     "Others/History/Religions/Indian Religions/The Dharma.md",
@@ -232,21 +246,10 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Yao.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Ku.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Zhurong.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Tai Sovereign.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Suiren.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Shennong.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Pangu.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Gods, Goddess/Nüwa.md",
     "Linux/Foundations/assets/The Linux Components.png",
-    "Books/The Linux Programming Interface.pdf",
     "Articles/Hashing Caseiro",
     "Articles",
     "Projects",
-    "Linux/Foundations/assets",
-    "Books",
-    "Linux/Foundations",
-    "Linux",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Zizhi Tongjian.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Book of Documents.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Shiben's Page.png",
@@ -254,9 +257,6 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Ku.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Zhuanxu.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Gong Gong.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Suiren.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Dynasties, Kingdoms, Provinces",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Events",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Tai Sovereign.png"
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Suiren.png"
   ]
 }

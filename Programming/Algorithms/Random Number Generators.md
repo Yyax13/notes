@@ -149,7 +149,7 @@ To benchmark the algorithm, we'll use [PractRand](https://sourceforge.net/projec
 
 Yeah, the algorithm sucks, and this is expected, here're the reasons why it failed: 
 
-1. ___Low bits are limited___: The algorithm implementation (purely) don't mix the state, so the low bits have limited period, so for $k$ bits, the period cap is $2^k$ and that's why most failures was `[LowK/64]`, the state:
+1. ___Low bits are limited__:_ The algorithm implementation (purely) don't mix the state, so the low bits have limited period, so for $k$ bits, the period cap is $2^k$ and that's why most failures was `[LowK/64]`, the state:
 
 | __Bits__       | $1$ | $2$ | $4$  | $8$   | $16$    | $32$         |
 | -------------- | --- | --- | ---- | ----- | ------- | ------------ |
@@ -157,11 +157,28 @@ Yeah, the algorithm sucks, and this is expected, here're the reasons why it fail
 
 Although $2^{32}$ looks big, but for testing, the PractRand can detect the linear correlation without even touching every bit.
 
-2. ___The state is a hyperplane___: Imagine consecutive pairs, which every pair represent a dot in a two dimensional plane, like $(X_n, X_{n+1})$, because $X_{n+1} = aX_n + c$, every dots get stuck in a line. In three dimensions $(X_n, X_{n+1}, X_{n+2})$, they get stuck in plans. In more dimensions the dots get stuck in _Hyperplans_, according to the _[Marsaglia's Hyperplane Theorem](https://en.wikipedia.org/wiki/Marsaglia%27s_theorem)_.
+2. ___The state is a hyperplane__:_ Imagine consecutive pairs, which every pair represent a dot in a two dimensional plane, like $(X_n, X_{n+1})$, because $X_{n+1} = aX_n + c$, every dots get stuck in a line. In three dimensions $(X_n, X_{n+1}, X_{n+2})$, they get stuck in plans. In more dimensions the dots get stuck in _Hyperplans_, according to the _[Marsaglia's Theorem](https://en.wikipedia.org/wiki/Marsaglia%27s_theorem)_, which proves that for a LCG generated dot in a $n$ dimensions plane, falls into a small number of parallel hyperplanes.
 
 ![[The Marsaglia's Hyperplane Theorem with RANDU.png]]
 > Three-dimensional plot of 100,000 values generated with RANDU. Each point represents 3 consecutive pseudorandom values. It is clearly seen that the points fall in 15 two-dimensional planes.
 
+3. ___The Linear Correlation Problem__:_ The state evolves linearly
+
+```desmos-graph
+M=1048576
+
+a=679173
+c=720831
+
+x_0=12345
+
+x_n=mod(a*x_{n-1}+c,M)
+
+(
+mod(x_[0...4999],256),
+mod(x_[1...5000],256)
+)
+```
 
 ---
 

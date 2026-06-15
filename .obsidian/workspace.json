@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Others/Math/Piecewise Functions.md",
+                "file": "Programming/Algorithms/Random Number Generators.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Piecewise Functions"
+              "title": "Random Number Generators"
             }
           },
           {
@@ -213,18 +213,18 @@
   },
   "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
-    "Others/Math/Recurrence Relation.md",
-    "Others/Math/Piecewise Functions.md",
-    "Programming/Cryptography/Random Number Generators.md",
-    "Linux/Foundations/Linux Architecture Overview.md",
-    "Programming/Cryptography/Assets",
-    "Programming/Cryptography/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
-    "Others/Math/Real Analysis",
     "ROADMAP.md",
+    "Programming/Algorithms/Random Number Generators.md",
+    "Others/Math/Piecewise Functions.md",
+    "Others/Math/Recurrence Relation.md",
+    "Linux/Foundations/Linux Architecture Overview.md",
+    "Programming/Algorithms/Assets",
+    "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
+    "Others/Math/Real Analysis",
     "Programming/Cryptography/Random Number Generation/Untitled.md",
     "Programming/Cryptography/Random Number Generation/Sem título.md",
     "Programming/Cryptography/Random Number Generation",
-    "Programming/Cryptography",
+    "Programming/Algorithms",
     "Sem título",
     "Programming",
     "index.md",

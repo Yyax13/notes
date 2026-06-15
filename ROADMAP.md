@@ -841,6 +841,8 @@ publish: true
 - [ ] Dynamic programming
 - [ ] Greedy algorithms
 - [ ] Graph algorithms (DFS, BFS, Dijkstra)
+- [x] [[Random Number Generators|RNG Algorithms]]
+- [ ] Hash Algorithms
 - [ ] Complexity analysis (Big-O)
 
 ### Compiler Internals

@@ -95,16 +95,16 @@
     "type": "split",
     "children": [
       {
-        "id": "28e4e3b91d947021",
+        "id": "e8d35dadba56c1d2",
         "type": "tabs",
         "children": [
           {
-            "id": "faa5dc507d04cf68",
+            "id": "150ac7fb26966df6",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Others/Math/Recurrence Relation.md",
+                "file": "Programming/Algorithms/Random Number Generators.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,25 +114,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Recurrence Relation"
+              "title": "Links inversos para Random Number Generators"
             }
           },
           {
-            "id": "a3aecee6b20c6d7b",
+            "id": "9d23c8e321052085",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Others/Math/Recurrence Relation.md",
+                "file": "Programming/Algorithms/Random Number Generators.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para Recurrence Relation"
+              "title": "Links de saída para Random Number Generators"
             }
           },
           {
-            "id": "838f8f1c240aa8e1",
+            "id": "9125dc93937206d4",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -147,7 +147,7 @@
             }
           },
           {
-            "id": "62d7085fddfbbda0",
+            "id": "f58d87311ab14d5f",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -161,22 +161,22 @@
             }
           },
           {
-            "id": "d28feeb92e58c678",
+            "id": "bdceef3e0d2662ec",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Others/Math/Recurrence Relation.md",
+                "file": "Programming/Algorithms/Random Number Generators.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Recurrence Relation"
+              "title": "Sumário de Random Number Generators"
             }
           },
           {
-            "id": "e0b7b7a954ef64f0",
+            "id": "39b33955a826f346",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -213,13 +213,13 @@
   },
   "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
-    "ROADMAP.md",
     "Programming/Algorithms/Random Number Generators.md",
+    "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
+    "ROADMAP.md",
     "Others/Math/Piecewise Functions.md",
     "Others/Math/Recurrence Relation.md",
     "Linux/Foundations/Linux Architecture Overview.md",
     "Programming/Algorithms/Assets",
-    "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
     "Others/Math/Real Analysis",
     "Programming/Cryptography/Random Number Generation/Untitled.md",
     "Programming/Cryptography/Random Number Generation/Sem título.md",

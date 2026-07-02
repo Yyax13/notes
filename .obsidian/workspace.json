@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 375.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -211,8 +211,10 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "199346d3dfee3cf9",
+  "active": "e62b021f99226a4c",
   "lastOpenFiles": [
+    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
+    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
     "Programming/Algorithms/Random Number Generators.md",
     "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
     "ROADMAP.md",
@@ -256,7 +258,6 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Shun.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Ku.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Zhuanxu.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Gong Gong.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Suiren.png"
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Gong Gong.png"
   ]
 }

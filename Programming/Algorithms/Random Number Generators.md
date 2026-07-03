@@ -116,8 +116,7 @@ Although $2^{32}$ looks big, but for testing, the PractRand can detect the linea
 
 ### Fixing the algorithm
 
-
-Our algorithm isn't bad, bud we need to mix the output to get higher entropy, swap low-to-high bits and reduces the state correlation
+Our algorithm isn't bad, but we need to mix the output to get higher entropy, swap low-to-high bits and reduces the state correlation
 
 ---
 

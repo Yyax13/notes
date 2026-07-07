@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 220.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -211,15 +211,17 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "e62b021f99226a4c",
+  "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
-    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
-    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
     "Programming/Algorithms/Random Number Generators.md",
+    "Programming/Algorithms/Assets/marsaglia_plot_mixed_lcg.png",
+    "Others/Math/Recurrence Relation.md",
+    "Others/Math/Piecewise Functions.md",
+    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
+    "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
     "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
     "ROADMAP.md",
-    "Others/Math/Piecewise Functions.md",
-    "Others/Math/Recurrence Relation.md",
     "Linux/Foundations/Linux Architecture Overview.md",
     "Programming/Algorithms/Assets",
     "Others/Math/Real Analysis",
@@ -256,8 +258,6 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Book of Documents.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Shiben's Page.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Shun.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Ku.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Zhuanxu.png",
-    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Gong Gong.png"
+    "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Emperor Ku.png"
   ]
 }

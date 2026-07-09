@@ -138,9 +138,10 @@ publish: true
 ### Memory basics
 - [ ] What is memory
 - [ ] Bits, bytes, words
+- [ ] Memory addressing
+- [ ] [[Byte Endianness]]
 - [ ] RAM vs ROM
 - [ ] SRAM vs DRAM
-- [ ] Memory addressing
 - [ ] Memory hierarchy basics
 
 ### Registers
@@ -2040,7 +2041,6 @@ publish: true
 - [ ] What is binary exploitation (memory corruption, control flow hijacking)
 - [ ] Von Neumann architecture (code and data together)
 - [ ] Process memory layout (text, data, bss, heap, stack)
-- [ ] Endianness (little-endian vs big-endian)
 - [ ] x86/x64 calling conventions (cdecl, stdcall, fastcall, System V AMD64)
 - [ ] Stack frame layout (saved RIP, saved RBP, local variables)
 - [ ] Registers (general purpose, instruction pointer, stack pointer, base pointer)

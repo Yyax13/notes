@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Programming/Algorithms/Random Number Generators.md",
+                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Random Number Generators"
+              "title": "The Exponentiation Rules"
+            }
+          },
+          {
+            "id": "79255044aa2c4631",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "How Computers Works/Memory Basics/Byte Endianness.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Byte Endianness"
             }
           },
           {
@@ -95,16 +109,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e8d35dadba56c1d2",
+        "id": "204ebad2ba3e1a45",
         "type": "tabs",
         "children": [
           {
-            "id": "150ac7fb26966df6",
+            "id": "277b8b67f06e432c",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Programming/Algorithms/Random Number Generators.md",
+                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,25 +128,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Random Number Generators"
+              "title": "Links inversos para The Exponentiation Rules"
             }
           },
           {
-            "id": "9d23c8e321052085",
+            "id": "cc0e3f589262dab1",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Programming/Algorithms/Random Number Generators.md",
+                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para Random Number Generators"
+              "title": "Links de saída para The Exponentiation Rules"
             }
           },
           {
-            "id": "9125dc93937206d4",
+            "id": "071bf6dc4b77033f",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -147,7 +161,7 @@
             }
           },
           {
-            "id": "f58d87311ab14d5f",
+            "id": "65b413c21e12daa4",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -161,22 +175,22 @@
             }
           },
           {
-            "id": "bdceef3e0d2662ec",
+            "id": "46a47368fafd343a",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Programming/Algorithms/Random Number Generators.md",
+                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Random Number Generators"
+              "title": "Sumário de The Exponentiation Rules"
             }
           },
           {
-            "id": "39b33955a826f346",
+            "id": "083140b9b2d6d3d5",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -211,17 +225,23 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "199346d3dfee3cf9",
+  "active": "083140b9b2d6d3d5",
   "lastOpenFiles": [
-    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
+    "How Computers Works/Memory Basics/Byte Endianness.md",
+    "Others/Math/Exponentiation/The Exponentiation Rules.md",
+    "Others/Math/Exponentiation/Why n power 0 is 1.md",
+    "Others/Math/Exponentiation",
+    "ROADMAP.md",
     "Programming/Algorithms/Random Number Generators.md",
+    "How Computers Works/Memory Basics",
+    "How Computers Works",
+    "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
     "Programming/Algorithms/Assets/marsaglia_plot_mixed_lcg.png",
     "Others/Math/Recurrence Relation.md",
     "Others/Math/Piecewise Functions.md",
     "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
     "Programming/Algorithms/Assets/Marsaglia_plot_lcg_unmixed.png",
     "Programming/Algorithms/Assets/The Marsaglia's Hyperplane Theorem with RANDU.png",
-    "ROADMAP.md",
     "Linux/Foundations/Linux Architecture Overview.md",
     "Programming/Algorithms/Assets",
     "Others/Math/Real Analysis",
@@ -229,7 +249,6 @@
     "Programming/Cryptography/Random Number Generation/Sem título.md",
     "Programming/Cryptography/Random Number Generation",
     "Programming/Algorithms",
-    "Sem título",
     "Programming",
     "index.md",
     "Books/The Linux Programming Interface.pdf",
@@ -247,13 +266,8 @@
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Yellow Emperor.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Sima Qian.md",
     "Others/History/Empires, Kingdoms and Dynasties/China/People/Shaohao.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Yao.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Shun.md",
-    "Others/History/Empires, Kingdoms and Dynasties/China/People/Emperor Ku.md",
     "Linux/Foundations/assets/The Linux Components.png",
     "Articles/Hashing Caseiro",
-    "Articles",
-    "Projects",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Zizhi Tongjian.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/The Book of Documents.png",
     "Others/History/Empires, Kingdoms and Dynasties/China/Assets/Shiben's Page.png",

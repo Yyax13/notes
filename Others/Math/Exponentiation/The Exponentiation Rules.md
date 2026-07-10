@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # Division
 
 A division between two numbers with the same base and exponents $n$ which $n > 0$  will result in keeping the base and subtracting the exponents

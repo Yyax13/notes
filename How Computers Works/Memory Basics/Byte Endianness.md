@@ -1,5 +1,7 @@
 ---
 publish: true
+tags:
+  - unfinished
 ---
 # Introduction
 

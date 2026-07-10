@@ -4,7 +4,9 @@ publish: true
 # Division
 
 A division between two numbers with the same base and exponents $n$ which $n > 0$  will result in keeping the base and subtracting the exponents
-$$\frac{x^a}{x^b} = x^{a - b}$$
+$$
+\frac{x^a}{x^b} = x^{a - b}
+$$
 
 _Example:_
 $$
@@ -33,7 +35,10 @@ $$
 # Multiplication 
 
 A multiplication follows the same rule than the division, but with inverted operations. For a multiplication between two numbers with the same base and exponents $n$ which $n > 0$ will result in keeping the base and adding the exponents
-$${x^a} \times {x^b} = x^{a+b}$$
+
+$$
+{x^a} \times {x^b} = x^{a+b}
+$$
 
 _Example:_
 $$

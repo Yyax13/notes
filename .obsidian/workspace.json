@@ -109,88 +109,11 @@
     "type": "split",
     "children": [
       {
-        "id": "204ebad2ba3e1a45",
+        "id": "82c2f3ad48296719",
         "type": "tabs",
         "children": [
           {
-            "id": "277b8b67f06e432c",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Links inversos para The Exponentiation Rules"
-            }
-          },
-          {
-            "id": "cc0e3f589262dab1",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Links de saída para The Exponentiation Rules"
-            }
-          },
-          {
-            "id": "071bf6dc4b77033f",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etiquetas"
-            }
-          },
-          {
-            "id": "65b413c21e12daa4",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Todas as propriedades"
-            }
-          },
-          {
-            "id": "46a47368fafd343a",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "Others/Math/Exponentiation/The Exponentiation Rules.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Sumário de The Exponentiation Rules"
-            }
-          },
-          {
-            "id": "083140b9b2d6d3d5",
+            "id": "4c6c77a3ae8df531",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -199,8 +122,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -228,8 +150,8 @@
   "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
     "Others/Math/Exponentiation/The Exponentiation Rules.md",
-    "How Computers Works/Memory Basics/Byte Endianness.md",
     "Others/Math/Exponentiation/Why n power 0 is 1.md",
+    "How Computers Works/Memory Basics/Byte Endianness.md",
     "Others/Math/Exponentiation",
     "ROADMAP.md",
     "Programming/Algorithms/Random Number Generators.md",

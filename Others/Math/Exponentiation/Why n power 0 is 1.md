@@ -18,4 +18,6 @@ This means that the equality of this division will be the same in the simplified
 $$
 x^0 = 1
 $$
-$$\frac{x^a}{x^a} = x^0 = 1$$
+$$
+\frac{x^a}{x^a} = x^0 = 1
+$$

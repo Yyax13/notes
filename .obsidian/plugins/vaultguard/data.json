@@ -1,9 +1,9 @@
 {
   "salt": "Z4FMA5TiGQv8/4/wIsmluA==",
-  "encryptedSettings": "E5Ad494csUpLG7yvSG1OEECEAvSOVPOGEZxd3GXsctS95GfvToECe61hXPdQ7zuPSqJ1DvbQhTVz48fcnZtGqW4ovQ==",
+  "encryptedSettings": "z9IU1Jk3XAPM5k/cnnC+1e3SoPcChja5xwHPZrP4Z1+xw597TcHq13U0lWLd2KpTxjGIS9EX0h6esRPqOxe3RXIcaw==",
   "visualPrefs": {
     "username": "hoWo",
-    "activeBackgroundId": "user-1779391493423",
+    "activeBackgroundId": "user-1783710668552",
     "backgrounds": [
       {
         "id": "local-video",
@@ -27,6 +27,12 @@
         "id": "user-1779391493423",
         "type": "image",
         "value": ".obsidian/plugins/vaultguard/backgrounds/user-bg-1779391493370.jpg",
+        "isDefault": false
+      },
+      {
+        "id": "user-1783710668552",
+        "type": "image",
+        "value": ".obsidian/plugins/vaultguard/backgrounds/user-bg-1783710668548.jpg",
         "isDefault": false
       }
     ],

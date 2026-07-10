@@ -765,6 +765,9 @@ publish: true
 - [ ] Undefined behavior
 - [ ] Low-level I/O
 - [ ] Interfacing with OS
+- [ ] Meta-programming
+- [ ] Bit-fields
+- [ ] Bitmasks
 
 - [ ] Book: The C Programming Language (K&R)
 - [ ] Book: Modern C
@@ -779,6 +782,42 @@ publish: true
 
 - [ ] Book: Effective C++
 - [ ] Book: C++ Primer
+
+### Compiler Internals
+- [ ] Lexical analysis
+- [ ] Parsing (AST)
+- [ ] Semantic analysis
+- [ ] Intermediate representation (IR)
+- [ ] Optimization passes
+- [ ] Code generation
+
+- [ ] Book: Compilers: Principles, Techniques, and Tools (Dragon Book)
+- [ ] Book: Engineering a Compiler
+
+### Assembler Internals
+- [ ] Instruction encoding
+- [ ] Symbol resolution
+- [ ] Relocation
+- [ ] Macro processing
+- [ ] Object file generation
+
+### Linker Internals
+- [ ] Static vs dynamic linking
+- [ ] Symbol tables
+- [ ] Relocations
+- [ ] GOT/PLT
+- [ ] Loader interaction
+
+- [ ] Book: Linkers and Loaders (John Levine)
+
+### Debugging
+- [ ] GDB / LLDB
+- [ ] WinDbg basics
+- [ ] Breakpoints, watchpoints
+- [ ] Stack traces
+- [ ] Memory debugging
+- [ ] Reverse debugging
+
 
 ### Rust
 - [ ] Ownership and borrowing
@@ -845,41 +884,6 @@ publish: true
 - [x] [[Random Number Generators|RNG Algorithms]]
 - [ ] Hash Algorithms
 - [ ] Complexity analysis (Big-O)
-
-### Compiler Internals
-- [ ] Lexical analysis
-- [ ] Parsing (AST)
-- [ ] Semantic analysis
-- [ ] Intermediate representation (IR)
-- [ ] Optimization passes
-- [ ] Code generation
-
-- [ ] Book: Compilers: Principles, Techniques, and Tools (Dragon Book)
-- [ ] Book: Engineering a Compiler
-
-### Assembler Internals
-- [ ] Instruction encoding
-- [ ] Symbol resolution
-- [ ] Relocation
-- [ ] Macro processing
-- [ ] Object file generation
-
-### Linker Internals
-- [ ] Static vs dynamic linking
-- [ ] Symbol tables
-- [ ] Relocations
-- [ ] GOT/PLT
-- [ ] Loader interaction
-
-- [ ] Book: Linkers and Loaders (John Levine)
-
-### Debugging
-- [ ] GDB / LLDB
-- [ ] WinDbg basics
-- [ ] Breakpoints, watchpoints
-- [ ] Stack traces
-- [ ] Memory debugging
-- [ ] Reverse debugging
 
 ### Testing
 - [ ] Unit testing

@@ -204,11 +204,11 @@ time: 9.29475 s
 throughput: 3.69668 GB/s
 ```
 
-As we can see, the algorithm is very fast, and have less than $0.63\%$ throughput variance between the modes (the Mixed variation is a bit fast: $3.67373 \text{ GB/s}$).
+As we can see, the algorithm is very fast, and have less than $0.63\%$ throughput variance between the modes (the Mixed variation is a bit slow: $3.67373 \text{ GB/s}$).
 
 ## The Xorshift
 
-The xorshift algorithm (also known as shift-register generators) is a PRNG algorithm developed by [George Marsaglia](https://en.wikipedia.org/wiki/George_Marsaglia) (ye, the same of the Theorem). They are a subset of individual algorithms that generates such a high
+The xorshift algorithm (also known as shift-register generators) is a PRNG algorithm developed by [George Marsaglia](https://en.wikipedia.org/wiki/George_Marsaglia) (yea, the same of the Theorem). They are a subset of individual algorithms that generates such a high
 
 ---
 

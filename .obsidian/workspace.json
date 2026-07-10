@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Others/Math/Exponentiation/Why n power 0 is 1.md",
+                "file": "Programming/Algorithms/Random Number Generators.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Why n power 0 is 1"
+              "title": "Random Number Generators"
             }
           },
           {
@@ -45,7 +45,8 @@
               "title": "Visualização em gráfico"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -147,14 +148,15 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "199346d3dfee3cf9",
+  "active": "79255044aa2c4631",
   "lastOpenFiles": [
-    "Others/Math/Exponentiation/The Exponentiation Rules.md",
-    "Others/Math/Exponentiation/Why n power 0 is 1.md",
     "How Computers Works/Memory Basics/Byte Endianness.md",
-    "Others/Math/Exponentiation",
-    "ROADMAP.md",
     "Programming/Algorithms/Random Number Generators.md",
+    "ROADMAP.md",
+    "index.md",
+    "Others/Math/Exponentiation/Why n power 0 is 1.md",
+    "Others/Math/Exponentiation/The Exponentiation Rules.md",
+    "Others/Math/Exponentiation",
     "How Computers Works/Memory Basics",
     "How Computers Works",
     "History Of Recent Technology/Early Calculation & Mechanical Era/Abacus - Long Note.md",
@@ -172,7 +174,6 @@
     "Programming/Cryptography/Random Number Generation",
     "Programming/Algorithms",
     "Programming",
-    "index.md",
     "Books/The Linux Programming Interface.pdf",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md",
     "Articles.md",

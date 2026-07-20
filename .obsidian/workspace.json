@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "How Computers Works/Memory Basics/Byte Endianness.md",
+                "file": "ROADMAP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Byte Endianness"
+              "title": "ROADMAP"
             }
           },
           {
@@ -45,8 +45,7 @@
               "title": "Visualização em gráfico"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -122,6 +121,83 @@
               "icon": "git-pull-request",
               "title": "Source Control"
             }
+          },
+          {
+            "id": "cc716542a2ae94ca",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Programming/Algorithms/Random Number Generators.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos para Random Number Generators"
+            }
+          },
+          {
+            "id": "5b8d2fb734abbb8d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Programming/Algorithms/Random Number Generators.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída para Random Number Generators"
+            }
+          },
+          {
+            "id": "be9d3d120089b74f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "f2d3f722f7cd1ce3",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "94742fdfed90d45c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Programming/Algorithms/Random Number Generators.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário de Random Number Generators"
+            }
           }
         ]
       }
@@ -148,11 +224,11 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "79255044aa2c4631",
+  "active": "199346d3dfee3cf9",
   "lastOpenFiles": [
+    "ROADMAP.md",
     "How Computers Works/Memory Basics/Byte Endianness.md",
     "Programming/Algorithms/Random Number Generators.md",
-    "ROADMAP.md",
     "index.md",
     "Others/Math/Exponentiation/Why n power 0 is 1.md",
     "Others/Math/Exponentiation/The Exponentiation Rules.md",

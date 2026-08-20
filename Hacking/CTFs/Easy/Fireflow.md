@@ -1,3 +1,8 @@
+---
+publish: true
+tags:
+  - unfinished
+---
 Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB's machine :)
 
 First of all we need to add the register to `/etc/hosts`:
@@ -732,7 +737,5 @@ nightfall@fireflow:~$
 ```
 
 One interesting thing, we can use `none` as our algorithm, this is a attack vector to escalate our privileges, just editing our JWT and signing it with _none algorithm_.
-
-
 
 ---

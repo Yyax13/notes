@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hacking/CTFs/Fireflow.md",
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "mode": "source",
                 "source": false
               },
@@ -25,13 +25,18 @@
             "id": "b34ec9d451e0334a",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Fireflow"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -56,7 +61,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de arquivos"
+              "title": "Files"
             }
           },
           {
@@ -106,13 +111,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hacking/CTFs/Fireflow.md",
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário"
+              "title": "Outline"
             }
           },
           {
@@ -196,14 +201,14 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Abrir a troca rápida": false,
-      "graph:Abrir visualização em gráfico": false,
-      "canvas:Criar novo canvas": false,
-      "daily-notes:Abrir a nota de hoje": false,
-      "templates:Inserir modelo": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "bases:Criar nova base": false,
-      "random-note:Abrir nota aleatória": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "random-note:Open random note": false,
+      "bases:Create new base": false,
       "templater-obsidian:Templater": false,
       "obsidian-excalidraw-plugin:New drawing": false,
       "omnisearch:Omnisearch": false,
@@ -213,21 +218,21 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "e62b021f99226a4c",
+  "active": "b34ec9d451e0334a",
   "lastOpenFiles": [
-    "Hacking/CTFs/Assets/Fireflow - Penelope Shell as www-data.png",
-    "Hacking/CTFs/Assets/Fireflow - Playground button.png",
-    "Hacking/CTFs/Assets/Fireflow - LangFlow login page.png",
-    "Hacking/CTFs/Assets/Fireflow - Waiting For Approval.png",
-    "Hacking/CTFs/Fireflow.md",
-    "Hacking/CTFs/Assets/Fireflow - MnR rule 401.png",
-    "Hacking/CTFs/Assets/Fireflow - MnR rule 403.png",
-    "Hacking/CTFs/Assets/Fireflow - Network Devtools.png",
-    "Hacking/CTFs/Assets/Fireflow - langflow loading.png",
-    "Hacking/CTFs/Assets/Fireflow - ffuf subdomain.png",
-    "Hacking/CTFs/Assets",
-    "Pasted image 20260818143807.png",
-    "Hacking/CTFs/Assets/Fireflow - Adding host.png",
+    "Hacking/CTFs/Easy",
+    "Hacking/CTFs/Easy/Fireflow.md",
+    "Pasted image 20260819232101.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Connecting as nightfall through ssh.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Uploaded sudo-chwoot.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Penelope Shell as www-data.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Playground button.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - LangFlow login page.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Waiting For Approval.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 401.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 403.png",
+    "Hacking/CTFs/Easy/Assets/Fireflow - Network Devtools.png",
+    "Hacking/CTFs/Easy/Assets",
     "Hacking/CTFs",
     "ROADMAP.md",
     "Hacking/Sem título.md",

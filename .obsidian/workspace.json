@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "deaae311355d2282",
+            "id": "b34ec9d451e0334a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,21 +22,27 @@
             }
           },
           {
-            "id": "b34ec9d451e0334a",
+            "id": "8156587fb2052656",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Fireflow"
+              "type": "3d-graph-view",
+              "state": {},
+              "icon": "orbit",
+              "title": "3D Graph"
+            }
+          },
+          {
+            "id": "2c244eb497f49749",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -111,22 +117,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Sumário"
             }
           },
           {
-            "id": "9ec90ea62c0ca444",
+            "id": "a21c1184e291e8f7",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Linux/Foundations/Linux Architecture Overview.md",
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,35 +141,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Linux Architecture Overview"
+              "title": "Links inversos"
             }
           },
           {
-            "id": "6cfae176e542472d",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
-            }
-          },
-          {
-            "id": "2ac370eb42a6e181",
+            "id": "3ecd662894a9ddd9",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Linux/Foundations/Linux Architecture Overview.md",
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para Linux Architecture Overview"
+              "title": "Links de saída"
             }
           },
           {
-            "id": "197151f2e7eff4b1",
+            "id": "1ff66dadc20c428e",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -179,7 +174,7 @@
             }
           },
           {
-            "id": "089c6ff1fd9270b8",
+            "id": "01175e57684d33bf",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -191,9 +186,19 @@
               "icon": "lucide-archive",
               "title": "Todas as propriedades"
             }
+          },
+          {
+            "id": "ff013dffa0ad7af7",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -218,10 +223,11 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "b34ec9d451e0334a",
+  "active": "2c244eb497f49749",
   "lastOpenFiles": [
-    "Hacking/CTFs/Easy",
     "Hacking/CTFs/Easy/Fireflow.md",
+    "Hacking/CTFs/Easy/Assets/Fireflow - MCP AI Tool Registry Swagger.png",
+    "Hacking/CTFs/Easy",
     "Pasted image 20260819232101.png",
     "Hacking/CTFs/Easy/Assets/Fireflow - Connecting as nightfall through ssh.png",
     "Hacking/CTFs/Easy/Assets/Fireflow - Uploaded sudo-chwoot.png",
@@ -231,7 +237,6 @@
     "Hacking/CTFs/Easy/Assets/Fireflow - Waiting For Approval.png",
     "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 401.png",
     "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 403.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Network Devtools.png",
     "Hacking/CTFs/Easy/Assets",
     "Hacking/CTFs",
     "ROADMAP.md",
@@ -264,7 +269,6 @@
     "Others/Math/Real Analysis",
     "Programming/Cryptography/Random Number Generation/Untitled.md",
     "Programming/Cryptography/Random Number Generation/Sem título.md",
-    "Programming/Cryptography/Random Number Generation",
     "Others/History/Empires, Kingdoms and Dynasties/China/Myths/Three Sovereigns and Five Emperors.md"
   ]
 }

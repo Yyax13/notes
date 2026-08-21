@@ -41,8 +41,7 @@
               "title": "Visualização em gráfico"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -117,8 +116,9 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Hacking/CTFs/Easy/Fireflow.md",
                 "followCursor": false,
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
@@ -223,7 +223,7 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "2c244eb497f49749",
+  "active": "b34ec9d451e0334a",
   "lastOpenFiles": [
     "Hacking/CTFs/Easy/Fireflow.md",
     "Hacking/CTFs/Easy/Assets/Fireflow - MCP AI Tool Registry Swagger.png",

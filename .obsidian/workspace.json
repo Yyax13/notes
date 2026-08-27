@@ -116,7 +116,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
+                "file": "Hacking/CTFs/Medium/Fireflow.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -223,7 +223,7 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "e62b021f99226a4c",
+  "active": "94742fdfed90d45c",
   "lastOpenFiles": [
     "Hacking/CTFs/Medium/Fireflow.md",
     "Hacking/CTFs/Medium/Assets/Fireflow - MCP AI Tool Registry Swagger.png",

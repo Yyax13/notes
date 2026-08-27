@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
+                "file": "Hacking/CTFs/Medium/Fireflow.md",
                 "mode": "source",
                 "source": false
               },
@@ -223,21 +223,21 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "b34ec9d451e0334a",
+  "active": "e62b021f99226a4c",
   "lastOpenFiles": [
-    "Hacking/CTFs/Easy/Fireflow.md",
-    "Hacking/CTFs/Easy/Assets/Fireflow - MCP AI Tool Registry Swagger.png",
-    "Hacking/CTFs/Easy",
+    "Hacking/CTFs/Medium/Fireflow.md",
+    "Hacking/CTFs/Medium/Assets/Fireflow - MCP AI Tool Registry Swagger.png",
+    "Hacking/CTFs/Medium",
     "Pasted image 20260819232101.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Connecting as nightfall through ssh.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Uploaded sudo-chwoot.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Penelope Shell as www-data.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Playground button.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - LangFlow login page.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - Waiting For Approval.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 401.png",
-    "Hacking/CTFs/Easy/Assets/Fireflow - MnR rule 403.png",
-    "Hacking/CTFs/Easy/Assets",
+    "Hacking/CTFs/Medium/Assets/Fireflow - Connecting as nightfall through ssh.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - Uploaded sudo-chwoot.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - Penelope Shell as www-data.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - Playground button.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - LangFlow login page.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - Waiting For Approval.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - MnR rule 401.png",
+    "Hacking/CTFs/Medium/Assets/Fireflow - MnR rule 403.png",
+    "Hacking/CTFs/Medium/Assets",
     "Hacking/CTFs",
     "ROADMAP.md",
     "Hacking/Sem título.md",

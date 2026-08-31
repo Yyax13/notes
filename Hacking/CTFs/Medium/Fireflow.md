@@ -1,5 +1,6 @@
 ---
 tags:
+publish: true
 ---
 Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB's machine :)
 

@@ -22,10 +22,10 @@
 
 
 .theme-dark {
-  --background-primary: #0b090a;
-  --background-primary-alt: #121212;
-  --background-secondary: #121212;
-  --background-secondary-alt: #121212;
+  --background-primary: rgba(11, 9, 10, 0.75);
+  --background-primary-alt: rgba(18, 18, 18, 0.75);
+  --background-secondary: rgba(18, 18, 18, 0.75);
+  --background-secondary-alt: rgba(18, 18, 18, 0.75);
   --text-normal: #e0e0e0;
   --text-accent: #b22222;
   --text-sub-accent: #f45656;
@@ -64,10 +64,10 @@
   --accent-l: 42%;
 }
 .theme-light {
-  --background-primary: #0b090a;
-  --background-primary-alt: #121212;
-  --background-secondary: #121212;
-  --background-secondary-alt: #121212;
+  --background-primary: rgba(11, 9, 10, 0.75);
+  --background-primary-alt: rgba(18, 18, 18, 0.75);
+  --background-secondary: rgba(18, 18, 18, 0.75);
+  --background-secondary-alt: rgba(18, 18, 18, 0.75);
   --text-normal: #e0e0e0;
   --text-accent: #b22222;
   --text-sub-accent: #f45656;

@@ -1,5 +1,4 @@
 ---
-tags:
 publish: true
 ---
 Today we'll do the [Fireflow](https://app.hackthebox.com/machines/Fireflow) HTB's machine :)
@@ -1347,7 +1346,7 @@ So let's run it:
 [1,898s][~/Hacking/CTFs/Fireflow] ᛋᛋ 
 ```
 
-and (🥁🥁🥁):
+and (and drumroll, please......):
 
 ```
 [+] [New Reverse Shell] => mcp-server-54464cb475-29ztf 10.129.244.214 Linux-x86_64 👤 mcp(1000) 😍️ Session ID <2>
@@ -2865,5 +2864,14 @@ echo "    Root Flag: $RFLAG"
 ```
 
 This needs `websockets` python package to be installed.
+
+# Erratum 10/07 - 2026
+
+> Note wrote at October 7th, when I noticed that the missing files could lead errors to autopwn
+
+You may need to files to use the `autopwn.sh`:
+
+1. The MCP CLI ([[#Shell through the Ping Tool]]) at `/tmp/MCP-cli/mcp-cli.py`;
+2. The `escape.sh` ([[#Compromising `prometheus-prometheus-node-exporter` for Root Escaped Shell]]) at `/tmp/escape.sh`.
 
 ---

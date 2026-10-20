@@ -763,11 +763,17 @@ publish: true
 - [ ] Pointers and pointer arithmetic
 - [ ] Structs and unions
 - [ ] Undefined behavior
+- [ ] Function Pointers
+- [ ] Recursive Programming
+- [ ] Socket
+- [ ] Glibc specific APIs
 - [ ] Low-level I/O
 - [ ] Interfacing with OS
 - [ ] Meta-programming
 - [ ] Bit-fields
 - [ ] Bitmasks
+- [ ] [[Programming/C/Concurrency and Parallelism/index|Parallelism]]
+- [ ] Concurrency
 
 - [ ] Book: The C Programming Language (K&R)
 - [ ] Book: Modern C

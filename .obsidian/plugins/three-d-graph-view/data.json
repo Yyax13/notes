@@ -7,7 +7,9 @@
   "showBacklinks": true,
   "includeTags": true,
   "enabledTags": {
-    "#unfinished": true
+    "#unfinished": true,
+    "#define": true,
+    "#include": true
   },
   "tagColors": {},
   "constrainToSphere": true,

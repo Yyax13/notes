@@ -1,0 +1,9 @@
+{
+  "id": "taskweaver",
+  "name": "TaskWeaver",
+  "version": "1.0.1",
+  "minAppVersion": "1.0.0",
+  "description": "Kanban-style task management with sidebar TODO list, drag-and-drop, sub-tasks, and priority levels.",
+  "author": "HCYT",
+  "isDesktopOnly": false
+}

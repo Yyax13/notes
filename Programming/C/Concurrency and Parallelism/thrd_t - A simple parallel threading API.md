@@ -278,6 +278,19 @@ typedef int (*thrd_start_t) (void*);
 
 The returning integer can be used as return status code (like the POSIX standard for program returning), i.e.: `0` for a clean run or `1` if there is any error. It also can be expanded to support `errno` (because it's type is `int` too, by default) or even pointers to structures (probably a hack, as we normally store pointers in unsigned integers or longs, and you'll need to do some weird casts to really use this) if you want to.
 
+### `thrd_t` Success Enumeration Constant
+
+```c
+enum {
+    thrd_success  = 0,
+    thrd_busy     = 1,
+    thrd_error    = 2,
+    thrd_nomem    = 3,
+    thrd_timedout = 4
+};
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l45
+
 ## Functions
 ### `thrd_create`
 

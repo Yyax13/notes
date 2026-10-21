@@ -43,11 +43,84 @@ If you set it to any unsupported value, it'll fallback to `mtx_plain` by default
 
 The [[mtx_t - A simple C mutex API#`mtx_t` Modes|modes section]] provides a cleaner explaining.
 
-After calling the `mtx_init` 
+After calling the `mtx_init` you should also check for errors:
+
+```c
+#include <threads.h>
+#include <stdio.h>
+
+int main(void) {
+	mtx_t mu;
+	if (mtx_init(&mu, mtx_plain) != thrd_success) {
+		printf("Can't init mutex\n");
+		return 1;
+	}
+	
+	/** Use the mutex **/
+	
+	mtx_destroy(&mu);
+	return 0;	
+}
+```
 
 ## 2nd Step: Lock it
 
-There is 
+There is multiple ways to acquire a mutex, everyone depending on your mutex mode:
+
+| How to acquire        | Behavior                                                                                                                                                                                                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Using `mtx_lock`      | This is a blocking lock, if the mutex is already blocked it can  deadlock, depending on the mutex mode (if it's `mtx_recursive` or any derivations, you can lock the thread multiple times in the same thread).                                                      |
+| Using `mtx_timedlock` | Although it's also a blocking lock, the caller can define a target timestamp (using the `timespec` structure, defined at `<time.h>`) that works as a deadline/timeout (If $\texttt{current time } \geqslant \texttt{ target timespec}$, it gives up trying to lock). |
+| Using `mtx_trylock`   | Attempts locking the mutex and if it's already locked return an error `thrd_busy` (any other code that isn't `thrd_success` means error).                                                                                                                            |
+
+In the `mtx_timedlock` and `mtx_trylock` you shall check for errors, that follows the [[thrd_t - A simple parallel threading API#`thrd_t` Success Enumeration Constant|thrd_t Success Enum]]:
+
+```c
+#include <threads.h>
+#include <stdio.h>
+#include <time.h>
+
+#define SEC_NSEC 1e9
+
+int main(void) {
+	mtx_t mu;
+	if (mtx_init(&mu, mtx_plain) != thrd_success) {
+		printf("Can't init mutex\n");
+		return 1;
+	}
+	
+	// trylock example
+	switch (mtx_trylock(&mu)) {
+		case thrd_success: {
+			// Do the work here
+			mtx_unlock(&mu);
+		} break;
+		case thrd_busy: {
+			printf("Can't trylock mutex: Mutex &mu is already locked");
+		} break;
+		default: {
+			printf("Can't trylock mutex: Some error happened");
+		} break;
+	}
+	
+	// timedlock example
+	struct timespec ts;
+	timespec_get(&ts, TIME_UTC);
+	
+	// Add 5s to timer
+	ts.tv_sec += 5;
+	ts.tv_nsec += 5 * SEC_NSEC;
+	
+	switch (mtx_timedlock(&mu, &ts)) {
+		/** 
+		 * Same switch 
+		 * You must check thrd_timeout instead of thrd_busy
+		 */
+	}
+	
+	return 0;
+}
+```
 
 # API Lookup
 
@@ -77,6 +150,9 @@ It can be used in `mtx_init` with this values:
 | `mtx_timed` \| `mtx_recursive` | 3     | Recursive and Timed |
 
 The C11 documentation determines that we shouldn't directly use the `mtx_recursive`, by not defining it as a valid value to the `mtx_init`, as it's implementation-defined. However in the NPTL (Native POSIX Threads Library, default in Linux) we can use this way as `mtx_plain = 0` so `mtx_plain | mtx_recursive = 1` and `1 = mtx_recursive` so the direct use of it isn't really a problem. But we also needs to keep in mind that this use isn't portable, so please use it the C11 way.  
+
+## Functions
+
 
 
 ---

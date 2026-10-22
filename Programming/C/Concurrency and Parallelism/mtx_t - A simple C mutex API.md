@@ -67,11 +67,11 @@ int main(void) {
 
 There is multiple ways to acquire a mutex, everyone depending on your mutex mode:
 
-| How to acquire        | Behavior                                                                                                                                                                                                                                                             |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Using `mtx_lock`      | This is a blocking lock, if the mutex is already blocked it can  deadlock, depending on the mutex mode (if it's `mtx_recursive` or any derivations, you can lock the thread multiple times in the same thread).                                                      |
-| Using `mtx_timedlock` | Although it's also a blocking lock, the caller can define a target timestamp (using the `timespec` structure, defined at `<time.h>`) that works as a deadline/timeout (If $\texttt{current time } \geqslant \texttt{ target timespec}$, it gives up trying to lock). |
-| Using `mtx_trylock`   | Attempts locking the mutex and if it's already locked return an error `thrd_busy` (any other code that isn't `thrd_success` means error).                                                                                                                            |
+| How to acquire        | Behavior                                                                                                                                                                                                                                                                                                  |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Using `mtx_lock`      | This is a blocking lock, if the mutex is already blocked it can  deadlock, depending on the mutex mode (if it's `mtx_recursive` or any derivations, you can lock the thread multiple times in the same thread).                                                                                           |
+| Using `mtx_timedlock` | Although it's also a blocking lock, the caller can define a target timestamp (using the [[timespec - A timestamp Specification for C\|timespec]] structure, defined at `<time.h>`) that works as a deadline/timeout (If $\texttt{current time } \geqslant \texttt{ target timespec}$, it gives up trying to lock). |
+| Using `mtx_trylock`   | Attempts locking the mutex and if it's already locked return an error `thrd_busy` (any other code that isn't `thrd_success` means error).                                                                                                                                                                 |
 
 In the `mtx_timedlock` and `mtx_trylock` you shall check for errors, that follows the [[thrd_t - A simple parallel threading API#`thrd_t` Success Enumeration Constant|thrd_t Success Enum]]:
 
@@ -109,13 +109,17 @@ int main(void) {
 	
 	// Add 5s to timer
 	ts.tv_sec += 5;
-	ts.tv_nsec += 5 * SEC_NSEC;
-	
 	switch (mtx_timedlock(&mu, &ts)) {
-		/** 
-		 * Same switch 
-		 * You must check thrd_timeout instead of thrd_busy
-		 */
+		case thrd_success: {
+			// Do whatever you need
+			mtx_unlock(&mu);
+		} break;
+		case thrd_timeout: {
+			printf("Can't timedlock mutex: Timeou reach");
+		} break;
+		default: {
+			printf("Can't timedlock mutex: Some error happened");
+		} break;
 	}
 	
 	return 0;

@@ -314,6 +314,8 @@ int thrd_join(thrd_t thr, int *res);
 
 It's used to wait for a running thread (passed to function through `thrd_t thr`) exit. The `int *res` argument is used to store the returned value by the thread function, it's normal to use a null pointer here if the returning value isn't relevant.
 
+The returning `int` is mapped over the [[#`thrd_t` Success Enumeration Constant]].
+
 ### `thrd_exit`
 
 The `thrd_exit` function is defined by the prototype:
@@ -403,7 +405,7 @@ thrd_equal (thrd_t lhs, thrd_t rhs)
   return lhs == rhs;
 }
 ```
-> Code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/thrd_equal.c;h=c90c9d516c879de649c5aed38be2b5448d29d027;hb=HEAD#l21
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/thrd_equal.c;h=c90c9d516c879de649c5aed38be2b5448d29d027;hb=HEAD#l21
 
 ### `thrd_sleep`
 

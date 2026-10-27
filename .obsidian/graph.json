@@ -2,44 +2,23 @@
   "collapse-filter": false,
   "search": "-path:Templates  ",
   "showTags": false,
-  "showAttachments": true,
+  "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": true,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "[\"tags\":\"unfinished\"]",
       "color": {
         "a": 1,
-        "rgb": 1015831
+        "rgb": 4342338
       }
     },
     {
-      "query": "path:Others/Math",
+      "query": "path:Others",
       "color": {
         "a": 1,
-        "rgb": 2669271
-      }
-    },
-    {
-      "query": "path:\"History Of Recent Technology\"  ",
-      "color": {
-        "a": 1,
-        "rgb": 12255487
-      }
-    },
-    {
-      "query": "path:Others/History/Religions  ",
-      "color": {
-        "a": 1,
-        "rgb": 14225938
-      }
-    },
-    {
-      "query": "path:\"Others/History/\"  ",
-      "color": {
-        "a": 1,
-        "rgb": 4647680
+        "rgb": 349844
       }
     },
     {
@@ -47,13 +26,6 @@
       "color": {
         "a": 1,
         "rgb": 0
-      }
-    },
-    {
-      "query": "path:Others/English  ",
-      "color": {
-        "a": 1,
-        "rgb": 16639
       }
     },
     {
@@ -67,7 +39,35 @@
       "query": "path:\"Articles/\"",
       "color": {
         "a": 1,
-        "rgb": 16777215
+        "rgb": 634405
+      }
+    },
+    {
+      "query": "path:\"Hacking/\"",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "path:\"History Of Recent Technology\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5395168
+      }
+    },
+    {
+      "query": "path:Programming  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701233
+      }
+    },
+    {
+      "query": "path:\"How Computers Works\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 15850756
       }
     }
   ],

@@ -1,10 +1,13 @@
+---
+publish: true
+---
 # Definition
 
 The timestamp resolution determines the granularity used to measure time intervals in computing systems. It's commonly defined in nanoseconds or milliseconds (in older machines/Operating Systems).
 
 # Examples
 
-## POSIX Example with `timespec_getres`
+## Example with `timespec_getres`
 
 I prepared this simple example:
 

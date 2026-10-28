@@ -249,6 +249,16 @@ There isn't much technical differences between this version and the simple math 
 
 I highly recommend reading this code and the other one before trying to write your own task benchmark, without AI, so you can train your knowledge ;)
 
+The expected result for this example with $24$ workers when compared with $1$ worker, both with $5.000.000$ tasks is:
+
+```
+[12ms][main][~/Projects/Tests/testesemc/thrd_t-work-chunks] :) ./main 24 5000000
+Program ended
+[6,689s][main][~/Projects/Tests/testesemc/thrd_t-work-chunks] :) ./main 1 5000000 
+Program ended
+[26,564s][main][~/Projects/Tests/testesemc/thrd_t-work-chunks] :) 
+```
+
 # API Lookup
 
 ## Types, Structures, Enums and Others

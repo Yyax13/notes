@@ -18,7 +18,7 @@
       "query": "path:Others",
       "color": {
         "a": 1,
-        "rgb": 349844
+        "rgb": 12713984
       }
     },
     {
@@ -46,14 +46,14 @@
       "query": "path:\"Hacking/\"",
       "color": {
         "a": 1,
-        "rgb": 16711680
+        "rgb": 2303
       }
     },
     {
       "query": "path:\"History Of Recent Technology\"  ",
       "color": {
         "a": 1,
-        "rgb": 5395168
+        "rgb": 5407200
       }
     },
     {
@@ -82,5 +82,5 @@
   "linkStrength": 0.7,
   "linkDistance": 329,
   "scale": 0.0889892578125,
-  "close": true
+  "close": false
 }

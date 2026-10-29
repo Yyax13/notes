@@ -1,6 +1,5 @@
 ---
 tags:
-  - unfinished
 publish: true
 ---
 # mtx_t - A simple C mutex API
@@ -237,9 +236,6 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < tasksCount; i++)
         tasks[i] = (struct task_t){.func = pseudoTask};
 
-    uint64_t sums[workersCount];
-    memset(sums, 0UL, workersCount);
-
     for (size_t i = 0; i < (size_t)workersCount; i++) {
         size_t chunk = tasksCount / workersCount;
         size_t remainder = tasksCount % workersCount;
@@ -257,6 +253,9 @@ int main(int argc, char *argv[]) {
 
     printf("Result: %lu\n", sum);
     printf("\nProgram ended\n");
+
+    free(tasks);
+    return 0;
 }
 ```
 > Source code available at  https://github.com/Yyax13/tests/blob/main/testesemc/mtx_t-with-thrd_t/without-mtx_t.c 
@@ -279,7 +278,7 @@ struct worker_t {
 
 The `id` is used to track each worker, the `start` and `end` fields are used by the splitting logic (as seen in [[thrd_t - A simple parallel threading API#Multiple Workers for Multiple Tasks (M N Relationship)]]) and the `struct task_t *tasks` is a direct pointer to the full task list.
 
-You may have noticed that the `struct task_t *tasks` instance do not use the stack, I choose this approach because bigger tests became unreliable, as the ulimit defines that the process can't use more than $8192$ KiB ($8$ MiB) of stack without asking for more (we can ask for more limit to the kernel, but for simple implementations like this generally I just use the heap).
+You may have noticed that the `struct task_t *tasks` instance do not use the stack, I chose this approach because bigger tests became unreliable, as the ulimit defines that the process can't use more than $8192$ KiB ($8$ MiB) of stack without asking for more (we can ask for more limit to the kernel, but for simple implementations like this generally I just use the heap).
 
 After the "expected result" printing, we start creating the tasks:
 
@@ -288,7 +287,340 @@ for (int i = 0; i < tasksCount; i++)
     tasks[i] = (struct task_t){.func = pseudoTask};
 ```
 
-This is mostly useless, we keep using the tasks structure and array because we want a portable example.
+This is mostly useless, we keep using the tasks structure and array because we want a portable example, so if the function sometime need a argument we can just add it to the structure.
+
+Then, we start iterating this loop:
+
+```c
+for (size_t i = 0; i < (size_t)workersCount; i++) {
+    size_t chunk = tasksCount / workersCount;
+    size_t remainder = tasksCount % workersCount;
+	
+    size_t start = i * chunk + (i < remainder ? i : remainder);
+    size_t end = start + chunk + (i < remainder ? 1 : 0);
+    workers[i] = (struct worker_t){
+        .id = i, .start = start, .end = end, .tasks = tasks};
+	
+    thrd_create(&threads[i], worker_f, &workers[i]);
+}
+```
+
+Here we're splitting the tasks into multiple workers, there is many ways of doing this, but I chose the easier unportable way: literally split the tasks between multiple workers. Yeah, I know a tasks queue is much more cleaner and portable for every kind of task, however this is just a demonstration and not a _"omaga mutexes and threads universal boilerplate"_.
+
+The loop works by creating a chunk every iteration, the formula is $C = \frac{t}{w}$ where $C$ is the chunk, $t$ is the `tasksCount` and $w$ the `workersCount`.  The remainder is calculated using the modulo operation (as the `size_t chunk` can't be a floating point number) and used when assigning values to the `start` and `end` fields. 
+
+The assignment of `start` and `end` is made by:
+
+- `start`: The loop index, `i`, times chunk plus $x$ ($x$ being `i` if $i < \text{remainder}$, `remainder` else);
+- `end`: `start` plus `chunk` plus $x$ ($x$ being $1$ if $i < remainder$, $0$ else).
+
+Then the values is assigned to the `workers[i]` instance (current worker by loop index) using the same index as the `worker.id`. After this the `thrd_create` function is called (definition and documentation available in [[thrd_t - A simple parallel threading API#`thrd_create`]]) passing a pointer the `workers[i]` as the `void *arg` and using the `worker_f` function as the `int (*func)(void *arg)`.
+
+The `worker_f` function is implemented as:
+
+```c
+int worker_f(void *arg) {
+    struct worker_t *self = (struct worker_t *)arg;
+    for (size_t i = self->start; i < self->end; i++)
+        self->tasks[i].func(&sum);
+	
+    return 0;
+}
+```
+
+The function is simple, firstly the function cast the `void *arg` to a `struct worker_t *`, and then iterates over a loop where the index starts as `self->start` (start of current worker chunk) and compares it per-iteration with `self->end`. Inside the loop a simple statement is iterated: `self->tasks[i].func(&sum)`. The `self->tasks[x]` is a `task_t` instance:
+
+```c
+struct task_t {
+    uint64_t (*func)(void *arg);
+};
+```
+
+The `sum` variable used as the `pseudoTask` `void *arg` argument is defined as:
+
+```c
+uint64_t sum;
+```
+
+This variable is used to assign the count (later it'll be compared, to the _expected value_, by the user). The called `pseudoTask` code just iterates $10.000$ the post-increment operator against a cast of `void *arg` to `uint64_t`:
+
+```c
+uint64_t pseudoTask(void *arg) {
+    for (int i = 0; i < 10000; i++)
+        (*(uint64_t *)arg)++;
+	
+    return 0;
+}
+```
+
+Back to the main function, there is another for loop:
+
+```c
+for (int i = 0; i < workersCount; i++)
+    thrd_join(threads[i], NULL);
+```
+
+As documented in [[thrd_t - A simple parallel threading API#`thrd_join`|this note section]], the `thrd_join` function is used to wait for the running thread. The loop iterates over `thrd_t threads[]` array to wait for each thread sequentially, however this implementation do not run every thread sequentially, because we created (using `thrd_select`)  all the threads one loop back.
+
+After all that logic, the main function prints the output, free the `tasks` allocated heap and return. The expected result for a normal execution is:
+
+```
+[8ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) ./without-mtx_t 24 2500000
+Expected result: 25000000000
+Result: 8193200000
+
+Program ended
+[25ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) 
+```
+
+And this is a race condition example.
+
+### So, Let's use Mutexes to Fix the Race Condition
+
+Yeah, I just modified the source (chill, I won't spend much more time explaining again, just the modified snippets), here it's:
+
+```c
+/**
+ * I can handle this two ways:
+ *      I could use the mutex directly in pseudoTask(), breaking the decoupling architecture
+ *      OR
+ *      I can use the mutex in the worker_f()
+ *
+ * I chose to use the 2nd option.
+ * I also decided to set the mutex as a global variable, to follow the sum standard.
+ */
+
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <threads.h>
+#include <time.h>
+
+#define TASKS_CAP (1 << 24)
+#define WORKERS_CAP 24
+
+struct task_t {
+    uint64_t (*func)(void *arg);
+};
+
+uint64_t sum;
+mtx_t mu;
+
+struct worker_t {
+    int id;
+    size_t start;
+    size_t end;
+
+    struct task_t *tasks;
+};
+
+uint64_t pseudoTask(void *arg) {
+    for (int i = 0; i < 10000; i++)
+        (*(uint64_t *)arg)++;
+
+    return 0;
+}
+
+int worker_f(void *arg) {
+    struct worker_t *self = (struct worker_t *)arg;
+    for (size_t i = self->start; i < self->end; i++) {
+        mtx_lock(&mu);
+        self->tasks[i].func(&sum);
+        mtx_unlock(&mu);
+    }
+
+    return 0;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 3) {
+        printf("Usage: %s <workers> <tasks>\n", argv[0]);
+        return 1;
+    }
+
+    int workersCount = strtol(argv[1], NULL, 10);
+    if (workersCount <= 0 || workersCount > (int)WORKERS_CAP) {
+        printf("Invalid <workers> value: must be between 1 and %d, received "
+               "\"%s\"\n",
+               (int)WORKERS_CAP, argv[1]);
+        return 1;
+    }
+
+    int tasksCount = strtol(argv[2], NULL, 10);
+    if (tasksCount <= 0 || tasksCount > (int)TASKS_CAP) {
+        printf("Invalid <tasks> value: must be between 1 and %d, received "
+               "\"%s\"\n",
+               (int)TASKS_CAP, argv[2]);
+        return 1;
+    }
+
+    if (mtx_init(&mu, mtx_plain) != thrd_success) {
+        printf("Can't init mtx_t mu\n");
+        return 1;
+    }
+
+    thrd_t threads[workersCount];
+    struct worker_t workers[workersCount];
+    struct task_t *tasks = malloc(tasksCount * sizeof(struct task_t));
+    if (tasks == NULL)
+        perror("Can't malloc tasks");
+
+    printf("Expected result: %lu\n", tasksCount * 10000UL);
+    for (int i = 0; i < tasksCount; i++)
+        tasks[i] = (struct task_t){.func = pseudoTask};
+
+    for (size_t i = 0; i < (size_t)workersCount; i++) {
+        size_t chunk = tasksCount / workersCount;
+        size_t remainder = tasksCount % workersCount;
+
+        size_t start = i * chunk + (i < remainder ? i : remainder);
+        size_t end = start + chunk + (i < remainder ? 1 : 0);
+        workers[i] = (struct worker_t){
+            .id = i, .start = start, .end = end, .tasks = tasks};
+
+        thrd_create(&threads[i], worker_f, &workers[i]);
+    }
+
+    for (int i = 0; i < workersCount; i++)
+        thrd_join(threads[i], NULL);
+
+    printf("Result: %lu\n", sum);
+    printf("\nProgram ended\n");
+
+    mtx_destroy(&mu);
+    free(tasks);
+    return 0;
+}
+```
+> Source code available in https://github.com/Yyax13/tests/blob/main/testesemc/mtx_t-with-thrd_t/with-mtx_t.c
+
+The first change is creating a global mutex instance (as this is just an example):
+
+```c
+mtx_t mu;
+```
+
+The `mtx_t` C11 API haven't a pthread-mutex-like static initialization macro/constant, so we need to initialize it, and this is the seconds change in the code:
+
+```c
+if (mtx_init(&mu, mtx_plain) != thrd_success) {
+    printf("Can't init mtx_t mu\n");
+    return 1;
+}
+```
+
+Here we used the `mtx_plain` mode, as we do not need `mtx_timedlock` or recursive locking. The checking for initialization errors is also here, just to demonstrate the correct practice.
+
+Then the `worker_f` function implement the mutex:
+
+```c
+int worker_f(void *arg) {
+    struct worker_t *self = (struct worker_t *)arg;
+    for (size_t i = self->start; i < self->end; i++) {
+        mtx_lock(&mu);
+        self->tasks[i].func(&sum);
+        mtx_unlock(&mu);
+    }
+	
+    return 0;
+}
+```
+
+It locks the mutex before calling the `pseduoTask` function, and unlock it after the function execution (which is pretty slow btw, we'll benchmark this later and you'll see the speed difference).
+
+The rest of code was kept same, I just added the `mtx_destroy` function call before freeing the `tasks` array to ensure it's destroying. The expected result/output of this synchronized code is:
+
+```
+[11ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) ./with-mtx_t 24 2500000 
+Expected result: 25000000000
+Result: 25000000000
+
+Program ended
+[339ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :)
+```
+
+###  Damn Slow Execution
+
+After we added this mutex technique, were we containerized the `pseudoTask` inside a blocking execution using the `mtx_t` interface, we faced a huge performance drop. For the demonstration I'll use the maximum tasks amount, $16777216$:
+
+```
+[10ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) time ./with-mtx_t 24 16777216
+Expected result: 167772160000
+Result: 167772160000
+
+Program ended
+./with-mtx_t 24 16777216  2,81s user 13,41s system 744% cpu 2,177 total
+[2,182s][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) 
+```
+
+Now without mutexes:
+
+```
+[7ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] ᛋᛋ time ./without-mtx_t 24 16777216
+Expected result: 167772160000
+Result: 47707920000
+
+Program ended
+./without-mtx_t 24 16777216  0,09s user 0,06s system 196% cpu 0,075 total
+[79ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] ᛋᛋ 
+```
+
+Yes, the race condition is $3022.22\%$ faster :0
+
+### Fixing this Trash Speed
+
+I wrote another version, the code still the same so because I made just one small change I'll note paste the full code here. That is it:
+
+```c
+// from
+int worker_f(void *arg) {
+    struct worker_t *self = (struct worker_t *)arg;
+    for (size_t i = self->start; i < self->end; i++) {
+        mtx_lock(&mu);
+        self->tasks[i].func(&sum);
+        mtx_unlock(&mu);
+    }
+	
+    return 0;
+}
+
+// to 
+int worker_f(void *arg) {
+    struct worker_t *self = (struct worker_t *)arg;
+    uint64_t accumulator = 0;
+    for (size_t i = self->start; i < self->end; i++)
+        self->tasks[i].func(&accumulator);
+	
+    mtx_lock(&mu);
+    sum += accumulator;
+    mtx_unlock(&mu);
+	
+    return 0;
+}
+```
+> Full source code available in https://github.com/Yyax13/tests/blob/main/testesemc/mtx_t-with-thrd_t/fast-mtx_t.c
+
+The main change is that in the optimized version we update an accumulator, and incrementing the accumulator in the global `sum` is basically cost-less as we lock the mutex one time per thread. Here is a comparison:
+
+```
+[7ms][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) time ./with-mtx_t 24 16777216 
+Expected result: 167772160000
+Result: 167772160000
+
+Program ended
+./with-mtx_t 24 16777216  2,71s user 13,71s system 756% cpu 2,171 total
+[2,176s][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) time ./fast-mtx_t 24 16777216
+Expected result: 167772160000
+Result: 167772160000
+
+Program ended
+./fast-mtx_t 24 16777216  0,06s user 0,06s system 168% cpu 0,070 total
+[0,075s][main][~/Projects/Tests/testesemc/mtx_t-with-thrd_t] :) 
+```
+
+$97\%$ Less runtime.
 
 # API Lookup
 
@@ -305,6 +637,7 @@ enum {
 	mtx_timed     = 2
 };
 ```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l55
 
 It can be used in `mtx_init` with this values:
 
@@ -321,10 +654,82 @@ The C11 documentation determines that we shouldn't directly use the `mtx_recursi
 
 ## Functions
 
+### `mtx_init`
+
+The `mtx_init` function is used to initialize the `mtx_t` instance. It's prototype is:
+
+```c
+extern int mtx_init (mtx_t *__mutex, int __type);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l135
+
+The returning value must be compared with one of the [[thrd_t - A simple parallel threading API#`thrd_t` Success Enumeration Constant]] for any errors (must be `thrd_success`).
+
+The `int __type`  must be one of the [[#`mtx_t` Modes]] combinations.
+
+### `mtx_lock`
+
+The `mtx_lock` function is used to lock a `mtx_t` instance. It's prototype is:
+
+```c
+extern int mtx_lock (mtx_t *__mutex);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l139
+
+The returning value must be `thrd_success`, but you can also compare against `thrd_error` as this function do not return any other error types (by default).
+
+There is a catch by using this function with a `mtx_plain` mutex, if you lock twice the same mutex instance, the thread deadlocks (still locked waiting for an unlock that'll never happen). So if you need to lock recursively, use the `mtx_recursive` mode as a modifier to your mode (there is a better description at [[#`mtx_t` Modes]]). 
+
+### `mtx_trylock`
+
+The `mtx_trylock` works like the `mtx_lock` function, the main difference is the `mtx_trylock` return an error if the mutex is locked, instead of blocking the thread and waiting. It's prototype is:
+
+```c
+extern int mtx_trylock (mtx_t *__mutex);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l161
+
+The returning value also must be `thrd_success`, however (unlikely `mtx_lock`) this function can also return `thrd_busy`, representing a locked mutex, `thrd_error` also is returned if any other error occurs.
+
+### `mtx_timedlock`
+
+The `mtx_timedlock` works like the `mtx_trylock` but it wait for a timeout instead of instantly returning an error. It's prototype is:
+
+```c
+extern int mtx_timedlock (mtx_t *__restrict __mutex,
+	                      const struct timespec *__restrict __time_point);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l145
+
+It also returns `thrd_success` as it's success value, but the error that you might check is `thrd_timedout` for time deadline reaching. The `thrd_error` is the default return value for any other error.
+
+An implementation example is available at [[#Mutexes Usage]] and the `struct timespec` documentation is also available at [[timespec - A Timestamp Nanosecond-Precise Specification for C]].
+
+### `mtx_unlock`
+
+The `mtx_unlock` function is used to unlock a locked mutex instance, it's prototype is:
+
+```c
+extern int mtx_unlock (mtx_t *__mutex);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l165
+
+The return value is `thrd_success` on a successfully clean run, `thrd_error` otherwise.
+
 ### `mtx_destroy`
 
+The `mtx_destroy` function is responsible for correctly destroying the mutex by releasing correctly it's resources and mapping any possible errors. It's prototype is:
+
+```c
+extern void mtx_destroy (mtx_t *__mutex);
+```
+> Source code available at https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/pthread/threads.h;h=44468e72f3298cd844639510697679b8335b3f06;hb=HEAD#l168
 
 ---
+# Related
+
+- [[timespec - A Timestamp Nanosecond-Precise Specification for C]]
+- [[thrd_t - A simple parallel threading API]]
 
 # Refs
 
